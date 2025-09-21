@@ -1,0 +1,6 @@
+@Byway.CourseManagement.Algoriza.API_HostAddress = http://localhost:5167
+
+GET {{Byway.CourseManagement.Algoriza.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
