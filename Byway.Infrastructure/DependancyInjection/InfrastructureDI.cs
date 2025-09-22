@@ -1,5 +1,5 @@
 ﻿using Byway.Domain.Repositoies.Contract;
-using Byway.Infrastructure.Data;
+using Byway.Infrastructure._Data;
 using Byway.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +17,7 @@ namespace Byway.Infrastructure.DependancyInjection
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             //Configure Context Services
-            services.AddDbContext<AppDbContext>(options =>
+            services.AddDbContext<BywayDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });

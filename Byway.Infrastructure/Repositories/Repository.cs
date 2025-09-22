@@ -1,7 +1,7 @@
 ﻿using Byway.Domain.Entities;
 using Byway.Domain.Repositoies.Contract;
 using Byway.Domain.Specification;
-using Byway.Infrastructure.Data;
+using Byway.Infrastructure._Data;
 using Byway.Infrastructure.Specification;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace Byway.Infrastructure.Repositories
 {
-    public class Repository<T> (AppDbContext dbContext) : IRepository<T> where T : BaseEntity
+    public class Repository<T> (BywayDbContext context) : IRepository<T> where T : BaseEntity
     {
-        private readonly AppDbContext _dbContext = dbContext;
+        private readonly BywayDbContext _Context = context;
 
-        public void Add(T entity) => _dbContext.Add(entity);
+        public void Add(T entity) => _Context.Add(entity);
 
-        public void Update(T entity) => _dbContext.Update(entity);
+        public void Update(T entity) => _Context.Update(entity);
 
-        public void Delete(T entity) => _dbContext.Remove(entity);
+        public void Delete(T entity) => _Context.Remove(entity);
 
         public async Task<IReadOnlyList<T>> GetAllWithSpecsAsync(ISpecification<T> specs) 
             =>  await ApplySpecifications(specs).ToListAsync();
@@ -36,7 +36,7 @@ namespace Byway.Infrastructure.Repositories
 
         
         private IQueryable<T> ApplySpecifications(ISpecification<T> specs) 
-            => SpecificationEvaluator<T>.BuildQuery(_dbContext.Set<T>(), specs);
+            => SpecificationEvaluator<T>.BuildQuery(_Context.Set<T>(), specs);
         
 
     }
