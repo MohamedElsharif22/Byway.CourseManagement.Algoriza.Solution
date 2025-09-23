@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Byway.Domain.Entities.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace Byway.Domain.Entities
         public Instructor Instructor { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public ICollection<ApplicationUser> EnrolledUsers { get; set; }
 
     }
 }

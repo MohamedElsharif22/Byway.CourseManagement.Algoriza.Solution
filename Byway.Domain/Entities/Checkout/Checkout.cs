@@ -8,7 +8,7 @@ namespace Byway.Domain.Entities.Checkout
 {
     public class Checkout : BaseEntity
     {
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public ICollection<BoughtCourse> BoughtCourses { get; set; }
         public decimal TotalPrice { get; set; }
     }

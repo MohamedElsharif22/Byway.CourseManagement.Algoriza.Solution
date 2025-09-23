@@ -1,9 +1,12 @@
 
+using Byway.CourseManagement.Algoriza.API.DependancyInjection;
 using Byway.CourseManagement.Algoriza.API.Errors.Configuration;
 using Byway.CourseManagement.Algoriza.API.Helpers;
 using Byway.CourseManagement.Algoriza.API.Middlewares;
+using Byway.Domain.Entities;
 using Byway.Infrastructure.DependancyInjection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Scalar.AspNetCore;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -22,7 +25,14 @@ namespace Byway.CourseManagement.Algoriza.API
                 configure.JsonSerializerOptions.PropertyNamingPolicy= JsonNamingPolicy.CamelCase;
                 configure.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
-            builder.Services.AddInfrastructureServices(builder.Configuration);
+
+            builder.Services.AddDbContextServices(builder.Configuration);
+
+            builder.Services.AddInfrastructureServices();
+
+            builder.Services.AddAuthenticationServices(builder.Configuration);
+
+            //builder.Services.AddIdentity<User, IdentityRole>();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();

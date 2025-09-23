@@ -1,6 +1,9 @@
-﻿using Byway.Domain.Repositoies.Contract;
+﻿using Byway.Domain;
+using Byway.Domain.Entities;
+using Byway.Domain.Repositoies.Contract;
 using Byway.Infrastructure._Data;
 using Byway.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +17,7 @@ namespace Byway.Infrastructure.DependancyInjection
 {
     public static class InfrastructureDI
     {
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDbContextServices(this IServiceCollection services, IConfiguration configuration)
         {
             //Configure Context Services
             services.AddDbContext<BywayDbContext>(options =>
@@ -22,8 +25,14 @@ namespace Byway.Infrastructure.DependancyInjection
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            
+
+            return services;
+        }
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
+        {
             // Register Repositories 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
 
             return services;
         }

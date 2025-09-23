@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Byway.Infrastructure._Data.Migrations
 {
     [DbContext(typeof(BywayDbContext))]
-    [Migration("20250922210552_Initial")]
-    partial class Initial
+    [Migration("20250923200055_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,6 +81,30 @@ namespace Byway.Infrastructure._Data.Migrations
                             Id = 6,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 26, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Name = "DevOps"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Design"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 6, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Business"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Marketing"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 16, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Cybersecurity"
                         });
                 });
 
@@ -101,13 +125,19 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CheckoutId");
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("BoughtCourse");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BoughtCourses");
                 });
 
             modelBuilder.Entity("Byway.Domain.Entities.Checkout.Checkout", b =>
@@ -121,11 +151,11 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -141,6 +171,9 @@ namespace Byway.Infrastructure._Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryId1")
                         .HasColumnType("int");
 
                     b.Property<string>("CoverPictureUrl")
@@ -173,6 +206,8 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("CategoryId1");
 
                     b.HasIndex("InstructorId");
 
@@ -322,7 +357,183 @@ namespace Byway.Infrastructure._Data.Migrations
                             Price = 144.99m,
                             Rating = 5,
                             Title = "Full Stack JavaScript Development"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 1,
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop&crop=center",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 28, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "Deep dive into Python advanced concepts including decorators, metaclasses, async programming, and performance optimization.",
+                            InstructorId = 1,
+                            Price = 109.99m,
+                            Rating = 4,
+                            Title = "Advanced Python Programming"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 7,
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&h=600&fit=crop&crop=center",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 30, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "Complete course on user interface and user experience design principles, tools, and methodologies.",
+                            InstructorId = 9,
+                            Price = 124.99m,
+                            Rating = 5,
+                            Title = "UI/UX Design Masterclass"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 8,
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "Learn business analysis techniques, process mapping, and optimization strategies for digital transformation.",
+                            InstructorId = 10,
+                            Price = 114.99m,
+                            Rating = 4,
+                            Title = "Business Analysis and Process Optimization"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CategoryId = 9,
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 3, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "Master digital marketing strategies, SEO, social media marketing, and growth hacking techniques.",
+                            InstructorId = 11,
+                            Price = 99.99m,
+                            Rating = 5,
+                            Title = "Digital Marketing and Growth Hacking"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CategoryId = 10,
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&crop=center",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 5, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "Introduction to cybersecurity principles, ethical hacking, penetration testing, and security best practices.",
+                            InstructorId = 12,
+                            Price = 149.99m,
+                            Rating = 4,
+                            Title = "Cybersecurity Fundamentals"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CategoryId = 10,
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "Advanced penetration testing techniques, vulnerability assessment, and incident response strategies.",
+                            InstructorId = 12,
+                            Price = 189.99m,
+                            Rating = 5,
+                            Title = "Advanced Cybersecurity and Ethical Hacking"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CategoryId = 7,
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1609277205247-56d6e9eb9b85?w=800&h=600&fit=crop&crop=center",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "Master Figma for creating professional product designs, prototypes, and design systems.",
+                            InstructorId = 9,
+                            Price = 89.99m,
+                            Rating = 4,
+                            Title = "Figma for Product Design"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoryId = 2,
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "Learn statistical analysis and data visualization using R programming language for data science.",
+                            InstructorId = 2,
+                            Price = 119.99m,
+                            Rating = 4,
+                            Title = "Statistical Analysis with R"
                         });
+                });
+
+            modelBuilder.Entity("Byway.Domain.Entities.Identity.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Byway.Domain.Entities.Instructor", b =>
@@ -418,7 +629,172 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 17, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Name = "Maria Garcia",
                             jopTitle = "Full Stack Developer"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            About = "Award-winning designer specializing in user experience research and interface design. Former design lead at Adobe.",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 19, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Robert Wilson",
+                            jopTitle = "UX/UI Designer"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            About = "MBA from Stanford with 12 years in strategic consulting. Expert in business process optimization and digital transformation.",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Jennifer Lee",
+                            jopTitle = "Business Analyst"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            About = "Former marketing director at Fortune 500 companies. Specialist in growth hacking and performance marketing.",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Michael Torres",
+                            jopTitle = "Digital Marketing Strategist"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            About = "Ethical hacker and security consultant with CISSP certification. Former security engineer at Microsoft.",
+                            CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 25, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Amanda Zhang",
+                            jopTitle = "Cybersecurity Expert"
                         });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Byway.Domain.Entities.Checkout.BoughtCourse", b =>
@@ -426,12 +802,18 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.HasOne("Byway.Domain.Entities.Checkout.Checkout", "Checkout")
                         .WithMany("BoughtCourses")
                         .HasForeignKey("CheckoutId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Byway.Domain.Entities.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Byway.Domain.Entities.Identity.ApplicationUser", null)
+                        .WithMany("EnrolledCourses")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -448,6 +830,10 @@ namespace Byway.Infrastructure._Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Byway.Domain.Entities.Category", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("CategoryId1");
+
                     b.HasOne("Byway.Domain.Entities.Instructor", "Instructor")
                         .WithMany("Courses")
                         .HasForeignKey("InstructorId")
@@ -458,9 +844,82 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.Navigation("Instructor");
                 });
 
+            modelBuilder.Entity("Byway.Domain.Entities.Identity.ApplicationUser", b =>
+                {
+                    b.HasOne("Byway.Domain.Entities.Course", null)
+                        .WithMany("EnrolledUsers")
+                        .HasForeignKey("CourseId");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Byway.Domain.Entities.Identity.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Byway.Domain.Entities.Identity.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Byway.Domain.Entities.Identity.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Byway.Domain.Entities.Identity.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Byway.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
             modelBuilder.Entity("Byway.Domain.Entities.Checkout.Checkout", b =>
                 {
                     b.Navigation("BoughtCourses");
+                });
+
+            modelBuilder.Entity("Byway.Domain.Entities.Course", b =>
+                {
+                    b.Navigation("EnrolledUsers");
+                });
+
+            modelBuilder.Entity("Byway.Domain.Entities.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("EnrolledCourses");
                 });
 
             modelBuilder.Entity("Byway.Domain.Entities.Instructor", b =>

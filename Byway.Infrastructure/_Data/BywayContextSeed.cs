@@ -1,4 +1,6 @@
 ﻿using Byway.Domain.Entities;
+using Byway.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,8 +22,14 @@ namespace Byway.Infrastructure._Data
                 new Category { Id = 3, Name = "Web Development", CreatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero) },
                 new Category { Id = 4, Name = "Mobile Development", CreatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero) },
                 new Category { Id = 5, Name = "Machine Learning", CreatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 6, Name = "DevOps", CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero) }
+                new Category { Id = 6, Name = "DevOps", CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 7, Name = "Design", CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 8, Name = "Business", CreatedAt = new DateTimeOffset(2024, 9, 6, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 9, Name = "Marketing", CreatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 10, Name = "Cybersecurity", CreatedAt = new DateTimeOffset(2024, 9, 16, 10, 0, 0, TimeSpan.Zero) }
             };
+
+            modelBuilder.Entity<Category>().HasData(categories);
 
             // Seed Instructors
             var instructors = new List<Instructor>
@@ -89,8 +97,42 @@ namespace Byway.Infrastructure._Data
                     jopTitle = "Full Stack Developer",
                     About = "MERN stack expert with 8 years of experience building scalable web applications for startups.",
                     CreatedAt = new DateTimeOffset(2024, 8, 17, 10, 0, 0, TimeSpan.Zero)
+                },
+                new Instructor
+                {
+                    Id = 9,
+                    Name = "Robert Wilson",
+                    jopTitle = "UX/UI Designer",
+                    About = "Award-winning designer specializing in user experience research and interface design. Former design lead at Adobe.",
+                    CreatedAt = new DateTimeOffset(2024, 8, 19, 10, 0, 0, TimeSpan.Zero)
+                },
+                new Instructor
+                {
+                    Id = 10,
+                    Name = "Jennifer Lee",
+                    jopTitle = "Business Analyst",
+                    About = "MBA from Stanford with 12 years in strategic consulting. Expert in business process optimization and digital transformation.",
+                    CreatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero)
+                },
+                new Instructor
+                {
+                    Id = 11,
+                    Name = "Michael Torres",
+                    jopTitle = "Digital Marketing Strategist",
+                    About = "Former marketing director at Fortune 500 companies. Specialist in growth hacking and performance marketing.",
+                    CreatedAt = new DateTimeOffset(2024, 8, 23, 10, 0, 0, TimeSpan.Zero)
+                },
+                new Instructor
+                {
+                    Id = 12,
+                    Name = "Amanda Zhang",
+                    jopTitle = "Cybersecurity Expert",
+                    About = "Ethical hacker and security consultant with CISSP certification. Former security engineer at Microsoft.",
+                    CreatedAt = new DateTimeOffset(2024, 8, 25, 10, 0, 0, TimeSpan.Zero)
                 }
             };
+
+            modelBuilder.Entity<Instructor>().HasData(instructors);
 
             // Seed Courses
             var courses = new List<Course>
@@ -238,233 +280,131 @@ namespace Byway.Infrastructure._Data
                     InstructorId = 8,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero)
-                }
-            };
-
-            // Seed the data using ModelBuilder
-            modelBuilder.Entity<Category>().HasData(categories);
-            modelBuilder.Entity<Instructor>().HasData(instructors);
-            modelBuilder.Entity<Course>().HasData(courses);
-        }
-        public static async Task SeedDatabaseAsync(DbContext context)
-        {
-            // Check if data already exists
-            if (await context.Set<Category>().AnyAsync())
-                return; // Data already seeded
-
-            // Add Categories
-            var categories = new List<Category>
-            {
-                new Category { Name = "Programming" },
-                new Category { Name = "Data Science" },
-                new Category { Name = "Web Development" },
-                new Category { Name = "Mobile Development" },
-                new Category { Name = "Machine Learning" },
-                new Category { Name = "DevOps" }
-            };
-
-            await context.Set<Category>().AddRangeAsync(categories);
-            await context.SaveChangesAsync();
-
-            // Add Instructors
-            var instructors = new List<Instructor>
-            {
-                new Instructor
-                {
-                    Name = "John Smith",
-                    jopTitle = "Senior Software Engineer",
-                    About = "Experienced full-stack developer with 10+ years in the industry."
                 },
-                new Instructor
-                {
-                    Name = "Sarah Johnson",
-                    jopTitle = "Data Scientist",
-                    About = "PhD in Statistics with expertise in machine learning and data visualization."
-                },
-                new Instructor
-                {
-                    Name = "Mike Chen",
-                    jopTitle = "Frontend Developer",
-                    About = "React and Vue.js specialist with a keen eye for UI/UX design."
-                },
-                new Instructor
-                {
-                    Name = "Emily Rodriguez",
-                    jopTitle = "Mobile App Developer",
-                    About = "iOS and Android development expert with 15+ published apps."
-                },
-                new Instructor
-                {
-                    Name = "David Kumar",
-                    jopTitle = "Machine Learning Engineer",
-                    About = "AI researcher and engineer specializing in deep learning and computer vision."
-                },
-                new Instructor
-                {
-                    Name = "Lisa Thompson",
-                    jopTitle = "DevOps Engineer",
-                    About = "Cloud infrastructure expert with AWS and Azure certifications."
-                },
-                new Instructor
-                {
-                    Name = "Alex Morgan",
-                    jopTitle = "Backend Developer",
-                    About = "Microservices architecture specialist with expertise in .NET and Node.js."
-                },
-                new Instructor
-                {
-                    Name = "Maria Garcia",
-                    jopTitle = "Full Stack Developer",
-                    About = "MERN stack expert with 8 years of experience building scalable web applications."
-                }
-            };
-
-            await context.Set<Instructor>().AddRangeAsync(instructors);
-            await context.SaveChangesAsync();
-
-            // Add Courses (after categories and instructors are saved to get their IDs)
-            var programmingCategory = await context.Set<Category>().FirstAsync(c => c.Name == "Programming");
-            var dataScienceCategory = await context.Set<Category>().FirstAsync(c => c.Name == "Data Science");
-            var webDevCategory = await context.Set<Category>().FirstAsync(c => c.Name == "Web Development");
-            var mobileCategory = await context.Set<Category>().FirstAsync(c => c.Name == "Mobile Development");
-            var machineLearningCategory = await context.Set<Category>().FirstAsync(c => c.Name == "Machine Learning");
-            var devOpsCategory = await context.Set<Category>().FirstAsync(c => c.Name == "DevOps");
-
-            var johnInstructor = await context.Set<Instructor>().FirstAsync(i => i.Name == "John Smith");
-            var sarahInstructor = await context.Set<Instructor>().FirstAsync(i => i.Name == "Sarah Johnson");
-            var mikeInstructor = await context.Set<Instructor>().FirstAsync(i => i.Name == "Mike Chen");
-            var emilyInstructor = await context.Set<Instructor>().FirstAsync(i => i.Name == "Emily Rodriguez");
-            var davidInstructor = await context.Set<Instructor>().FirstAsync(i => i.Name == "David Kumar");
-            var lisaInstructor = await context.Set<Instructor>().FirstAsync(i => i.Name == "Lisa Thompson");
-            var alexInstructor = await context.Set<Instructor>().FirstAsync(i => i.Name == "Alex Morgan");
-            var mariaInstructor = await context.Set<Instructor>().FirstAsync(i => i.Name == "Maria Garcia");
-
-            var courses = new List<Course>
-            {
                 new Course
                 {
-                    Title = "Complete C# Programming Bootcamp",
-                    Description = "Master C# programming from basics to advanced topics including OOP, LINQ, and async programming.",
+                    Id = 13,
+                    Title = "Advanced Python Programming",
+                    Description = "Deep dive into Python advanced concepts including decorators, metaclasses, async programming, and performance optimization.",
+                    Rating = 4,
+                    Price = 109.99m,
+                    CategoryId = 1,
+                    InstructorId = 1,
+                    CoverPictureUrl = "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop&crop=center",
+                    CreatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero)
+                },
+                new Course
+                {
+                    Id = 14,
+                    Title = "UI/UX Design Masterclass",
+                    Description = "Complete course on user interface and user experience design principles, tools, and methodologies.",
+                    Rating = 5,
+                    Price = 124.99m,
+                    CategoryId = 7,
+                    InstructorId = 9,
+                    CoverPictureUrl = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&h=600&fit=crop&crop=center",
+                    CreatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero)
+                },
+                new Course
+                {
+                    Id = 15,
+                    Title = "Business Analysis and Process Optimization",
+                    Description = "Learn business analysis techniques, process mapping, and optimization strategies for digital transformation.",
+                    Rating = 4,
+                    Price = 114.99m,
+                    CategoryId = 8,
+                    InstructorId = 10,
+                    CoverPictureUrl = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center",
+                    CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero)
+                },
+                new Course
+                {
+                    Id = 16,
+                    Title = "Digital Marketing and Growth Hacking",
+                    Description = "Master digital marketing strategies, SEO, social media marketing, and growth hacking techniques.",
                     Rating = 5,
                     Price = 99.99m,
-                    CategoryId = programmingCategory.Id,
-                    InstructorId = johnInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=600&fit=crop&crop=center"
+                    CategoryId = 9,
+                    InstructorId = 11,
+                    CoverPictureUrl = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
+                    CreatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
-                    Title = "Data Science with Python",
-                    Description = "Learn data analysis, visualization, and machine learning using Python, pandas, and scikit-learn.",
-                    Rating = 4,
-                    Price = 129.99m,
-                    CategoryId = dataScienceCategory.Id,
-                    InstructorId = sarahInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center"
-                },
-                new Course
-                {
-                    Title = "Modern React Development",
-                    Description = "Build dynamic web applications using React, Redux, and modern JavaScript ES6+ features.",
-                    Rating = 5,
-                    Price = 89.99m,
-                    CategoryId = webDevCategory.Id,
-                    InstructorId = mikeInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&crop=center"
-                },
-                new Course
-                {
-                    Title = "iOS App Development with Swift",
-                    Description = "Create professional iOS applications using Swift and SwiftUI. Publish your first app to the App Store.",
+                    Id = 17,
+                    Title = "Cybersecurity Fundamentals",
+                    Description = "Introduction to cybersecurity principles, ethical hacking, penetration testing, and security best practices.",
                     Rating = 4,
                     Price = 149.99m,
-                    CategoryId = mobileCategory.Id,
-                    InstructorId = emilyInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&crop=center"
+                    CategoryId = 10,
+                    InstructorId = 12,
+                    CoverPictureUrl = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&crop=center",
+                    CreatedAt = new DateTimeOffset(2024, 9, 5, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
-                    Title = "Machine Learning Fundamentals",
-                    Description = "Introduction to machine learning algorithms, neural networks, and practical implementation.",
+                    Id = 18,
+                    Title = "Advanced Cybersecurity and Ethical Hacking",
+                    Description = "Advanced penetration testing techniques, vulnerability assessment, and incident response strategies.",
                     Rating = 5,
-                    Price = 179.99m,
-                    CategoryId = machineLearningCategory.Id,
-                    InstructorId = davidInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center"
+                    Price = 189.99m,
+                    CategoryId = 10,
+                    InstructorId = 12,
+                    CoverPictureUrl = "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
+                    CreatedAt = new DateTimeOffset(2024, 9, 7, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
-                    Title = "Docker and Kubernetes Mastery",
-                    Description = "Learn containerization and orchestration for modern application deployment and scaling.",
+                    Id = 19,
+                    Title = "Figma for Product Design",
+                    Description = "Master Figma for creating professional product designs, prototypes, and design systems.",
                     Rating = 4,
-                    Price = 139.99m,
-                    CategoryId = devOpsCategory.Id,
-                    InstructorId = lisaInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop&crop=center"
+                    Price = 89.99m,
+                    CategoryId = 7,
+                    InstructorId = 9,
+                    CoverPictureUrl = "https://images.unsplash.com/photo-1609277205247-56d6e9eb9b85?w=800&h=600&fit=crop&crop=center",
+                    CreatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
-                    Title = "ASP.NET Core Web API Development",
-                    Description = "Build robust RESTful APIs using ASP.NET Core, Entity Framework, and clean architecture principles.",
-                    Rating = 5,
+                    Id = 20,
+                    Title = "Statistical Analysis with R",
+                    Description = "Learn statistical analysis and data visualization using R programming language for data science.",
+                    Rating = 4,
                     Price = 119.99m,
-                    CategoryId = programmingCategory.Id,
-                    InstructorId = alexInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&crop=center"
-                },
-                new Course
-                {
-                    Title = "Android Development with Kotlin",
-                    Description = "Create native Android applications using Kotlin, Android Jetpack, and Material Design.",
-                    Rating = 4,
-                    Price = 134.99m,
-                    CategoryId = mobileCategory.Id,
-                    InstructorId = emilyInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800&h=600&fit=crop&crop=center"
-                },
-                new Course
-                {
-                    Title = "Vue.js Complete Guide",
-                    Description = "Master Vue.js 3 with Composition API, Vuex, Vue Router, and build modern single-page applications.",
-                    Rating = 4,
-                    Price = 94.99m,
-                    CategoryId = webDevCategory.Id,
-                    InstructorId = mikeInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&h=600&fit=crop&crop=center"
-                },
-                new Course
-                {
-                    Title = "Deep Learning with TensorFlow",
-                    Description = "Advanced machine learning course covering neural networks, CNNs, RNNs, and practical AI applications.",
-                    Rating = 5,
-                    Price = 199.99m,
-                    CategoryId = machineLearningCategory.Id,
-                    InstructorId = davidInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop&crop=center"
-                },
-                new Course
-                {
-                    Title = "Cloud Architecture on AWS",
-                    Description = "Design and deploy scalable cloud solutions using AWS services, serverless architecture, and best practices.",
-                    Rating = 4,
-                    Price = 159.99m,
-                    CategoryId = devOpsCategory.Id,
-                    InstructorId = lisaInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&crop=center"
-                },
-                new Course
-                {
-                    Title = "Full Stack JavaScript Development",
-                    Description = "End-to-end web development using Node.js, Express, React, and MongoDB (MERN stack).",
-                    Rating = 5,
-                    Price = 144.99m,
-                    CategoryId = webDevCategory.Id,
-                    InstructorId = mariaInstructor.Id,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop&crop=center"
+                    CategoryId = 2,
+                    InstructorId = 2,
+                    CoverPictureUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
+                    CreatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero)
                 }
             };
 
-            await context.Set<Course>().AddRangeAsync(courses);
-            await context.SaveChangesAsync();
+            modelBuilder.Entity<Course>().HasData(courses);
+        }
+
+        public static async Task SeedIdentityDataAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            if (!userManager.Users.Any())
+            {
+                if (!roleManager.Roles.Any())
+                {
+                    var adminRole = new IdentityRole("Admin");
+
+                    await roleManager.CreateAsync(adminRole);
+                }
+
+                var user = new ApplicationUser()
+                {
+                    FullName = "Muhammad Kamal",
+                    UserName = "admin_Muhammad",
+                    Email = "admin@byway.com",
+
+
+                };
+
+                await userManager.CreateAsync(user, "P@ssw0rd");
+                await userManager.AddToRoleAsync(user, "Admin");
+            }
         }
     }
 }
