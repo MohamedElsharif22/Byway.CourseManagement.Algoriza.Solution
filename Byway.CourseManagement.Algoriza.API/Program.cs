@@ -1,6 +1,8 @@
 
+using Byway.Application.DependancyInjection;
 using Byway.CourseManagement.Algoriza.API.DependancyInjection;
 using Byway.CourseManagement.Algoriza.API.Errors.Configuration;
+using Byway.CourseManagement.Algoriza.API.Extensions;
 using Byway.CourseManagement.Algoriza.API.Helpers;
 using Byway.CourseManagement.Algoriza.API.Middlewares;
 using Byway.Domain.Entities;
@@ -8,6 +10,7 @@ using Byway.Infrastructure.DependancyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Scalar.AspNetCore;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -30,7 +33,11 @@ namespace Byway.CourseManagement.Algoriza.API
 
             builder.Services.AddInfrastructureServices();
 
+            builder.Services.AddApplicationServices();
+
             builder.Services.AddAuthenticationServices(builder.Configuration);
+
+            builder.Services.AddAutoMapper(c => { }, typeof(MappingProfiles).Assembly);
 
             //builder.Services.AddIdentity<User, IdentityRole>();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -50,10 +57,11 @@ namespace Byway.CourseManagement.Algoriza.API
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.MapScalarApiReference();
+
                 app.MapOpenApi();
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.MapScalarApiReference();
             }
 
             app.UseStatusCodePagesWithReExecute("/errors/{0}");

@@ -37,7 +37,12 @@ namespace Byway.Infrastructure.Repositories
         
         private IQueryable<T> ApplySpecifications(ISpecification<T> specs) 
             => SpecificationEvaluator<T>.BuildQuery(_Context.Set<T>(), specs);
-        
+
+        public async Task<T?> GetByIdAsync(int id)
+            => await _Context.Set<T>().FindAsync(id);
+
+        public async Task<IEnumerable<T>> GetAllAsync()
+            => await _Context.Set<T>().ToListAsync();
 
     }
 }

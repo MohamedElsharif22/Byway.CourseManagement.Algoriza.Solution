@@ -16,9 +16,9 @@ namespace Byway.Infrastructure._Data.Configurations
             builder.Property(i => i.Name)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder.Property(i => i.jopTitle)
+            builder.Property(i => i.JopTitle)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasConversion<string>();
             builder.Property(i => i.About)
                 .HasMaxLength(2000);
             builder.HasMany(i => i.Courses)

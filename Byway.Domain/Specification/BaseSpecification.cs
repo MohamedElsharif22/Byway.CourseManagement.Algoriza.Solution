@@ -16,7 +16,7 @@ namespace Byway.Domain.Specification
         public Expression<Func<T, object>> OrderByDesc { get; set; } = null!;
         public int Skip { get; set; }
         public int Take { get; set; }
-        public bool IsPagenationEnabled { get; set; }
+        public bool IsPagenationEnabled { get; set; } = false;
 
         public BaseSpecification()
         {

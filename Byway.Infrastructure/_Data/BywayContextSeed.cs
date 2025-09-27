@@ -1,4 +1,5 @@
 ﻿using Byway.Domain.Entities;
+using Byway.Domain.Entities.enums;
 using Byway.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -38,7 +39,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 1,
                     Name = "John Smith",
-                    jopTitle = "Senior Software Engineer",
+                    JopTitle = JobTitles.Senior_SoftwareEngineer,
                     About = "Experienced full-stack developer with 10+ years in the industry. Passionate about teaching clean code and best practices.",
                     CreatedAt = new DateTimeOffset(2024, 8, 3, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -46,7 +47,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 2,
                     Name = "Sarah Johnson",
-                    jopTitle = "Data Scientist",
+                    JopTitle = JobTitles.DataScientist,
                     About = "PhD in Statistics with expertise in machine learning and data visualization. Former researcher at Google AI.",
                     CreatedAt = new DateTimeOffset(2024, 8, 5, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -54,7 +55,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 3,
                     Name = "Mike Chen",
-                    jopTitle = "Frontend Developer",
+                    JopTitle = JobTitles.Frontend_Developer,
                     About = "React and Vue.js specialist with a keen eye for UI/UX design. Previously worked at Netflix and Spotify.",
                     CreatedAt = new DateTimeOffset(2024, 8, 7, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -62,7 +63,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 4,
                     Name = "Emily Rodriguez",
-                    jopTitle = "Mobile App Developer",
+                    JopTitle = JobTitles.MobileApp_Developer,
                     About = "iOS and Android development expert. Published 15+ apps on app stores with millions of downloads.",
                     CreatedAt = new DateTimeOffset(2024, 8, 9, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -70,7 +71,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 5,
                     Name = "David Kumar",
-                    jopTitle = "Machine Learning Engineer",
+                    JopTitle = JobTitles.MachineLearning_Engineer,
                     About = "AI researcher and engineer specializing in deep learning and computer vision. Author of 'ML in Practice'.",
                     CreatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -78,7 +79,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 6,
                     Name = "Lisa Thompson",
-                    jopTitle = "DevOps Engineer",
+                    JopTitle = JobTitles.DevOps_Engineer,
                     About = "Cloud infrastructure expert with AWS and Azure certifications. Specializes in CI/CD and containerization.",
                     CreatedAt = new DateTimeOffset(2024, 8, 13, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -86,7 +87,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 7,
                     Name = "Alex Morgan",
-                    jopTitle = "Backend Developer",
+                    JopTitle = JobTitles.Backend_Developer,
                     About = "Microservices architecture specialist with expertise in .NET, Node.js, and distributed systems.",
                     CreatedAt = new DateTimeOffset(2024, 8, 15, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -94,7 +95,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 8,
                     Name = "Maria Garcia",
-                    jopTitle = "Full Stack Developer",
+                    JopTitle = JobTitles.FullStack_Developer,
                     About = "MERN stack expert with 8 years of experience building scalable web applications for startups.",
                     CreatedAt = new DateTimeOffset(2024, 8, 17, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -102,7 +103,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 9,
                     Name = "Robert Wilson",
-                    jopTitle = "UX/UI Designer",
+                    JopTitle = JobTitles.UXUI_Designer,
                     About = "Award-winning designer specializing in user experience research and interface design. Former design lead at Adobe.",
                     CreatedAt = new DateTimeOffset(2024, 8, 19, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -110,7 +111,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 10,
                     Name = "Jennifer Lee",
-                    jopTitle = "Business Analyst",
+                    JopTitle = JobTitles.Business_Analyst,
                     About = "MBA from Stanford with 12 years in strategic consulting. Expert in business process optimization and digital transformation.",
                     CreatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -118,7 +119,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 11,
                     Name = "Michael Torres",
-                    jopTitle = "Digital Marketing Strategist",
+                    JopTitle = JobTitles.DigitalMarketingStrategist,
                     About = "Former marketing director at Fortune 500 companies. Specialist in growth hacking and performance marketing.",
                     CreatedAt = new DateTimeOffset(2024, 8, 23, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -126,7 +127,7 @@ namespace Byway.Infrastructure._Data
                 {
                     Id = 12,
                     Name = "Amanda Zhang",
-                    jopTitle = "Cybersecurity Expert",
+                    JopTitle = JobTitles.CybersecurityExpert,
                     About = "Ethical hacker and security consultant with CISSP certification. Former security engineer at Microsoft.",
                     CreatedAt = new DateTimeOffset(2024, 8, 25, 10, 0, 0, TimeSpan.Zero)
                 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Byway.Infrastructure._Data.Migrations
 {
     [DbContext(typeof(BywayDbContext))]
-    [Migration("20250923200055_initial")]
+    [Migration("20250925092545_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -551,12 +551,11 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("JopTitle")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("jopTitle")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -571,96 +570,96 @@ namespace Byway.Infrastructure._Data.Migrations
                             Id = 1,
                             About = "Experienced full-stack developer with 10+ years in the industry. Passionate about teaching clean code and best practices.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 3, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "John Smith",
-                            jopTitle = "Senior Software Engineer"
+                            JopTitle = "Senior_SoftwareEngineer",
+                            Name = "John Smith"
                         },
                         new
                         {
                             Id = 2,
                             About = "PhD in Statistics with expertise in machine learning and data visualization. Former researcher at Google AI.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 5, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Sarah Johnson",
-                            jopTitle = "Data Scientist"
+                            JopTitle = "DataScientist",
+                            Name = "Sarah Johnson"
                         },
                         new
                         {
                             Id = 3,
                             About = "React and Vue.js specialist with a keen eye for UI/UX design. Previously worked at Netflix and Spotify.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Mike Chen",
-                            jopTitle = "Frontend Developer"
+                            JopTitle = "Frontend_Developer",
+                            Name = "Mike Chen"
                         },
                         new
                         {
                             Id = 4,
                             About = "iOS and Android development expert. Published 15+ apps on app stores with millions of downloads.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Emily Rodriguez",
-                            jopTitle = "Mobile App Developer"
+                            JopTitle = "MobileApp_Developer",
+                            Name = "Emily Rodriguez"
                         },
                         new
                         {
                             Id = 5,
                             About = "AI researcher and engineer specializing in deep learning and computer vision. Author of 'ML in Practice'.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "David Kumar",
-                            jopTitle = "Machine Learning Engineer"
+                            JopTitle = "MachineLearning_Engineer",
+                            Name = "David Kumar"
                         },
                         new
                         {
                             Id = 6,
                             About = "Cloud infrastructure expert with AWS and Azure certifications. Specializes in CI/CD and containerization.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 13, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Lisa Thompson",
-                            jopTitle = "DevOps Engineer"
+                            JopTitle = "DevOps_Engineer",
+                            Name = "Lisa Thompson"
                         },
                         new
                         {
                             Id = 7,
                             About = "Microservices architecture specialist with expertise in .NET, Node.js, and distributed systems.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 15, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Alex Morgan",
-                            jopTitle = "Backend Developer"
+                            JopTitle = "Backend_Developer",
+                            Name = "Alex Morgan"
                         },
                         new
                         {
                             Id = 8,
                             About = "MERN stack expert with 8 years of experience building scalable web applications for startups.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 17, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Maria Garcia",
-                            jopTitle = "Full Stack Developer"
+                            JopTitle = "FullStack_Developer",
+                            Name = "Maria Garcia"
                         },
                         new
                         {
                             Id = 9,
                             About = "Award-winning designer specializing in user experience research and interface design. Former design lead at Adobe.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 19, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Robert Wilson",
-                            jopTitle = "UX/UI Designer"
+                            JopTitle = "UXUI_Designer",
+                            Name = "Robert Wilson"
                         },
                         new
                         {
                             Id = 10,
                             About = "MBA from Stanford with 12 years in strategic consulting. Expert in business process optimization and digital transformation.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Jennifer Lee",
-                            jopTitle = "Business Analyst"
+                            JopTitle = "Business_Analyst",
+                            Name = "Jennifer Lee"
                         },
                         new
                         {
                             Id = 11,
                             About = "Former marketing director at Fortune 500 companies. Specialist in growth hacking and performance marketing.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Michael Torres",
-                            jopTitle = "Digital Marketing Strategist"
+                            JopTitle = "DigitalMarketingStrategist",
+                            Name = "Michael Torres"
                         },
                         new
                         {
                             Id = 12,
                             About = "Ethical hacker and security consultant with CISSP certification. Former security engineer at Microsoft.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 25, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Amanda Zhang",
-                            jopTitle = "Cybersecurity Expert"
+                            JopTitle = "CybersecurityExpert",
+                            Name = "Amanda Zhang"
                         });
                 });
 

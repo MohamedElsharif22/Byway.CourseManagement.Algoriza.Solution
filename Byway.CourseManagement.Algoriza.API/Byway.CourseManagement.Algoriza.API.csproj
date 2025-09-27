@@ -1,10 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<!-- Generate XML documentation file -->
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<!-- Suppress XML comment warnings for missing documentation -->
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<!-- Optional: specify output path for XML file -->
+		<DocumentationFile>bin\Debug\net9.0\Byway.CourseManagement.Algoriza.API.xml</DocumentationFile>
+	</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.0.1" />
