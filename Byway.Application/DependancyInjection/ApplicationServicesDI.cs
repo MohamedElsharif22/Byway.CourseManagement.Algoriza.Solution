@@ -1,4 +1,5 @@
 ﻿using Byway.Application.Contracts;
+using Byway.Application.File_Service;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,9 @@ namespace Byway.Application.DependancyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<ICourseService,CourseService>();
-            
+            services.AddScoped<IFileUploadService, FileUploadService>();
+            services.AddScoped<ICourseService, CourseService>();
+
             return services;
         }
     }

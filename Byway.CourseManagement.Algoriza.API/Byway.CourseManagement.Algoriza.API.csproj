@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Byway.Infrastructure\Byway.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Courses\" />
+  </ItemGroup>
+
 </Project>

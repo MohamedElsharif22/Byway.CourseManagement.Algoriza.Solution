@@ -12,6 +12,9 @@ namespace Byway.CourseManagement.Algoriza.API.Helpers
                 .ForMember(dest => dest.InstructorName, opt => opt.MapFrom(src => src.Instructor != null ? src.Instructor.Name : "No Instructor"))
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
 
+            CreateMap<CourseRequest, Course>()
+                .ForMember(c => c.CoverPictureUrl, opt => opt.Ignore());
+
             CreateMap<Category, CategoryResponse>();
         }
     }

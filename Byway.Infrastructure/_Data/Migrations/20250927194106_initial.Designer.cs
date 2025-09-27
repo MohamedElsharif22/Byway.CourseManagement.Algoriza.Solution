@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Byway.Infrastructure._Data.Migrations
 {
     [DbContext(typeof(BywayDbContext))]
-    [Migration("20250925092545_initial")]
+    [Migration("20250927194106_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -41,6 +41,9 @@ namespace Byway.Infrastructure._Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
@@ -50,61 +53,71 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Programming"
+                            Name = "Programming",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 6, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Data Science"
+                            Name = "Data Science",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 6, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Web Development"
+                            Name = "Web Development",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 4,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 16, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Mobile Development"
+                            Name = "Mobile Development",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 16, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 5,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Machine Learning"
+                            Name = "Machine Learning",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 6,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 26, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "DevOps"
+                            Name = "DevOps",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 26, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 7,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Design"
+                            Name = "Design",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 8,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 6, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Business"
+                            Name = "Business",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 6, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 9,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Marketing"
+                            Name = "Marketing",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 10,
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 16, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Cybersecurity"
+                            Name = "Cybersecurity",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 16, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
@@ -123,6 +136,9 @@ namespace Byway.Infrastructure._Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("UserId")
@@ -153,6 +169,9 @@ namespace Byway.Infrastructure._Data.Migrations
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -203,6 +222,9 @@ namespace Byway.Infrastructure._Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -224,7 +246,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 1,
                             Price = 99.99m,
                             Rating = 5,
-                            Title = "Complete C# Programming Bootcamp"
+                            Title = "Complete C# Programming Bootcamp",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 4, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -236,7 +259,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 2,
                             Price = 129.99m,
                             Rating = 4,
-                            Title = "Data Science with Python"
+                            Title = "Data Science with Python",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 6, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -248,7 +272,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 3,
                             Price = 89.99m,
                             Rating = 5,
-                            Title = "Modern React Development"
+                            Title = "Modern React Development",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 8, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -260,7 +285,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 4,
                             Price = 149.99m,
                             Rating = 4,
-                            Title = "iOS App Development with Swift"
+                            Title = "iOS App Development with Swift",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 10, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -272,7 +298,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 5,
                             Price = 179.99m,
                             Rating = 5,
-                            Title = "Machine Learning Fundamentals"
+                            Title = "Machine Learning Fundamentals",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 12, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -284,7 +311,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 6,
                             Price = 139.99m,
                             Rating = 4,
-                            Title = "Docker and Kubernetes Mastery"
+                            Title = "Docker and Kubernetes Mastery",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 14, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -296,7 +324,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 7,
                             Price = 119.99m,
                             Rating = 5,
-                            Title = "ASP.NET Core Web API Development"
+                            Title = "ASP.NET Core Web API Development",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 16, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -308,7 +337,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 4,
                             Price = 134.99m,
                             Rating = 4,
-                            Title = "Android Development with Kotlin"
+                            Title = "Android Development with Kotlin",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 18, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -320,7 +350,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 3,
                             Price = 94.99m,
                             Rating = 4,
-                            Title = "Vue.js Complete Guide"
+                            Title = "Vue.js Complete Guide",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -332,7 +363,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 5,
                             Price = 199.99m,
                             Rating = 5,
-                            Title = "Deep Learning with TensorFlow"
+                            Title = "Deep Learning with TensorFlow",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 22, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -344,7 +376,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 6,
                             Price = 159.99m,
                             Rating = 4,
-                            Title = "Cloud Architecture on AWS"
+                            Title = "Cloud Architecture on AWS",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 24, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -356,7 +389,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 8,
                             Price = 144.99m,
                             Rating = 5,
-                            Title = "Full Stack JavaScript Development"
+                            Title = "Full Stack JavaScript Development",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 26, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -368,7 +402,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 1,
                             Price = 109.99m,
                             Rating = 4,
-                            Title = "Advanced Python Programming"
+                            Title = "Advanced Python Programming",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 28, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -380,7 +415,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 9,
                             Price = 124.99m,
                             Rating = 5,
-                            Title = "UI/UX Design Masterclass"
+                            Title = "UI/UX Design Masterclass",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 30, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -392,7 +428,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 10,
                             Price = 114.99m,
                             Rating = 4,
-                            Title = "Business Analysis and Process Optimization"
+                            Title = "Business Analysis and Process Optimization",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -404,7 +441,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 11,
                             Price = 99.99m,
                             Rating = 5,
-                            Title = "Digital Marketing and Growth Hacking"
+                            Title = "Digital Marketing and Growth Hacking",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 3, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -416,7 +454,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 12,
                             Price = 149.99m,
                             Rating = 4,
-                            Title = "Cybersecurity Fundamentals"
+                            Title = "Cybersecurity Fundamentals",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 5, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -428,7 +467,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 12,
                             Price = 189.99m,
                             Rating = 5,
-                            Title = "Advanced Cybersecurity and Ethical Hacking"
+                            Title = "Advanced Cybersecurity and Ethical Hacking",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -440,7 +480,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 9,
                             Price = 89.99m,
                             Rating = 4,
-                            Title = "Figma for Product Design"
+                            Title = "Figma for Product Design",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -452,7 +493,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             InstructorId = 2,
                             Price = 119.99m,
                             Rating = 4,
-                            Title = "Statistical Analysis with R"
+                            Title = "Statistical Analysis with R",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
@@ -560,6 +602,9 @@ namespace Byway.Infrastructure._Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
                     b.HasKey("Id");
 
                     b.ToTable("Instructors");
@@ -571,7 +616,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "Experienced full-stack developer with 10+ years in the industry. Passionate about teaching clean code and best practices.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 3, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Senior_SoftwareEngineer",
-                            Name = "John Smith"
+                            Name = "John Smith",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 3, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -579,7 +625,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "PhD in Statistics with expertise in machine learning and data visualization. Former researcher at Google AI.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 5, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "DataScientist",
-                            Name = "Sarah Johnson"
+                            Name = "Sarah Johnson",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 5, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -587,7 +634,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "React and Vue.js specialist with a keen eye for UI/UX design. Previously worked at Netflix and Spotify.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Frontend_Developer",
-                            Name = "Mike Chen"
+                            Name = "Mike Chen",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -595,7 +643,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "iOS and Android development expert. Published 15+ apps on app stores with millions of downloads.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "MobileApp_Developer",
-                            Name = "Emily Rodriguez"
+                            Name = "Emily Rodriguez",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -603,7 +652,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "AI researcher and engineer specializing in deep learning and computer vision. Author of 'ML in Practice'.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "MachineLearning_Engineer",
-                            Name = "David Kumar"
+                            Name = "David Kumar",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -611,7 +661,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "Cloud infrastructure expert with AWS and Azure certifications. Specializes in CI/CD and containerization.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 13, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "DevOps_Engineer",
-                            Name = "Lisa Thompson"
+                            Name = "Lisa Thompson",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 13, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -619,7 +670,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "Microservices architecture specialist with expertise in .NET, Node.js, and distributed systems.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 15, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Backend_Developer",
-                            Name = "Alex Morgan"
+                            Name = "Alex Morgan",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 15, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -627,7 +679,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "MERN stack expert with 8 years of experience building scalable web applications for startups.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 17, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "FullStack_Developer",
-                            Name = "Maria Garcia"
+                            Name = "Maria Garcia",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 17, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -635,7 +688,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "Award-winning designer specializing in user experience research and interface design. Former design lead at Adobe.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 19, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "UXUI_Designer",
-                            Name = "Robert Wilson"
+                            Name = "Robert Wilson",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 19, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -643,7 +697,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "MBA from Stanford with 12 years in strategic consulting. Expert in business process optimization and digital transformation.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Business_Analyst",
-                            Name = "Jennifer Lee"
+                            Name = "Jennifer Lee",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -651,7 +706,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "Former marketing director at Fortune 500 companies. Specialist in growth hacking and performance marketing.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "DigitalMarketingStrategist",
-                            Name = "Michael Torres"
+                            Name = "Michael Torres",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
@@ -659,7 +715,8 @@ namespace Byway.Infrastructure._Data.Migrations
                             About = "Ethical hacker and security consultant with CISSP certification. Former security engineer at Microsoft.",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 25, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "CybersecurityExpert",
-                            Name = "Amanda Zhang"
+                            Name = "Amanda Zhang",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 25, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 

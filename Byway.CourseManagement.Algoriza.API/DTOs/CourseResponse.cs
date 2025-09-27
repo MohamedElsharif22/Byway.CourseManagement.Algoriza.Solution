@@ -16,5 +16,7 @@ namespace Byway.CourseManagement.Algoriza.API.DTOs
         public string InstructorName { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset UpdatedAt { get; set; }
     }
 }

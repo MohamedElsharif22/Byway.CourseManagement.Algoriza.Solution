@@ -18,19 +18,19 @@ namespace Byway.Infrastructure._Data
             // Seed Categories
             var categories = new List<Category>
             {
-                new Category { Id = 1, Name = "Programming", CreatedAt = new DateTimeOffset(2024, 8, 1, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 2, Name = "Data Science", CreatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 3, Name = "Web Development", CreatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 4, Name = "Mobile Development", CreatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 5, Name = "Machine Learning", CreatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 6, Name = "DevOps", CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 7, Name = "Design", CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 8, Name = "Business", CreatedAt = new DateTimeOffset(2024, 9, 6, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 9, Name = "Marketing", CreatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero) },
-                new Category { Id = 10, Name = "Cybersecurity", CreatedAt = new DateTimeOffset(2024, 9, 16, 10, 0, 0, TimeSpan.Zero) }
+                new Category { Id = 1, Name = "Programming", CreatedAt = new DateTimeOffset(2024, 8, 1, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 8, 1, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 2, Name = "Data Science", CreatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 3, Name = "Web Development", CreatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 4, Name = "Mobile Development", CreatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 5, Name = "Machine Learning", CreatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 6, Name = "DevOps", CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 7, Name = "Design", CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 8, Name = "Business", CreatedAt = new DateTimeOffset(2024, 9, 6, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 9, 6, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 9, Name = "Marketing", CreatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero) },
+                new Category { Id = 10, Name = "Cybersecurity", CreatedAt = new DateTimeOffset(2024, 9, 16, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 9, 16, 10, 0, 0, TimeSpan.Zero) }
             };
 
-            modelBuilder.Entity<Category>().HasData(categories);
+             modelBuilder.Entity<Category>().HasData(categories);
 
             // Seed Instructors
             var instructors = new List<Instructor>
@@ -41,7 +41,8 @@ namespace Byway.Infrastructure._Data
                     Name = "John Smith",
                     JopTitle = JobTitles.Senior_SoftwareEngineer,
                     About = "Experienced full-stack developer with 10+ years in the industry. Passionate about teaching clean code and best practices.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 3, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 3, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 3, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -49,7 +50,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Sarah Johnson",
                     JopTitle = JobTitles.DataScientist,
                     About = "PhD in Statistics with expertise in machine learning and data visualization. Former researcher at Google AI.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 5, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 5, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 5, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -57,7 +59,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Mike Chen",
                     JopTitle = JobTitles.Frontend_Developer,
                     About = "React and Vue.js specialist with a keen eye for UI/UX design. Previously worked at Netflix and Spotify.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 7, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 7, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 7, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -65,7 +68,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Emily Rodriguez",
                     JopTitle = JobTitles.MobileApp_Developer,
                     About = "iOS and Android development expert. Published 15+ apps on app stores with millions of downloads.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 9, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 9, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 9, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -73,7 +77,8 @@ namespace Byway.Infrastructure._Data
                     Name = "David Kumar",
                     JopTitle = JobTitles.MachineLearning_Engineer,
                     About = "AI researcher and engineer specializing in deep learning and computer vision. Author of 'ML in Practice'.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -81,7 +86,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Lisa Thompson",
                     JopTitle = JobTitles.DevOps_Engineer,
                     About = "Cloud infrastructure expert with AWS and Azure certifications. Specializes in CI/CD and containerization.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 13, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 13, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 13, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -89,7 +95,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Alex Morgan",
                     JopTitle = JobTitles.Backend_Developer,
                     About = "Microservices architecture specialist with expertise in .NET, Node.js, and distributed systems.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 15, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 15, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 15, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -97,7 +104,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Maria Garcia",
                     JopTitle = JobTitles.FullStack_Developer,
                     About = "MERN stack expert with 8 years of experience building scalable web applications for startups.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 17, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 17, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 17, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -105,7 +113,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Robert Wilson",
                     JopTitle = JobTitles.UXUI_Designer,
                     About = "Award-winning designer specializing in user experience research and interface design. Former design lead at Adobe.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 19, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 19, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 19, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -113,7 +122,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Jennifer Lee",
                     JopTitle = JobTitles.Business_Analyst,
                     About = "MBA from Stanford with 12 years in strategic consulting. Expert in business process optimization and digital transformation.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -121,7 +131,8 @@ namespace Byway.Infrastructure._Data
                     Name = "Michael Torres",
                     JopTitle = JobTitles.DigitalMarketingStrategist,
                     About = "Former marketing director at Fortune 500 companies. Specialist in growth hacking and performance marketing.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 23, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 23, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 23, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Instructor
                 {
@@ -129,13 +140,14 @@ namespace Byway.Infrastructure._Data
                     Name = "Amanda Zhang",
                     JopTitle = JobTitles.CybersecurityExpert,
                     About = "Ethical hacker and security consultant with CISSP certification. Former security engineer at Microsoft.",
-                    CreatedAt = new DateTimeOffset(2024, 8, 25, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 25, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 25, 10, 0, 0, TimeSpan.Zero)
                 }
             };
 
             modelBuilder.Entity<Instructor>().HasData(instructors);
 
-            // Seed Courses
+                            // Seed Courses
             var courses = new List<Course>
             {
                 new Course
@@ -148,7 +160,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 1,
                     InstructorId = 1,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -160,7 +173,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 2,
                     InstructorId = 2,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -172,7 +186,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 3,
                     InstructorId = 3,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -184,7 +199,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 4,
                     InstructorId = 4,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -196,7 +212,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 5,
                     InstructorId = 5,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -208,7 +225,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 6,
                     InstructorId = 6,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -220,7 +238,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 1,
                     InstructorId = 7,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -232,7 +251,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 4,
                     InstructorId = 4,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -244,7 +264,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 3,
                     InstructorId = 3,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 20, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 20, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 20, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -256,7 +277,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 5,
                     InstructorId = 5,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -268,7 +290,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 6,
                     InstructorId = 6,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -280,7 +303,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 3,
                     InstructorId = 8,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -292,7 +316,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 1,
                     InstructorId = 1,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -304,7 +329,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 7,
                     InstructorId = 9,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -316,7 +342,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 8,
                     InstructorId = 10,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -328,7 +355,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 9,
                     InstructorId = 11,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -340,7 +368,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 10,
                     InstructorId = 12,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 9, 5, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 9, 5, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 5, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -352,7 +381,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 10,
                     InstructorId = 12,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 9, 7, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 9, 7, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 7, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -364,7 +394,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 7,
                     InstructorId = 9,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1609277205247-56d6e9eb9b85?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero)
                 },
                 new Course
                 {
@@ -376,7 +407,8 @@ namespace Byway.Infrastructure._Data
                     CategoryId = 2,
                     InstructorId = 2,
                     CoverPictureUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero)
+                    CreatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero)
                 }
             };
 

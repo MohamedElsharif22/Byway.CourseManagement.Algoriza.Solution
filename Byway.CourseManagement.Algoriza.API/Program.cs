@@ -48,6 +48,16 @@ namespace Byway.CourseManagement.Algoriza.API
             //Confiure Api Invalid Model State Response
             builder.Services.AddApiInvalidModelStateConfiguration();
 
+            // add cors policies
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("wepPolicy", policyConfig =>
+                {
+                    policyConfig.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+
+            });
+
             var app = builder.Build();
 
             app.UseMiddleware<ExceptionMiddleware>();
@@ -68,10 +78,16 @@ namespace Byway.CourseManagement.Algoriza.API
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
+            app.UseStaticFiles();
 
             app.MapControllers();
+
+            app.UseCors("wepPolicy");
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+            
 
             app.Run();
         }

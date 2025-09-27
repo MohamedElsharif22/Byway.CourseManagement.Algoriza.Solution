@@ -1,17 +1,22 @@
 ﻿using AutoMapper;
 using Byway.Application.Contracts;
+using Byway.Application.File_Service;
 using Byway.Application.Specifications;
 using Byway.CourseManagement.Algoriza.API.DTOs;
 using Byway.CourseManagement.Algoriza.API.Errors;
+using Byway.CourseManagement.Algoriza.API.Extensions;
 using Byway.CourseManagement.Algoriza.API.Pagination;
 using Byway.Domain;
+using Byway.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
-    public class CoursesController(ICourseService courseService, IMapper mapper) : BaseApiController
+    public class CoursesController(ICourseService courseService, 
+                                   IMapper mapper,
+                                   IFileUploadService fileUploadService) : BaseApiController
     {
         private readonly ICourseService _courseService = courseService;
         private readonly IMapper _mapper = mapper;
@@ -56,6 +61,44 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
             return Ok(categories.Select(c => _mapper.Map<CategoryResponse>(c)));
         }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateCourse([FromForm] CourseRequest courseRequest)
+        {
+            
+            var course = _mapper.Map<Course>(courseRequest);
+            var result = await _courseService.CreateCourseAsync(course, courseRequest.CoverPicture);
+
+            if (result == 0)
+                return BadRequest(new ApiResponse(400, "Failed to create the course"));
+
+            return StatusCode(201, new ApiResponse(201, "Course created successfully"));
+            
+        }
+
+        [HttpPut("{id}")]
+        [EndpointSummary("Update Course")]
+        public async Task<ActionResult> UpdateCourse(int id, [FromForm] CourseRequest courseRequest)
+        {
+            var result = await _courseService.UpdateCourseAsync(id, courseRequest.ToCourseEntity(), courseRequest.CoverPicture);
+
+            if (result == 0)
+                return BadRequest(new ApiResponse(StatusCodes.Status400BadRequest, "Course Cannot be Ubdated"));
+
+            return Ok(new ApiResponse(200, "Course updated successfully"));
+        }
+
+
+        [HttpDelete("{id}")]
+        [EndpointSummary("Delete Course")]
+        public async Task<ActionResult> DeleteCourse(int id)
+        {
+            var result = await _courseService.DeleteCourseAsync(id);
+            if (result == 0)
+                return BadRequest(new ApiResponse(StatusCodes.Status400BadRequest, "Course Cannot be Deleted"));
+            return Ok(new ApiResponse(200, "Course deleted successfully"));
+        }
+
 
     }
 }

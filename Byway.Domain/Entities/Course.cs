@@ -13,13 +13,11 @@ namespace Byway.Domain.Entities
         public string Description { get; set; }
         public int Rating { get; set; }
         public decimal Price { get; set; }
-
         public string CoverPictureUrl { get; set; }
         public int? InstructorId { get; set; }
         public Instructor Instructor { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public ICollection<ApplicationUser> EnrolledUsers { get; set; }
-
     }
 }

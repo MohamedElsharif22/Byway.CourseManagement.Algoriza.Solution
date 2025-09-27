@@ -1,5 +1,6 @@
 ﻿using Byway.Application.Specifications;
 using Byway.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace Byway.Application.Contracts
     public interface ICourseService 
     {
         Task<IEnumerable<Category>> GetAllCategoriesAsync();
-        Task<int> CreateCourseAsync(int userId, string title, string description);
-        Task UpdateCourseAsync(int courseId, string title, string description);
-        Task DeleteCourseAsync(int courseId);
+        Task<int> CreateCourseAsync(Course course, IFormFile coverPicture = null!);
+        Task<int> UpdateCourseAsync(int courseId, Course course, IFormFile coverPicture = null!);
+        Task<int> DeleteCourseAsync(int courseId);
         Task EnrollInCourseAsync(int userId, int courseId);
         Task UnenrollFromCourseAsync(int userId, int courseId);
         Task<(IReadOnlyList<Course>, int)> GetAllCoursesWithCountAsync(CourseSpecParams specParams);
