@@ -1,4 +1,4 @@
-﻿namespace Byway.CourseManagement.Algoriza.API.DTOs
+﻿namespace Byway.Application.DTOs
 {
     public class CategoryResponse
     {

@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
-using Byway.CourseManagement.Algoriza.API.DTOs;
+using Byway.Application.DTOs;
+using Byway.Application.DTOs.Course;
+using Byway.Application.DTOs.Instructor;
 using Byway.Domain.Entities;
 
-namespace Byway.CourseManagement.Algoriza.API.Helpers
+namespace Byway.Application.Mapping
 {
     public class MappingProfiles : Profile
     {
@@ -16,6 +18,7 @@ namespace Byway.CourseManagement.Algoriza.API.Helpers
                 .ForMember(c => c.CoverPictureUrl, opt => opt.Ignore());
 
             CreateMap<Category, CategoryResponse>();
+
         }
     }
 }

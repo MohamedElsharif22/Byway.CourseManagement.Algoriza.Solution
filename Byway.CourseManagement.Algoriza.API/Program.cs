@@ -1,5 +1,6 @@
 
 using Byway.Application.DependancyInjection;
+using Byway.Application.Mapping;
 using Byway.CourseManagement.Algoriza.API.DependancyInjection;
 using Byway.CourseManagement.Algoriza.API.Errors.Configuration;
 using Byway.CourseManagement.Algoriza.API.Extensions;
@@ -39,6 +40,8 @@ namespace Byway.CourseManagement.Algoriza.API
 
             builder.Services.AddAutoMapper(c => { }, typeof(MappingProfiles).Assembly);
 
+            builder.Services.AddMemoryCache();
+
             //builder.Services.AddIdentity<User, IdentityRole>();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
@@ -55,7 +58,6 @@ namespace Byway.CourseManagement.Algoriza.API
                 {
                     policyConfig.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                 });
-
             });
 
             var app = builder.Build();
@@ -67,7 +69,6 @@ namespace Byway.CourseManagement.Algoriza.API
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-
                 app.MapOpenApi();
                 app.UseSwagger();
                 app.UseSwaggerUI();
@@ -87,7 +88,6 @@ namespace Byway.CourseManagement.Algoriza.API
             app.UseAuthentication();
 
             app.UseAuthorization();
-            
 
             app.Run();
         }

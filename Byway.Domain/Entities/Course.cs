@@ -14,6 +14,8 @@ namespace Byway.Domain.Entities
         public int Rating { get; set; }
         public decimal Price { get; set; }
         public string CoverPictureUrl { get; set; }
+        public int LecturesCount { get; set; }
+        public int DurationInMinutes { get; set; }
         public int? InstructorId { get; set; }
         public Instructor Instructor { get; set; }
         public int CategoryId { get; set; }

@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Byway.Application.Auth_Service
+namespace Byway.Application.Services
 {
     public class AuthService(IConfiguration configuration)
     {

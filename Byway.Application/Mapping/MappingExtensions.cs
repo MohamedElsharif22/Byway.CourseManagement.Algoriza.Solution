@@ -1,10 +1,12 @@
-﻿using Byway.CourseManagement.Algoriza.API.DTOs;
+﻿using Byway.Application.DTOs.Course;
 using Byway.Domain.Entities;
+using Byway.Domain.Entities.Cart;
 
-namespace Byway.CourseManagement.Algoriza.API.Extensions
+namespace Byway.Application.Mapping
 {
     public static class MappingExtensions
     {
+        #region CourseMapping
         public static Course ToCourseEntity(this CourseRequest request)
         {
             return new Course
@@ -18,7 +20,7 @@ namespace Byway.CourseManagement.Algoriza.API.Extensions
             };
         }
 
-        public static CourseResponse CourseResponse(this Course course)
+        public static CourseResponse ToCourseResponse(this Course course)
         {
             return new CourseResponse
             {
@@ -34,5 +36,20 @@ namespace Byway.CourseManagement.Algoriza.API.Extensions
                 UpdatedAt = course.UpdatedAt,
             };
         }
+        #endregion
+
+        #region CartMapping
+        public static CartItem ToCartItem(this CourseResponse course)
+        {
+            return new CartItem
+            {
+                CourseId = course.Id,
+                CourseName = course.Title,
+                Price = course.Price,
+                Category = course.CategoryName,
+                CoverImgUrl = course.CoverPictureUrl
+            };
+        }
+        #endregion
     }
 }

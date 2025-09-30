@@ -1,4 +1,5 @@
-﻿using Byway.Application.Specifications.Enums;
+﻿using Byway.Application.Specifications.Course_Specs;
+using Byway.Application.Specifications.Enums;
 using Byway.Domain.Entities;
 using Byway.Domain.Specification;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace Byway.Application.Specifications
     internal class CourseWithInstructorAndCategorySpecifications : BaseSpecification<Course>
     {
         public CourseWithInstructorAndCategorySpecifications(CourseSpecParams courseSpecParams, bool getCountOnly = false)
-            : base(p => 
-                        (string.IsNullOrEmpty(courseSpecParams.Search) || EF.Functions.Like(p.Title, $"%{courseSpecParams.Search}%"))
-                        && (!courseSpecParams.CategoryId.HasValue || p.CategoryId == courseSpecParams.CategoryId)
-                        && (!courseSpecParams.InstructorId.HasValue || p.InstructorId == courseSpecParams.InstructorId)
+            : base(c => 
+                        (string.IsNullOrEmpty(courseSpecParams.Search) || EF.Functions.Like(c.Title, $"%{courseSpecParams.Search}%")) // Search
+                        && (courseSpecParams.Categories == null || courseSpecParams.Categories.Count == 0 || courseSpecParams.Categories.Contains(c.CategoryId)) // Filter by Categories
+                        && (!courseSpecParams.InstructorId.HasValue || c.InstructorId == courseSpecParams.InstructorId) // Filter by Instructor
+                        && (courseSpecParams.PriceRange == null || (c.Price >= courseSpecParams.PriceRange.Min && c.Price <= courseSpecParams.PriceRange.Max)) // Price Range
+                        && (courseSpecParams.RangeOfLectures == null || (c.LecturesCount >= courseSpecParams.RangeOfLectures.Min && c.LecturesCount <= courseSpecParams.RangeOfLectures.Max)) // Range of Lectures
                   )
         {
             if (!getCountOnly)

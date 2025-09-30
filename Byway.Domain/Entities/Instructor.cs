@@ -12,6 +12,8 @@ namespace Byway.Domain.Entities
         public string Name { get; set; }
         public JobTitles JopTitle { get; set; }
         public string? About { get; set; }
+        public string? ProfilePictureUrl { get; set; }
+
         public ICollection<Course> Courses { get; set; }
 
     }

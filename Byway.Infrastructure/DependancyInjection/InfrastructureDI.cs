@@ -33,6 +33,8 @@ namespace Byway.Infrastructure.DependancyInjection
         {
             // Register Repositories 
             services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<IInstructorRepository, InstructorRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
 
             return services;
         }

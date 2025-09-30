@@ -1,5 +1,4 @@
-﻿using Byway.CourseManagement.Algoriza.API.DTOs;
-
+﻿
 namespace Byway.CourseManagement.Algoriza.API.Pagination
 {
     public class Pagination<T>(int pageIndex, int pageSize, int count, IEnumerable<T> data)

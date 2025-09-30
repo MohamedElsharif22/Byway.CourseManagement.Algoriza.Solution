@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Byway.Application.File_Service
+namespace Byway.Application.Services
 {
     public class FileUploadService(IWebHostEnvironment environment) : IFileUploadService
     {
         private readonly IWebHostEnvironment _environment = environment;
-        private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
+        private readonly string[] _allowedImageExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
         private readonly long _maxFileSize = 5 * 1024 * 1024; // 5MB
 
         public async Task<string> UploadImageAsync(IFormFile file, string folder)
@@ -56,7 +56,6 @@ namespace Byway.Application.File_Service
                 return true;
             }
             return false;
-
         }
 
         public bool IsValidImageFile(IFormFile file)
@@ -68,7 +67,7 @@ namespace Byway.Application.File_Service
                 return false;
 
             var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
-            return _allowedExtensions.Contains(extension);
+            return _allowedImageExtensions.Contains(extension);
         }
     }
 }

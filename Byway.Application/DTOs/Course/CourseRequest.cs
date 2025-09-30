@@ -1,8 +1,9 @@
 ﻿using Byway.Domain.Entities;
 using Byway.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Byway.CourseManagement.Algoriza.API.DTOs
+namespace Byway.Application.DTOs.Course
 {
     public class CourseRequest
     {

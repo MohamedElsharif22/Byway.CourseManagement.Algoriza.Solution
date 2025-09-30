@@ -1,5 +1,6 @@
 ﻿using Byway.Application.Contracts;
-using Byway.Application.File_Service;
+using Byway.Application.Mapping;
+using Byway.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace Byway.Application.DependancyInjection
         {
             services.AddScoped<IFileUploadService, FileUploadService>();
             services.AddScoped<ICourseService, CourseService>();
-
+            services.AddScoped<InstructorService>();
+            services.AddAutoMapper(c => { } ,typeof(MappingProfiles).Assembly);
             return services;
         }
     }

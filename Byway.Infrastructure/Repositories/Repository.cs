@@ -14,7 +14,7 @@ namespace Byway.Infrastructure.Repositories
 {
     public class Repository<T> (BywayDbContext context) : IRepository<T> where T : BaseEntity
     {
-        private readonly BywayDbContext _Context = context;
+        private protected readonly BywayDbContext _Context = context;
 
         public void Add(T entity) => _Context.Add(entity);
 
@@ -22,7 +22,7 @@ namespace Byway.Infrastructure.Repositories
 
         public void Delete(T entity) => _Context.Remove(entity);
 
-        public async Task<IReadOnlyList<T>> GetAllWithSpecsAsync(ISpecification<T> specs) 
+        public async Task<IEnumerable<T>> GetAllWithSpecsAsync(ISpecification<T> specs) 
             =>  await ApplySpecifications(specs).ToListAsync();
         
 
@@ -35,7 +35,7 @@ namespace Byway.Infrastructure.Repositories
         
 
         
-        private IQueryable<T> ApplySpecifications(ISpecification<T> specs) 
+        protected IQueryable<T> ApplySpecifications(ISpecification<T> specs) 
             => SpecificationEvaluator<T>.BuildQuery(_Context.Set<T>(), specs);
 
         public async Task<T?> GetByIdAsync(int id)

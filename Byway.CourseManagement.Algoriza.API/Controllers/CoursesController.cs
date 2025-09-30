@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Byway.Application.Contracts;
-using Byway.Application.File_Service;
-using Byway.Application.Specifications;
-using Byway.CourseManagement.Algoriza.API.DTOs;
+using Byway.Application.DTOs;
+using Byway.Application.DTOs.Course;
+using Byway.Application.Specifications.Course_Specs;
 using Byway.CourseManagement.Algoriza.API.Errors;
 using Byway.CourseManagement.Algoriza.API.Extensions;
 using Byway.CourseManagement.Algoriza.API.Pagination;
@@ -15,8 +15,7 @@ using System.Threading.Tasks;
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
     public class CoursesController(ICourseService courseService, 
-                                   IMapper mapper,
-                                   IFileUploadService fileUploadService) : BaseApiController
+                                   IMapper mapper) : BaseApiController
     {
         private readonly ICourseService _courseService = courseService;
         private readonly IMapper _mapper = mapper;
@@ -54,20 +53,21 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status204NoContent)]
         public async Task<ActionResult<IEnumerable<CategoryResponse>>> GetCategories()
         {
-            var categories = await _courseService.GetAllCategoriesAsync();
+            var categoriesResponse = await _courseService.GetAllCategoriesAsync();
 
-            if (!categories.Any())
+            if (!categoriesResponse.Any())
                 return new ObjectResult(new ApiResponse(StatusCodes.Status204NoContent, "There are no Categories yet!"));
 
-            return Ok(categories.Select(c => _mapper.Map<CategoryResponse>(c)));
+            return Ok(categoriesResponse);
         }
 
         [HttpPost]
+        [EndpointSummary("Create Course")]
+        [ProducesResponseType(typeof(ApiResponse),200)]
         public async Task<ActionResult> CreateCourse([FromForm] CourseRequest courseRequest)
         {
             
-            var course = _mapper.Map<Course>(courseRequest);
-            var result = await _courseService.CreateCourseAsync(course, courseRequest.CoverPicture);
+            var result = await _courseService.CreateCourseAsync(courseRequest);
 
             if (result == 0)
                 return BadRequest(new ApiResponse(400, "Failed to create the course"));
@@ -78,9 +78,11 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
         [HttpPut("{id}")]
         [EndpointSummary("Update Course")]
-        public async Task<ActionResult> UpdateCourse(int id, [FromForm] CourseRequest courseRequest)
+        [ProducesResponseType(typeof(ApiResponse),200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        public async Task<ActionResult<ApiResponse>> UpdateCourse(int id, [FromForm] CourseRequest courseRequest)
         {
-            var result = await _courseService.UpdateCourseAsync(id, courseRequest.ToCourseEntity(), courseRequest.CoverPicture);
+            var result = await _courseService.UpdateCourseAsync(id, courseRequest);
 
             if (result == 0)
                 return BadRequest(new ApiResponse(StatusCodes.Status400BadRequest, "Course Cannot be Ubdated"));
@@ -91,6 +93,8 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
         [HttpDelete("{id}")]
         [EndpointSummary("Delete Course")]
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> DeleteCourse(int id)
         {
             var result = await _courseService.DeleteCourseAsync(id);
@@ -98,7 +102,5 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
                 return BadRequest(new ApiResponse(StatusCodes.Status400BadRequest, "Course Cannot be Deleted"));
             return Ok(new ApiResponse(200, "Course deleted successfully"));
         }
-
-
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Byway.Application.Specifications
+namespace Byway.Application.Specifications.Course_Specs
 {
     public class CourseSpecParams
     {
@@ -23,7 +23,7 @@ namespace Byway.Application.Specifications
         }
 
         [Description("Filter courses by category ID")]
-        public int? CategoryId { get; set; }
+        public List<int> Categories { get; set; }
 
         [Description("Filter courses by instructor ID")]
         public int? InstructorId { get; set; }
@@ -35,6 +35,12 @@ namespace Byway.Application.Specifications
         [Description("Sorting option (1 = PriceAsc, 2 = PriceDesc, 3 = RatingAsc, 4 = RatingDesc, 5 = Newest, 6 = Oldest)")]
         [Range(1, 6, ErrorMessage = "Sort value must be between 1 and 6")]
         public byte? Sort { get; set; }
+
+        [Description("Price range filter (default = MinPrice: 0, MaxPrice: 1000)")]
+        public CoursePriceRangeParam? PriceRange { get; set; }
+
+        [Description("Range of lectures filter (default = MinLectures: 0, MaxLectures: 1000)")]
+        public LecturesRangeSpecParam? RangeOfLectures { get; set; }
 
         [Description("Current page index (default = 1)")]
         [Range(1, int.MaxValue, ErrorMessage = "Page index must be greater than 0")]

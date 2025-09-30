@@ -19,6 +19,12 @@ namespace Byway.Infrastructure.Specification
             if (specs.Criteria is not null)
                 query = inpuQuery.Where(specs.Criteria);
 
+            // Includes with ThenInclude support
+            query = specs.IncludeFuncs.Aggregate(query, (current, includeFunc) => includeFunc(current));
+
+            // Simple Includes (backward compatibility)
+            query = specs.Includes.Aggregate(query, (currentQuery, currentExpression) => currentQuery.Include(currentExpression));
+
             // ordering
             if (specs.OrderByAsc is not null)
                 query = query.OrderBy(specs.OrderByAsc);
@@ -28,8 +34,6 @@ namespace Byway.Infrastructure.Specification
             // Pagination
             if (specs.IsPagenationEnabled)
                 query = query.Skip(specs.Skip).Take(specs.Take);
-
-            query = specs.Includes.Aggregate(query, (currentQuery, currentExpression) => currentQuery.Include(currentExpression));
 
             return query;
         }

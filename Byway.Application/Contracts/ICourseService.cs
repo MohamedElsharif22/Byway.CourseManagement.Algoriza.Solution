@@ -1,4 +1,6 @@
-﻿using Byway.Application.Specifications;
+﻿using Byway.Application.DTOs;
+using Byway.Application.DTOs.Course;
+using Byway.Application.Specifications.Course_Specs;
 using Byway.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -11,14 +13,14 @@ namespace Byway.Application.Contracts
 {
     public interface ICourseService 
     {
-        Task<IEnumerable<Category>> GetAllCategoriesAsync();
-        Task<int> CreateCourseAsync(Course course, IFormFile coverPicture = null!);
-        Task<int> UpdateCourseAsync(int courseId, Course course, IFormFile coverPicture = null!);
+        Task<IEnumerable<CategoryResponse>> GetAllCategoriesAsync();
+        Task<int> CreateCourseAsync(CourseRequest course);
+        Task<int> UpdateCourseAsync(int courseId, CourseRequest course);
         Task<int> DeleteCourseAsync(int courseId);
         Task EnrollInCourseAsync(int userId, int courseId);
         Task UnenrollFromCourseAsync(int userId, int courseId);
-        Task<(IReadOnlyList<Course>, int)> GetAllCoursesWithCountAsync(CourseSpecParams specParams);
-        Task<Course?> GetCourseByIdAsync(int courseId);
-        Task<IReadOnlyList<Course>> GetCoursesByUserIdAsync(int userId);
+        Task<(IEnumerable<CourseResponse>, int)> GetAllCoursesWithCountAsync(CourseSpecParams specParams);
+        Task<CourseResponse?> GetCourseByIdAsync(int courseId);
+        Task<IEnumerable<CourseResponse>> GetCoursesByUserIdAsync(int userId);
     }
 }

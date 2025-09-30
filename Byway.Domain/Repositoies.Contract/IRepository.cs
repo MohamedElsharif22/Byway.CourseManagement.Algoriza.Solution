@@ -12,7 +12,7 @@ namespace Byway.Domain.Repositoies.Contract
     {
         Task<TEntity?> GetWithSpecsAsync(ISpecification<TEntity> specs);
         Task<TEntity?> GetByIdAsync(int id);
-        Task<IReadOnlyList<TEntity>> GetAllWithSpecsAsync(ISpecification<TEntity> specs);
+        Task<IEnumerable<TEntity>> GetAllWithSpecsAsync(ISpecification<TEntity> specs);
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<int> GetCountWithspecsAsync(ISpecification<TEntity> specs);
         void Add(TEntity entity);
