@@ -21,7 +21,7 @@ namespace Byway.Application.Services
             // Private Claims
             var privateClaims = new List<Claim>()
             {
-                new(ClaimTypes.Name, user.FullName),
+                new(ClaimTypes.Name, user.FirstName),
                 new(ClaimTypes.Email, user.Email),
             };
 

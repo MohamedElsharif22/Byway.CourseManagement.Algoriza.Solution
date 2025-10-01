@@ -28,9 +28,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         {
             var (courses,count) = await _courseService.GetAllCoursesWithCountAsync(specParams);
 
-            var mappedCourses = courses.Select(c => _mapper.Map<CourseResponse>(c));
-
-            return Ok(new Pagination<CourseResponse>(specParams.PageIndex, specParams.PageSize, count, mappedCourses));
+            return Ok(new Pagination<CourseResponse>(specParams.PageIndex, specParams.PageSize, count, courses));
         }
 
         [EndpointSummary("Get Course by Id")]
@@ -43,8 +41,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
             if (course is null)
                 return NotFound(new ApiResponse(404));
             
-            var mappedCourse = _mapper.Map<CourseResponse>(course);
-            return Ok(mappedCourse);
+            return Ok(course);
         }
 
         [HttpGet("Categories")]

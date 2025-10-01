@@ -462,13 +462,16 @@ namespace Byway.Infrastructure._Data
                 if (!roleManager.Roles.Any())
                 {
                     var adminRole = new IdentityRole("Admin");
-
                     await roleManager.CreateAsync(adminRole);
+
+                    var userRole = new IdentityRole("User");
+                    await roleManager.CreateAsync(userRole);
                 }
 
                 var user = new ApplicationUser()
                 {
-                    FullName = "Muhammad Kamal",
+                    FirstName = "Muhammad",
+                    LastName = "Kamal",
                     UserName = "admin_Muhammad",
                     Email = "admin@byway.com",
 

@@ -13,9 +13,9 @@ namespace Byway.Infrastructure.Repositories
     {
         private readonly IMemoryCache _memoryCache = memoryCache;
 
-        public Task<bool> DeleteCartAsync(string cartId)
+        public void DeleteCart(string cartId)
         {
-            throw new NotImplementedException();
+            _memoryCache.Remove(cartId);
         }
 
         public async Task<Cart?> GetCartAsync(string id)

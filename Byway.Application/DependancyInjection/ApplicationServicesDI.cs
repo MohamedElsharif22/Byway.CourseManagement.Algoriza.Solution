@@ -14,9 +14,12 @@ namespace Byway.Application.DependancyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFileUploadService, FileUploadService>();
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<CartService>();
             services.AddScoped<InstructorService>();
+            services.AddScoped<AuthService>();
             services.AddAutoMapper(c => { } ,typeof(MappingProfiles).Assembly);
             return services;
         }

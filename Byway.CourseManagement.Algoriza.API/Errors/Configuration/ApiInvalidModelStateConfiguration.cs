@@ -15,7 +15,7 @@ namespace Byway.CourseManagement.Algoriza.API.Errors.Configuration
                         .SelectMany(x => x.Value.Errors)
                         .Select(x => x.ErrorMessage)
                         .ToList();
-                    var errorResponse = new ApiValidationResponse
+                    var errorResponse = new ApiValidationErrorResponse
                     {
                         Errors = errors
                     };

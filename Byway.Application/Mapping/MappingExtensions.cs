@@ -1,6 +1,8 @@
-﻿using Byway.Application.DTOs.Course;
+﻿using Byway.Application.DTOs.Account;
+using Byway.Application.DTOs.Course;
 using Byway.Domain.Entities;
 using Byway.Domain.Entities.Cart;
+using Byway.Domain.Entities.Identity;
 
 namespace Byway.Application.Mapping
 {
@@ -48,6 +50,18 @@ namespace Byway.Application.Mapping
                 Price = course.Price,
                 Category = course.CategoryName,
                 CoverImgUrl = course.CoverPictureUrl
+            };
+        }
+        #endregion
+
+        #region UserMapping
+        public static UserResponse ToUserResponse(this ApplicationUser user, string token)
+        {
+            return new UserResponse
+            {
+                Name = $"{user.FirstName} {user.LastName}",
+                Email = user.Email!,
+                Token = token
             };
         }
         #endregion

@@ -11,7 +11,7 @@ namespace Byway.Domain.Repositoies.Contract
     {
         Task<Cart?> GetCartAsync(string cartId);
         Task<Cart?> UpdateCartAsync(Cart cart);
-        Task<bool>  DeleteCartAsync(string cartId);
+        public void DeleteCart(string cartId);
 
     }
 }

@@ -15,17 +15,11 @@ using System.Threading.Tasks;
 
 namespace Byway.Infrastructure
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork(BywayDbContext context, IServiceProvider serviceProvider) : IUnitOfWork
     {
-        private readonly BywayDbContext _context;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly BywayDbContext _context = context;
+        private readonly IServiceProvider _serviceProvider = serviceProvider;
         private readonly ConcurrentDictionary<Type, object> _repositories = new();
-
-        public UnitOfWork(BywayDbContext context, IServiceProvider serviceProvider)
-        {
-            _context = context;
-            _serviceProvider = serviceProvider;
-        }
 
         public IRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {

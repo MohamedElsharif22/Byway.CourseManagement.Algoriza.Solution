@@ -23,7 +23,7 @@ namespace Byway.Application.Specifications.Course_Specs
         }
 
         [Description("Filter courses by category ID")]
-        public List<int> Categories { get; set; }
+        public List<int>? Categories { get; set; }
 
         [Description("Filter courses by instructor ID")]
         public int? InstructorId { get; set; }

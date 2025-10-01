@@ -30,6 +30,16 @@ namespace Byway.Application.Services
         {
             var coverPicture = courseRequest.CoverPicture;
 
+            var cat = await _unitOfWork.Repository<Category>().GetByIdAsync(courseRequest.CategoryId);
+
+            if (cat is null)
+                throw new InvalidDataException("Parameter: CategoryId is not valid!");
+
+            var instructor = await _unitOfWork.Repository<Instructor>().GetByIdAsync(courseRequest.InstructorId);
+
+            if (instructor is null)
+                throw new InvalidDataException("Parameter: CategoryId is not valid!");
+
             var courseEntity = _mapper.Map<Course>(courseRequest);
 
             if (coverPicture != null)
