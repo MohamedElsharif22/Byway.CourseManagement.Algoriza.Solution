@@ -6,6 +6,7 @@ using Byway.CourseManagement.Algoriza.API.Errors;
 using Byway.CourseManagement.Algoriza.API.Pagination;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
@@ -15,17 +16,80 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         private readonly IMapper _mapper = mapper;
 
         [HttpGet]
-        //[ProducesResponseType(typeof(Pagination<InstructorForUserResponse>), 200)]
-        //[ProducesResponseType(typeof(ApiResponse), 500)]
+        [ProducesResponseType(typeof(Pagination<InstructorResponse>), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 500)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status204NoContent)]
         public async Task<ActionResult<Pagination<InstructorResponse>>> GetAllInstructors([FromQuery] InstructorSpecParams specParams)
         {
             var (insResponse, count) = await _instructorService.GetAllInstructorsAsync(specParams);
 
-            if (count == 0) return NoContent();
+            if (count == 0) return StatusCode(StatusCodes.Status204NoContent, new ApiResponse(StatusCodes.Status204NoContent, "No Content!"));
 
             var responseData = insResponse.Select(i => _mapper.Map<InstructorResponse>(i));
 
             return Ok(new Pagination<InstructorResponse>(specParams.PageIndex, specParams.PageSize, count, responseData));
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(InstructorResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
+        public async Task<ActionResult<InstructorResponse>> GetById(int id)
+        {
+            var instructor = await _instructorService.GetInstructorByIdAsync(id);
+
+            if (instructor is null)
+                return BadRequest(new ApiResponse(StatusCodes.Status400BadRequest));
+
+            return Ok(instructor);
+        }
+
+
+        [EndpointDescription("Get All JobTitles")]
+        [EndpointSummary("Get All JobTitles")]
+        [HttpGet("JobTitles")]
+        public ActionResult<IEnumerable<JobTitleReponse>>GetJopTitles()
+        {
+            return Ok(_instructorService.GetAllJobTitles());
+        }
+
+
+        [EndpointDescription("Add New Instructor")]
+        [EndpointSummary("Add New Instructor")]
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [HttpPost]
+        public async Task<ActionResult<ApiResponse>>CreateInstructor([FromForm] InstructorRequest instructorRequest)
+        {
+            var (isCreated, message) = await _instructorService.CreateInstructorAsync(instructorRequest);
+
+            if (!isCreated) 
+                return BadRequest(new ApiResponse(400, message ?? "Unable to add instructor!"));
+
+            return Ok(new ApiResponse(200,message));
+        }
+
+        [EndpointDescription("Update Instructor")]
+        [EndpointSummary("Update Instructor")]
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ApiResponse>>UpdateInstructor(int id, [FromForm] InstructorRequest instructorRequest)
+        {
+            var (isUpdated, message) = await _instructorService.UpdateInstructorAsync(id, instructorRequest);
+
+            if (!isUpdated) 
+                return BadRequest(new ApiResponse(400, message ?? "Unable to add instructor!"));
+
+            return Ok(new ApiResponse(200,message));
+        }
+
+
+
+
+
+
+
+
+
     }
 }

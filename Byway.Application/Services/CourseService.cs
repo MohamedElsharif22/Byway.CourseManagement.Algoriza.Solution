@@ -30,23 +30,15 @@ namespace Byway.Application.Services
         {
             var coverPicture = courseRequest.CoverPicture;
 
-            var cat = await _unitOfWork.Repository<Category>().GetByIdAsync(courseRequest.CategoryId);
+            var cat = await _unitOfWork.Repository<Category>().GetByIdAsync(courseRequest.CategoryId) 
+                    ?? throw new InvalidDataException("Parameter: CategoryId is not valid!");
 
-            if (cat is null)
-                throw new InvalidDataException("Parameter: CategoryId is not valid!");
-
-            var instructor = await _unitOfWork.Repository<Instructor>().GetByIdAsync(courseRequest.InstructorId);
-
-            if (instructor is null)
-                throw new InvalidDataException("Parameter: CategoryId is not valid!");
-
+            var instructor = await _unitOfWork.Repository<Instructor>().GetByIdAsync(courseRequest.InstructorId) 
+                          ?? throw new InvalidDataException("Parameter: CategoryId is not valid!");
             var courseEntity = _mapper.Map<Course>(courseRequest);
 
             if (coverPicture != null)
             {
-                if (!_fileUploadService.IsValidImageFile(coverPicture))
-                    throw new InvalidOperationException("Invalid image file. Please upload a valid image file (JPG, PNG, GIF, WebP) under 5MB.");
-
                 courseEntity.CoverPictureUrl = await _fileUploadService.UploadImageAsync(coverPicture, "courses");
             }
 
@@ -101,9 +93,13 @@ namespace Byway.Application.Services
 
         public async Task<int> DeleteCourseAsync(int courseId)
         {
+            var spec = new CourseWithInstructorAndCategorySpecifications(c => c.Id == courseId);
             var course = await _courseRepo.GetByIdAsync(courseId);
             if (course is null)
                 return 0;
+
+            if (course.Enrollments.Count > 0)
+                throw new InvalidOperationException($"Unable To Delete Course With Enrollments");
 
             _courseRepo.Delete(course);
             return await _unitOfWork.CompleteAsync();

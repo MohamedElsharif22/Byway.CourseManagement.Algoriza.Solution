@@ -19,6 +19,8 @@ namespace Byway.Application.Mapping
 
             CreateMap<Category, CategoryResponse>();
 
+            CreateMap<InstructorRequest, Instructor>();
+
         }
     }
 }

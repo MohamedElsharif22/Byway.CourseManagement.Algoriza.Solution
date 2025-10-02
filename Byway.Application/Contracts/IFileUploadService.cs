@@ -9,6 +9,8 @@ namespace Byway.Application.Contracts
 {
     public interface IFileUploadService
     {
+        const string InstructorsImgFolder = "instructors";
+        const string CoursesImgFolder = "courses";
         Task<string> UploadImageAsync(IFormFile file, string folder);
         bool DeleteImage(string filePath);
         bool IsValidImageFile(IFormFile file);
