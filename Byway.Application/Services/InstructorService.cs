@@ -29,54 +29,41 @@ namespace Byway.Application.Services
 
             foreach (var i in instructors)
             {
-                insDtoList.Add(new InstructorResponse
-                {
-                    Id = i.Id,
-                    Name = i.Name,
-                    About = i.About,
-                    JopTitle = i.JopTitle.ToString(),
-                    ProfilePictureUrl = i.ProfilePictureUrl,
-                    CoursesCount = await _instructorRepo.GetCoursesCountAsync(i.Id),
-                    AverageRating = await _instructorRepo.GetAverageCourseRatingAsync(i.Id),
-                    StudentsCount = await _instructorRepo.GetStudentsCountForInstructorsAsync(i.Id),
-                    TotalLectures = await _instructorRepo.GetTotalLecturesForInstructorAsync(i.Id),
-                    CreatedAt = i.CreatedAt,
-                    UpdatedAt = i.UpdatedAt,
-                });
+                insDtoList.Add( await MapToInsReponse(i));
             }
 
             return (insDtoList, count);
         }
 
-        public async Task<Instructor?> GetInstructorAsync(int instructorId)
-        {
-            return await _instructorRepo.GetByIdAsync(instructorId);
-        }
 
-        public async Task<InstructorResponse?> GetInstructorStatsByIdAsync(int instructorId)
+        public async Task<InstructorResponse?> GetInstructorByIdAsync(int instructorId)
         {
             var instructor = await _instructorRepo.GetByIdAsync(instructorId);
             if(instructor is null)
                 return null;
 
-            return new InstructorResponse
-            {
-                Name = instructor.Name,
-                About = instructor.About,
-                JopTitle = instructor.JopTitle.ToString(),
-                ProfilePictureUrl = instructor.ProfilePictureUrl,
-                CoursesCount = await _instructorRepo.GetCoursesCountAsync(instructorId),
-                AverageRating = await _instructorRepo.GetAverageCourseRatingAsync(instructorId),
-                StudentsCount = await _instructorRepo.GetStudentsCountForInstructorsAsync(instructorId),
-                TotalLectures = await _instructorRepo.GetTotalLecturesForInstructorAsync(instructorId),
-            };
+            return await MapToInsReponse(instructor);
         }
         
 
 
 
-
-
-
+        private async Task<InstructorResponse> MapToInsReponse(Instructor instructor)
+        {
+            return new InstructorResponse
+            {
+                Id = instructor.Id,
+                Name = instructor.Name,
+                About = instructor.About,
+                JopTitle = instructor.JopTitle.ToString(),
+                ProfilePictureUrl = instructor.ProfilePictureUrl,
+                CoursesCount = await _instructorRepo.GetCoursesCountAsync(instructor.Id),
+                AverageRating = await _instructorRepo.GetAverageCourseRatingAsync(instructor.Id),
+                StudentsCount = await _instructorRepo.GetStudentsCountForInstructorsAsync(instructor.Id),
+                TotalLectures = await _instructorRepo.GetTotalLecturesForInstructorAsync(instructor.Id),
+                CreatedAt = instructor.CreatedAt,
+                UpdatedAt = instructor.UpdatedAt,
+            };
+        }
     }
 }

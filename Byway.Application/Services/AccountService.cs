@@ -1,6 +1,9 @@
 ﻿using Byway.Application.Contracts;
 using Byway.Application.DTOs.Account;
+using Byway.Application.DTOs.Course;
 using Byway.Application.Mapping;
+using Byway.Domain;
+using Byway.Domain.Entities.Checkout;
 using Byway.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -13,15 +16,20 @@ namespace Byway.Application.Services
 {
     public class AccountService(UserManager<ApplicationUser> userManager,
                                 SignInManager<ApplicationUser> signInManager,
-                                AuthService authService) : IAccountService
+                                AuthService authService,
+                                ICourseService courseService,
+                                IUnitOfWork unitOfWork) : IAccountService
     {
         private readonly UserManager<ApplicationUser> _userManager = userManager;
         private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
         private readonly AuthService _authService = authService;
+        private readonly ICourseService _courseService = courseService;
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
         public async Task<(UserResponse?, string?)> LoginAsync(LoginRequest request)
         {
-            string error = string.Empty;
+
+            string error;
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user is null)
             {
@@ -74,9 +82,6 @@ namespace Byway.Application.Services
 
             return (appUser.ToUserResponse(token), errors);
         }
-
-
-
 
     }
 }

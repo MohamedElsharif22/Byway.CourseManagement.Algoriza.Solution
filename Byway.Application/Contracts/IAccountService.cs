@@ -1,4 +1,5 @@
 ﻿using Byway.Application.DTOs.Account;
+using Byway.Application.DTOs.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;

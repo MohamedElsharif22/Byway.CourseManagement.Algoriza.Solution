@@ -12,8 +12,6 @@ namespace Byway.Domain.Entities.Identity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime? DateOfBirth { get; set; }
-        public string? Bio { get; set; }
-        public ICollection<BoughtCourse> EnrolledCourses { get; set; }
+        public ICollection<Enrollment> EnrolledCourses { get; set; } = new HashSet<Enrollment>();
     }
 }

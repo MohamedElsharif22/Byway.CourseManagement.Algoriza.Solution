@@ -20,22 +20,21 @@ namespace Byway.Infrastructure._Data
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(BywayDbContext).Assembly);
 
-            BywayContextSeed.SeedDatabase(modelBuilder);
-
-            modelBuilder.Entity<ApplicationUser>(builder =>
+            modelBuilder.Entity<ApplicationUser>(c =>
             {
-                builder.HasMany(u => u.EnrolledCourses)
-                       .WithOne()
-                       .HasForeignKey(bc => bc.UserId);
+                c.HasMany(u => u.EnrolledCourses)
+                 .WithOne()
+                 .HasForeignKey(c => c.UserId);
             });
 
+            BywayContextSeed.SeedDatabase(modelBuilder);
         }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Checkout> Checkouts { get; set; }
-        public DbSet<BoughtCourse> BoughtCourses { get; set; }
+        public DbSet<Enrollment> BoughtCourses { get; set; }
 
     }
 }

@@ -1,17 +1,24 @@
 ﻿using Byway.Application.Contracts;
 using Byway.Application.DTOs.Account;
+using Byway.Application.Mapping;
 using Byway.Application.Services;
 using Byway.CourseManagement.Algoriza.API.Errors;
 using Byway.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
-    public class AccountController(IAccountService accountService) : BaseApiController
+    public class AccountController(IAccountService accountService,
+                                   UserManager<ApplicationUser> userManager,
+                                   AuthService authService) : BaseApiController
     {
         private readonly IAccountService _accountService = accountService;
+        private readonly UserManager<ApplicationUser> _userManager = userManager;
+        private readonly AuthService _authService = authService;
 
         [HttpPost("register")]
         [EndpointSummary("Register New Account!")]
@@ -42,6 +49,23 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         }
 
 
+        [EndpointSummary("Get Current user")]
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<UserResponse>> GetCurrentUser()
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+
+            if (string.IsNullOrWhiteSpace(email)) return NotFound(new ApiResponse(404));
+
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user is null) return NotFound(new ApiResponse(404));
+
+            var token = await _authService.CreateTokenAsync(user, _userManager);
+
+            return Ok(user.ToUserResponse(token));
+        }
 
 
 

@@ -15,19 +15,17 @@ namespace Byway.Application.Specifications.Instructor_Specs
         public InstructorWithCoursesSpecifications(InstructorSpecParams specParams, bool GetCountOnly = false)
                 : base( I => (string.IsNullOrWhiteSpace(specParams.Search) || EF.Functions.Like(I.Name,$"%{specParams.Search}%")))
         {
-
             if (!GetCountOnly) 
             { 
                 AddInclude(i => i.Courses);
                 ApplyPagination(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
             }
-
         }
 
         public InstructorWithCoursesSpecifications(Expression<Func<Instructor, bool>> expression) 
                 : base(expression) 
         {
-
+            AddInclude(i => i.Courses);
         }
     }
 }

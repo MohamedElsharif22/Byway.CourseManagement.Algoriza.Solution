@@ -32,6 +32,7 @@ namespace Byway.Infrastructure._Data.Configurations
                    .WithMany()
                    .HasForeignKey(c => c.InstructorId)
                    .OnDelete(DeleteBehavior.Restrict);
+                   
         }
     }
 }

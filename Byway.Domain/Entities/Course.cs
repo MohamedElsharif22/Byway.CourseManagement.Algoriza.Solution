@@ -1,4 +1,5 @@
-﻿using Byway.Domain.Entities.Identity;
+﻿using Byway.Domain.Entities.Checkout;
+using Byway.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,6 @@ namespace Byway.Domain.Entities
         public Instructor Instructor { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public ICollection<ApplicationUser> EnrolledUsers { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; } = new HashSet<Enrollment>();
     }
 }

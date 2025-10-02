@@ -14,6 +14,7 @@ namespace Byway.Application.DependancyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<ICheckoutService, CheckoutService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFileUploadService, FileUploadService>();
             services.AddScoped<ICourseService, CourseService>();

@@ -27,6 +27,7 @@ namespace Byway.Application.Specifications
             {
                 AddInclude(c => c.Instructor);
                 AddInclude(c => c.Category);
+                AddInclude(c => c.Enrollments);
 
                 if (courseSpecParams.Sort.HasValue)
                 {

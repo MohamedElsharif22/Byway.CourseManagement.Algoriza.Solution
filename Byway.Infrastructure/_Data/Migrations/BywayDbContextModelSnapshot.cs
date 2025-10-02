@@ -118,7 +118,53 @@ namespace Byway.Infrastructure._Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Byway.Domain.Entities.Checkout.BoughtCourse", b =>
+            modelBuilder.Entity("Byway.Domain.Entities.Checkout.Checkout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PaymentTransactionId")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SubTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Tax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Checkouts");
+                });
+
+            modelBuilder.Entity("Byway.Domain.Entities.Checkout.Enrollment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,10 +181,21 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<decimal>("PricePaid")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId1")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -150,32 +207,9 @@ namespace Byway.Infrastructure._Data.Migrations
 
                     b.HasIndex("UserId");
 
+                    b.HasIndex("UserId1");
+
                     b.ToTable("BoughtCourses");
-                });
-
-            modelBuilder.Entity("Byway.Domain.Entities.Checkout.Checkout", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Checkouts");
                 });
 
             modelBuilder.Entity("Byway.Domain.Entities.Course", b =>
@@ -523,21 +557,6 @@ namespace Byway.Infrastructure._Data.Migrations
                             Rating = 4,
                             Title = "Figma for Product Design",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CategoryId = 2,
-                            CoverPictureUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-                            CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Description = "Learn statistical analysis and data visualization using R programming language for data science.",
-                            DurationInMinutes = 1150,
-                            InstructorId = 2,
-                            LecturesCount = 148,
-                            Price = 119.99m,
-                            Rating = 4,
-                            Title = "Statistical Analysis with R",
-                            UpdatedAt = new DateTimeOffset(new DateTime(2024, 9, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
@@ -549,18 +568,9 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Bio")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -611,8 +621,6 @@ namespace Byway.Infrastructure._Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -667,6 +675,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 3, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Senior_SoftwareEngineer",
                             Name = "John Smith",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 3, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -676,6 +685,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 5, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "DataScientist",
                             Name = "Sarah Johnson",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 5, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -685,6 +695,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Frontend_Developer",
                             Name = "Mike Chen",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -694,6 +705,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "MobileApp_Developer",
                             Name = "Emily Rodriguez",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -703,6 +715,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "MachineLearning_Engineer",
                             Name = "David Kumar",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 11, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -712,6 +725,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 13, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "DevOps_Engineer",
                             Name = "Lisa Thompson",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 13, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -721,6 +735,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 15, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Backend_Developer",
                             Name = "Alex Morgan",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 15, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -730,6 +745,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 17, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "FullStack_Developer",
                             Name = "Maria Garcia",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 17, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -739,6 +755,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 19, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "UXUI_Designer",
                             Name = "Robert Wilson",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 19, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -748,6 +765,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Business_Analyst",
                             Name = "Jennifer Lee",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -757,6 +775,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "DigitalMarketingStrategist",
                             Name = "Michael Torres",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -766,6 +785,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 25, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "CybersecurityExpert",
                             Name = "Amanda Zhang",
+                            ProfilePictureUrl = "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop&crop=center",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 25, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
@@ -903,16 +923,16 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Byway.Domain.Entities.Checkout.BoughtCourse", b =>
+            modelBuilder.Entity("Byway.Domain.Entities.Checkout.Enrollment", b =>
                 {
                     b.HasOne("Byway.Domain.Entities.Checkout.Checkout", "Checkout")
-                        .WithMany("BoughtCourses")
+                        .WithMany("PurchasedCourses")
                         .HasForeignKey("CheckoutId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Byway.Domain.Entities.Course", "Course")
-                        .WithMany()
+                        .WithMany("Enrollments")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -920,12 +940,20 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.HasOne("Byway.Domain.Entities.Identity.ApplicationUser", null)
                         .WithMany("EnrolledCourses")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Byway.Domain.Entities.Identity.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Checkout");
 
                     b.Navigation("Course");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Byway.Domain.Entities.Course", b =>
@@ -948,13 +976,6 @@ namespace Byway.Infrastructure._Data.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Instructor");
-                });
-
-            modelBuilder.Entity("Byway.Domain.Entities.Identity.ApplicationUser", b =>
-                {
-                    b.HasOne("Byway.Domain.Entities.Course", null)
-                        .WithMany("EnrolledUsers")
-                        .HasForeignKey("CourseId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1015,12 +1036,12 @@ namespace Byway.Infrastructure._Data.Migrations
 
             modelBuilder.Entity("Byway.Domain.Entities.Checkout.Checkout", b =>
                 {
-                    b.Navigation("BoughtCourses");
+                    b.Navigation("PurchasedCourses");
                 });
 
             modelBuilder.Entity("Byway.Domain.Entities.Course", b =>
                 {
-                    b.Navigation("EnrolledUsers");
+                    b.Navigation("Enrollments");
                 });
 
             modelBuilder.Entity("Byway.Domain.Entities.Identity.ApplicationUser", b =>

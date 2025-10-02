@@ -30,7 +30,7 @@ namespace Byway.Infrastructure._Data
                 new Category { Id = 10, Name = "Cybersecurity", CreatedAt = new DateTimeOffset(2024, 9, 16, 10, 0, 0, TimeSpan.Zero), UpdatedAt = new DateTimeOffset(2024, 9, 16, 10, 0, 0, TimeSpan.Zero) }
             };
 
-             modelBuilder.Entity<Category>().HasData(categories);
+            modelBuilder.Entity<Category>().HasData(categories);
 
             // Seed Instructors
             var instructors = new List<Instructor>
@@ -41,6 +41,7 @@ namespace Byway.Infrastructure._Data
                     Name = "John Smith",
                     JopTitle = JobTitles.Senior_SoftwareEngineer,
                     About = "Experienced full-stack developer with 10+ years in the industry. Passionate about teaching clean code and best practices.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 3, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 3, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -50,6 +51,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Sarah Johnson",
                     JopTitle = JobTitles.DataScientist,
                     About = "PhD in Statistics with expertise in machine learning and data visualization. Former researcher at Google AI.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 5, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 5, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -59,6 +61,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Mike Chen",
                     JopTitle = JobTitles.Frontend_Developer,
                     About = "React and Vue.js specialist with a keen eye for UI/UX design. Previously worked at Netflix and Spotify.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 7, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 7, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -68,6 +71,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Emily Rodriguez",
                     JopTitle = JobTitles.MobileApp_Developer,
                     About = "iOS and Android development expert. Published 15+ apps on app stores with millions of downloads.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 9, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 9, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -77,6 +81,7 @@ namespace Byway.Infrastructure._Data
                     Name = "David Kumar",
                     JopTitle = JobTitles.MachineLearning_Engineer,
                     About = "AI researcher and engineer specializing in deep learning and computer vision. Author of 'ML in Practice'.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 11, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -86,6 +91,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Lisa Thompson",
                     JopTitle = JobTitles.DevOps_Engineer,
                     About = "Cloud infrastructure expert with AWS and Azure certifications. Specializes in CI/CD and containerization.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 13, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 13, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -95,6 +101,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Alex Morgan",
                     JopTitle = JobTitles.Backend_Developer,
                     About = "Microservices architecture specialist with expertise in .NET, Node.js, and distributed systems.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 15, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 15, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -104,6 +111,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Maria Garcia",
                     JopTitle = JobTitles.FullStack_Developer,
                     About = "MERN stack expert with 8 years of experience building scalable web applications for startups.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 17, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 17, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -113,6 +121,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Robert Wilson",
                     JopTitle = JobTitles.UXUI_Designer,
                     About = "Award-winning designer specializing in user experience research and interface design. Former design lead at Adobe.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 19, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 19, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -122,6 +131,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Jennifer Lee",
                     JopTitle = JobTitles.Business_Analyst,
                     About = "MBA from Stanford with 12 years in strategic consulting. Expert in business process optimization and digital transformation.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 21, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -131,6 +141,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Michael Torres",
                     JopTitle = JobTitles.DigitalMarketingStrategist,
                     About = "Former marketing director at Fortune 500 companies. Specialist in growth hacking and performance marketing.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 23, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 23, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -140,6 +151,7 @@ namespace Byway.Infrastructure._Data
                     Name = "Amanda Zhang",
                     JopTitle = JobTitles.CybersecurityExpert,
                     About = "Ethical hacker and security consultant with CISSP certification. Former security engineer at Microsoft.",
+                    ProfilePictureUrl = "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 8, 25, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 25, 10, 0, 0, TimeSpan.Zero)
                 }
@@ -434,26 +446,13 @@ namespace Byway.Infrastructure._Data
                     CoverPictureUrl = "https://images.unsplash.com/photo-1609277205247-56d6e9eb9b85?w=800&h=600&fit=crop&crop=center",
                     CreatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero)
-                },
-                new Course
-                {
-                    Id = 20,
-                    Title = "Statistical Analysis with R",
-                    Description = "Learn statistical analysis and data visualization using R programming language for data science.",
-                    Rating = 4,
-                    Price = 119.99m,
-                    LecturesCount = 148,
-                    DurationInMinutes = 1150,
-                    CategoryId = 2,
-                    InstructorId = 2,
-                    CoverPictureUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-                    CreatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero),
-                    UpdatedAt = new DateTimeOffset(2024, 9, 11, 10, 0, 0, TimeSpan.Zero)
                 }
             };
 
             modelBuilder.Entity<Course>().HasData(courses);
         }
+
+
 
         public static async Task SeedIdentityDataAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {

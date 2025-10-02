@@ -37,7 +37,7 @@ namespace Byway.Infrastructure.Repositories
         {
             return await _instructors.Where(i => i.Id == instructorId)
                          .SelectMany(i => i.Courses)
-                         .SelectMany(c => c.EnrolledUsers)
+                         .SelectMany(c => c.Enrollments)
                          .Select(u => u.Id)
                          .Distinct()
                          .CountAsync();

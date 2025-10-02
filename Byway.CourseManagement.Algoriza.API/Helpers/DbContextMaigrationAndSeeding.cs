@@ -21,9 +21,12 @@ namespace Byway.CourseManagement.Algoriza.API.Helpers
             try
             {
                 await _bywayDbContext.Database.MigrateAsync();
+
                 var _roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                 var _userManeger = services.GetRequiredService<UserManager<ApplicationUser>>();
-                await BywayContextSeed.SeedIdentityDataAsync(_userManeger,_roleManager);
+                var _context = services.GetRequiredService<BywayDbContext>();
+
+                await BywayContextSeed.SeedIdentityDataAsync(_userManeger, _roleManager);
             }
             catch (Exception ex)
             {
