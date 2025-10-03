@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Byway.Application.Contracts;
+using Byway.Application.DTOs;
 using Byway.Application.DTOs.Instructor;
 using Byway.Application.Specifications.Instructor_Specs;
 using Byway.Domain;
@@ -17,15 +18,14 @@ namespace Byway.Application.Services
 {
     public class InstructorService(IUnitOfWork unitOfWork, 
                                    IFileUploadService fileUploadService,
-                                   IMapper mapper)
+                                   IMapper mapper) : IInstructorService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IFileUploadService _fileUploadService = fileUploadService;
         private readonly IMapper _mapper = mapper;
         private readonly IInstructorRepository _instructorRepo = unitOfWork.Repository<Instructor, IInstructorRepository>();
 
-        // Get All Instructors
-        public async Task<(IEnumerable<InstructorResponse>, int)> GetAllInstructorsAsync(InstructorSpecParams specParams)
+        public async Task<Pagination<InstructorResponse>> GetAllInstructorsAsync(InstructorSpecParams specParams)
         {
             var insSpecs = new InstructorWithCoursesSpecifications(specParams);
             var instructors = await _instructorRepo.GetAllWithSpecsAsync(insSpecs);
@@ -39,7 +39,7 @@ namespace Byway.Application.Services
                 insDtoList.Add( await MapToInsReponse(i));
             }
 
-            return (insDtoList, count);
+            return new Pagination<InstructorResponse>(specParams.PageIndex, specParams.PageSize, count, insDtoList);
         }
 
 
@@ -55,13 +55,10 @@ namespace Byway.Application.Services
 
         public async Task<(bool, string)> CreateInstructorAsync(InstructorRequest instructorRequest)
         {
-            var instructor = new Instructor()
-            {
-                Name = instructorRequest.Name,
-                About = instructorRequest.About,
-                JopTitle = (JobTitles) instructorRequest.JopTitle,
-                ProfilePictureUrl = await _fileUploadService.UploadImageAsync(instructorRequest.ProfilePicture,IFileUploadService.InstructorsImgFolder)
-            };
+            var instructor = _mapper.Map<Instructor>(instructorRequest);
+
+            instructor.ProfilePictureUrl = await _fileUploadService.UploadImageAsync(instructorRequest.ProfilePicture, 
+                                                                                     IFileUploadService.InstructorsImgFolder);
 
             _instructorRepo.Add(instructor);
             
@@ -89,11 +86,9 @@ namespace Byway.Application.Services
                                                                                          IFileUploadService.InstructorsImgFolder);
             }
             
+            _mapper.Map(instructorRequest,instructor);
 
-
-            instructor = _mapper.Map<Instructor>(instructor);
-
-            _instructorRepo.Add(instructor);
+            _instructorRepo.Update(instructor);
 
             var result = await _unitOfWork.CompleteAsync();
 
@@ -105,6 +100,36 @@ namespace Byway.Application.Services
             }
 
             return (true, $"{instructor.Name} Updated Successfully!");
+
+        }
+
+
+
+        public async Task<(bool, string)> DeleteInstructorAsync(int insId)
+        {
+            var spec = new InstructorWithCoursesSpecifications(i => i.Id == insId);
+            var ins = await _instructorRepo.GetWithSpecsAsync(spec);
+
+            if (ins is null) return (false, "Invalid Id!");
+
+            var stdCount = await _instructorRepo.GetStudentsCountForInstructorsAsync(insId);
+
+            if (stdCount > 0)
+                return (false, "Cann't Delete instructor with courses that have students aleardy Enrolled in it.");
+
+            var insImg = ins.ProfilePictureUrl;
+
+            _instructorRepo.Delete(ins);
+
+            var result = await _unitOfWork.CompleteAsync();
+
+            if (result == 0)
+                return (false, "Unable to save Changes!");
+
+            if(insImg is not null)
+                _fileUploadService.DeleteImage(insImg);
+
+            return (true, $"{ins.Name} Deleted Successfully");
 
         }
 
@@ -134,7 +159,9 @@ namespace Byway.Application.Services
                 CreatedAt = instructor.CreatedAt,
                 UpdatedAt = instructor.UpdatedAt,
             };
-        } 
+        }
+
+        
         #endregion
     }
 }

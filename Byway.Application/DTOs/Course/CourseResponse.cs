@@ -3,7 +3,7 @@ using Byway.Domain.Entities.Identity;
 
 namespace Byway.Application.DTOs.Course
 {
-    public class CourseResponse
+    public record CourseResponse
     {
         public int Id { get; set; }
         public string Title { get; set; }

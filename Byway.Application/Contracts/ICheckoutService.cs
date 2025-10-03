@@ -11,14 +11,14 @@ namespace Byway.Application.Contracts
     {
         Task<CheckoutResultDto> ProcessCheckoutFromCartAsync(string userId, string cartId, ProcessCheckoutRequest request);
 
-        Task<IEnumerable<CheckoutHistoryDto>> GetUserCheckoutHistoryAsync(string userId);
+        Task<IEnumerable<CheckoutHistoryResponse>> GetUserCheckoutHistoryAsync(string userId);
 
-        Task<CheckoutDetailsDto> GetCheckoutDetailsAsync(int checkoutId, string userId);
+        Task<CheckoutDetailsResponse> GetCheckoutDetailsAsync(int checkoutId, string userId);
 
         Task<IEnumerable<EnrollmentResponse>> GetUserEnrollmentsAsync(string userId);
 
         Task<bool> IsUserEnrolledInCourseAsync(string userId, int courseId);
 
-        Task<CheckoutSummaryDto> CalculateCheckoutSummaryFromCartAsync(string cartId);
+        Task<CheckoutSummaryResponse> CalculateCheckoutSummaryFromCartAsync(string cartId);
     }
 }

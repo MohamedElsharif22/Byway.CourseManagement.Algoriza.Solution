@@ -21,7 +21,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [EndpointSummary("Calculate checkout summary from cart (before processing)")]
         [HttpGet("summary/{cartId}")]
         [AllowAnonymous]
-        public async Task<ActionResult<CheckoutSummaryDto>> GetCheckoutSummary(string cartId)
+        public async Task<ActionResult<CheckoutSummaryResponse>> GetCheckoutSummary(string cartId)
         {
 
             var summary = await _checkoutService.CalculateCheckoutSummaryFromCartAsync(cartId);
@@ -48,10 +48,10 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
         [HttpGet("history")]
         [EndpointSummary("Get user's purchase history")]
-        [ProducesResponseType(typeof(IEnumerable<CheckoutHistoryDto>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<CheckoutHistoryResponse>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 500)]
 
-        public async Task<ActionResult<IEnumerable<CheckoutHistoryDto>>> GetCheckoutHistory()
+        public async Task<ActionResult<IEnumerable<CheckoutHistoryResponse>>> GetCheckoutHistory()
         {
 
                 var userId = GetUserId();
@@ -61,10 +61,10 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
 
         [EndpointSummary("Get detailed information about a specific checkout/purchase")]
-        [ProducesResponseType(typeof(CheckoutDetailsDto), 200)]
+        [ProducesResponseType(typeof(CheckoutDetailsResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 404)]
         [HttpGet("{checkoutId}")]
-        public async Task<ActionResult<CheckoutDetailsDto>> GetCheckoutDetails(int checkoutId)
+        public async Task<ActionResult<CheckoutDetailsResponse>> GetCheckoutDetails(int checkoutId)
         {
                 var userId = GetUserId();
                 var details = await _checkoutService.GetCheckoutDetailsAsync(checkoutId, userId);

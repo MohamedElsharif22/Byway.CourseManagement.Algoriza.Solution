@@ -2,7 +2,7 @@
 
 namespace Byway.Application.DTOs.Cart
 {
-    public class CartRequest
+    public record CartRequest
     {
         [Required]
         public string Id { get; set; }

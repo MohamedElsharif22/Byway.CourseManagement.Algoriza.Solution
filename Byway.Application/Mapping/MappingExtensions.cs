@@ -1,7 +1,9 @@
 ﻿using Byway.Application.DTOs.Account;
 using Byway.Application.DTOs.Course;
+using Byway.Application.DTOs.Instructor;
 using Byway.Domain.Entities;
 using Byway.Domain.Entities.Cart;
+using Byway.Domain.Entities.enums;
 using Byway.Domain.Entities.Identity;
 
 namespace Byway.Application.Mapping
@@ -64,6 +66,10 @@ namespace Byway.Application.Mapping
                 Token = token
             };
         }
+        #endregion
+
+        #region Instructor
+        
         #endregion
     }
 }

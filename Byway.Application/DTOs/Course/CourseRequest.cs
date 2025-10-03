@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Byway.Application.DTOs.Course
 {
-    public class CourseRequest
+    public record CourseRequest
     {
         [Required]
         [MaxLength(200)]

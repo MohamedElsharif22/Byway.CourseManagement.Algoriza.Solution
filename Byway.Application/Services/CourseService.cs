@@ -39,7 +39,7 @@ namespace Byway.Application.Services
 
             if (coverPicture != null)
             {
-                courseEntity.CoverPictureUrl = await _fileUploadService.UploadImageAsync(coverPicture, "courses");
+                courseEntity.CoverPictureUrl = await _fileUploadService.UploadImageAsync(coverPicture, IFileUploadService.CoursesImgFolder);
             }
 
             _courseRepo.Add(courseEntity);
@@ -64,14 +64,14 @@ namespace Byway.Application.Services
 
             var oldImagePath = existingCourse.CoverPictureUrl;
 
-            existingCourse = _mapper.Map<Course>(courseRequest);
+            _mapper.Map(courseRequest,existingCourse);
 
             if (coverPicture != null)
             {
                 if (!_fileUploadService.IsValidImageFile(coverPicture))
                     throw new InvalidOperationException("Invalid image file. Please upload a valid image file (JPG, PNG, GIF, WebP) under 5MB.");
 
-                existingCourse.CoverPictureUrl = await _fileUploadService.UploadImageAsync(coverPicture, "courses");
+                existingCourse.CoverPictureUrl = await _fileUploadService.UploadImageAsync(coverPicture, IFileUploadService.CoursesImgFolder);
             }
 
 
@@ -116,13 +116,18 @@ namespace Byway.Application.Services
             return categories.Select(c => _mapper.Map<CategoryResponse>(c));
         }
 
-        public async Task<(IEnumerable<CourseResponse>, int)> GetAllCoursesWithCountAsync(CourseSpecParams specParams)
+        public async Task<Pagination<CourseResponse>> GetAllCoursesWithCountAsync(CourseSpecParams specParams)
         {
             var courseSpecs = new CourseWithInstructorAndCategorySpecifications(specParams);
             var courses = await _unitOfWork.Repository<Course>().GetAllWithSpecsAsync(courseSpecs);
             var countSpecs = new CourseWithInstructorAndCategorySpecifications(specParams, getCountOnly: true);
             var totalItems = await _unitOfWork.Repository<Course>().GetCountWithspecsAsync(countSpecs);
-            return (courses.Select(c => _mapper.Map<CourseResponse>(c)), totalItems);
+            var page = new Pagination<CourseResponse>(specParams.PageSize, 
+                                                      specParams.PageSize, 
+                                                      totalItems, 
+                                                      courses.Select(c => _mapper.Map<CourseResponse>(c)));
+
+            return page;
         }
 
         public async Task<CourseResponse?> GetCourseByIdAsync(int courseId)

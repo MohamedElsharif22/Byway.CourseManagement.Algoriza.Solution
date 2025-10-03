@@ -19,7 +19,7 @@ namespace Byway.Application.DependancyInjection
             services.AddScoped<IFileUploadService, FileUploadService>();
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<CartService>();
-            services.AddScoped<InstructorService>();
+            services.AddScoped<IInstructorService, InstructorService>();
             services.AddScoped<AuthService>();
             services.AddAutoMapper(c => { } ,typeof(MappingProfiles).Assembly);
             return services;

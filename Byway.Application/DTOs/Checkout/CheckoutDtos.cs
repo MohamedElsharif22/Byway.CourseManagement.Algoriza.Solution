@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Byway.Application.DTOs.Checkout
 {
-    public class ProcessCheckoutRequest
+    public record ProcessCheckoutRequest
     {
+        [Required]
         public string PaymentMethod { get; set; }
+        [Required]
         public string PaymentToken { get; set; }
     }
 
     // Response DTOs
-    public class CheckoutResultDto
+    public record CheckoutResultDto
     {
         public bool Success { get; set; }
         public string Message { get; set; }
@@ -23,17 +26,17 @@ namespace Byway.Application.DTOs.Checkout
         public List<int> EnrolledCourseIds { get; set; } = new List<int>();
     }
 
-    public class CheckoutSummaryDto
+    public record CheckoutSummaryResponse
     {
         public int TotalItems { get; set; }
         public decimal SubTotal { get; set; }
         public decimal Tax { get; set; }
         public decimal TaxRate { get; set; }
         public decimal TotalPrice { get; set; }
-        public List<CheckoutItemDto> Items { get; set; } = new List<CheckoutItemDto>();
+        public List<CheckoutItemResponse> Items { get; set; } = new List<CheckoutItemResponse>();
     }
 
-    public class CheckoutItemDto
+    public record CheckoutItemResponse
     {
         public int CourseId { get; set; }
         public string Title { get; set; }
@@ -41,7 +44,7 @@ namespace Byway.Application.DTOs.Checkout
         public string CoverPictureUrl { get; set; }
     }
 
-    public class CheckoutHistoryDto
+    public record CheckoutHistoryResponse
     {
         public int Id { get; set; }
         public DateTimeOffset PurchaseDate { get; set; }
@@ -52,7 +55,7 @@ namespace Byway.Application.DTOs.Checkout
         public List<string> CourseNames { get; set; } = new List<string>();
     }
 
-    public class CheckoutDetailsDto
+    public record CheckoutDetailsResponse
     {
         public int Id { get; set; }
         public DateTimeOffset PurchaseDate { get; set; }
@@ -62,10 +65,10 @@ namespace Byway.Application.DTOs.Checkout
         public string PaymentMethod { get; set; }
         public string TransactionId { get; set; }
         public string Status { get; set; }
-        public List<PurchasedCourseDto> Courses { get; set; } = new List<PurchasedCourseDto>();
+        public List<PurchasedCourseResponse> Courses { get; set; } = new List<PurchasedCourseResponse>();
     }
 
-    public class PurchasedCourseDto
+    public record PurchasedCourseResponse
     {
         public int EnrollmentId { get; set; }
         public int CourseId { get; set; }
@@ -78,7 +81,7 @@ namespace Byway.Application.DTOs.Checkout
         public DateTimeOffset EnrolledAt { get; set; }
     }
 
-    public class EnrollmentResponse
+    public record EnrollmentResponse
     {
         public int Id { get; set; }
         public int CourseId { get; set; }

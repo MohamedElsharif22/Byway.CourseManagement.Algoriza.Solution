@@ -1,13 +1,13 @@
 ﻿namespace Byway.Application.DTOs.Instructor
 {
 
-    public class JobTitleReponse
+    public record JobTitleReponse
     {
         public string Title { get; set; }
         public int Value { get; set; }
     }
 
-    public class InstructorResponse
+    public record InstructorResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }

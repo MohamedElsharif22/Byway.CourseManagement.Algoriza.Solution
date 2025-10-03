@@ -1,6 +1,6 @@
 ﻿namespace Byway.Application.DTOs.Account
 {
-    public class UserResponse
+    public record UserResponse
     {
         public string Name { get; set; }
         public string Email { get; set; }

@@ -1,44 +1,44 @@
 ﻿using AutoMapper;
+using Byway.Application.Contracts;
+using Byway.Application.DTOs;
 using Byway.Application.DTOs.Instructor;
 using Byway.Application.Services;
 using Byway.Application.Specifications.Instructor_Specs;
 using Byway.CourseManagement.Algoriza.API.Errors;
-using Byway.CourseManagement.Algoriza.API.Pagination;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
-    public class InstructorsController(InstructorService instructorService, IMapper mapper) : BaseApiController
+    public class InstructorsController(IInstructorService instructorService, IMapper mapper) : BaseApiController
     {
-        private readonly InstructorService _instructorService = instructorService;
+        private readonly IInstructorService _instructorService = instructorService;
         private readonly IMapper _mapper = mapper;
 
-        [HttpGet]
+        [EndpointSummary("Get All Instructors!")]
         [ProducesResponseType(typeof(Pagination<InstructorResponse>), 200)]
-        [ProducesResponseType(typeof(ApiResponse), 500)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status204NoContent)]
+        [HttpGet]
         public async Task<ActionResult<Pagination<InstructorResponse>>> GetAllInstructors([FromQuery] InstructorSpecParams specParams)
         {
-            var (insResponse, count) = await _instructorService.GetAllInstructorsAsync(specParams);
+            var page = await _instructorService.GetAllInstructorsAsync(specParams);
 
-            if (count == 0) return StatusCode(StatusCodes.Status204NoContent, new ApiResponse(StatusCodes.Status204NoContent, "No Content!"));
+            if (page.Count == 0) return StatusCode(StatusCodes.Status204NoContent, new ApiResponse(StatusCodes.Status204NoContent, "No Content!"));
 
-            var responseData = insResponse.Select(i => _mapper.Map<InstructorResponse>(i));
-
-            return Ok(new Pagination<InstructorResponse>(specParams.PageIndex, specParams.PageSize, count, responseData));
+            return Ok(page);
         }
 
-        [HttpGet("{id}")]
+        [EndpointSummary("Get By ID!")]
         [ProducesResponseType(typeof(InstructorResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 404)]
+        [HttpGet("{id}")]
         public async Task<ActionResult<InstructorResponse>> GetById(int id)
         {
             var instructor = await _instructorService.GetInstructorByIdAsync(id);
 
             if (instructor is null)
-                return BadRequest(new ApiResponse(StatusCodes.Status400BadRequest));
+                return NotFound(new ApiResponse(StatusCodes.Status400BadRequest));
 
             return Ok(instructor);
         }
@@ -84,10 +84,20 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         }
 
 
+        [EndpointDescription("Update Instructor")]
+        [EndpointSummary("Delete Instructor")]
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ApiResponse>>DeleteInstructor(int id)
+        {
+            var (isDeleted, message) = await _instructorService.DeleteInstructorAsync(id);
 
+            if (!isDeleted) 
+                return BadRequest(new ApiResponse(400, message ?? "Unable to add instructor!"));
 
-
-
+            return Ok(new ApiResponse(200,message));
+        }
 
 
 

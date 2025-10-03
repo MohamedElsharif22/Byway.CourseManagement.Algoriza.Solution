@@ -19,6 +19,7 @@ namespace Byway.Application.Specifications.Instructor_Specs
             { 
                 AddInclude(i => i.Courses);
                 ApplyPagination(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+                AddOrderByDesc(i => i.Courses.Average(c => c.Rating));
             }
         }
 

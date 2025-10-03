@@ -32,6 +32,7 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\images\Courses\" />
+    <Folder Include="wwwroot\images\instructors\" />
   </ItemGroup>
 
 </Project>

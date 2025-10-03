@@ -19,7 +19,7 @@ namespace Byway.Application.Contracts
         Task<int> DeleteCourseAsync(int courseId);
         Task EnrollInCourseAsync(int userId, int courseId);
         Task UnenrollFromCourseAsync(int userId, int courseId);
-        Task<(IEnumerable<CourseResponse>, int)> GetAllCoursesWithCountAsync(CourseSpecParams specParams);
+        Task<Pagination<CourseResponse>> GetAllCoursesWithCountAsync(CourseSpecParams specParams);
         Task<CourseResponse?> GetCourseByIdAsync(int courseId);
         Task<IEnumerable<CourseResponse>> GetCoursesByUserIdAsync(int userId);
     }

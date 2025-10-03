@@ -2,7 +2,7 @@
 
 namespace Byway.Application.DTOs.Account
 {
-    public class RegisterRequest
+    public record RegisterRequest
     {
         [Required]
         [MinLength(3)]

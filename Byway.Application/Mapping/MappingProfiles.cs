@@ -19,7 +19,8 @@ namespace Byway.Application.Mapping
 
             CreateMap<Category, CategoryResponse>();
 
-            CreateMap<InstructorRequest, Instructor>();
+            CreateMap<InstructorRequest, Instructor>()
+                .ForMember(dest => dest.ProfilePictureUrl, opt => opt.Ignore());
 
         }
     }

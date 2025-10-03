@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Byway.Application.DTOs.Instructor
 {
-    public class InstructorRequest
+    public record InstructorRequest
     {
         [Required]
         [MinLength(5)]

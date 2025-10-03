@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Byway.Application.DTOs.Account
 {
-    public class LoginRequest
+    public record LoginRequest
     {
         [Required]
         [EmailAddress]

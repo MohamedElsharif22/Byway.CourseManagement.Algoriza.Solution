@@ -5,7 +5,6 @@ using Byway.Application.DTOs.Course;
 using Byway.Application.Specifications.Course_Specs;
 using Byway.CourseManagement.Algoriza.API.Errors;
 using Byway.CourseManagement.Algoriza.API.Extensions;
-using Byway.CourseManagement.Algoriza.API.Pagination;
 using Byway.Domain;
 using Byway.Domain.Entities;
 using Microsoft.AspNetCore.Http;
@@ -26,9 +25,9 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [HttpGet]
         public async Task<ActionResult<Pagination<CourseResponse>>> GetCourses([FromQuery] CourseSpecParams specParams)
         {
-            var (courses,count) = await _courseService.GetAllCoursesWithCountAsync(specParams);
+            var page = await _courseService.GetAllCoursesWithCountAsync(specParams);
 
-            return Ok(new Pagination<CourseResponse>(specParams.PageIndex, specParams.PageSize, count, courses));
+            return Ok(page);
         }
 
         [EndpointSummary("Get Course by Id")]

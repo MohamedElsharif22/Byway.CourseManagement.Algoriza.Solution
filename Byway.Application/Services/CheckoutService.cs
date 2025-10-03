@@ -155,12 +155,12 @@ namespace Byway.Application.Services
             };
         }
 
-        public async Task<IEnumerable<CheckoutHistoryDto>> GetUserCheckoutHistoryAsync(string userId)
+        public async Task<IEnumerable<CheckoutHistoryResponse>> GetUserCheckoutHistoryAsync(string userId)
         {
             var checkouts = await _unitOfWork.Repository<Domain.Entities.Checkout.Checkout>()
                 .GetAllWithSpecsAsync(new CheckoutByUserSpec(userId));
 
-            return checkouts.Select(c => new CheckoutHistoryDto
+            return checkouts.Select(c => new CheckoutHistoryResponse
             {
                 Id = c.Id,
                 PurchaseDate = c.CreatedAt,
@@ -172,7 +172,7 @@ namespace Byway.Application.Services
             }).ToList();
         }
 
-        public async Task<CheckoutDetailsDto> GetCheckoutDetailsAsync(int checkoutId, string userId)
+        public async Task<CheckoutDetailsResponse> GetCheckoutDetailsAsync(int checkoutId, string userId)
         {
             var checkout = await _unitOfWork.Repository<Domain.Entities.Checkout.Checkout>()
                 .GetWithSpecsAsync(new CheckoutDetailsSpec(checkoutId, userId));
@@ -180,7 +180,7 @@ namespace Byway.Application.Services
             if (checkout == null)
                 return null;
 
-            return new CheckoutDetailsDto
+            return new CheckoutDetailsResponse
             {
                 Id = checkout.Id,
                 PurchaseDate = checkout.CreatedAt,
@@ -190,7 +190,7 @@ namespace Byway.Application.Services
                 PaymentMethod = checkout.PaymentMethod,
                 TransactionId = checkout.PaymentTransactionId,
                 Status = checkout.Status.ToString(),
-                Courses = checkout.PurchasedCourses.Select(e => new PurchasedCourseDto
+                Courses = checkout.PurchasedCourses.Select(e => new PurchasedCourseResponse
                 {
                     EnrollmentId = e.Id,
                     CourseId = e.Course.Id,
@@ -235,13 +235,13 @@ namespace Byway.Application.Services
             return enrollment != null;
         }
 
-        public async Task<CheckoutSummaryDto> CalculateCheckoutSummaryFromCartAsync(string cartId)
+        public async Task<CheckoutSummaryResponse> CalculateCheckoutSummaryFromCartAsync(string cartId)
         {
             var cart = await _cartRepository.GetCartAsync(cartId);
 
             if (cart == null || !cart.Items.Any())
             {
-                return new CheckoutSummaryDto
+                return new CheckoutSummaryResponse
                 {
                     TotalItems = 0,
                     SubTotal = 0,
@@ -254,14 +254,14 @@ namespace Byway.Application.Services
             var subTotal = cart.Items.Sum(i => i.Price);
             var tax = subTotal * TaxRate;
 
-            return new CheckoutSummaryDto
+            return new CheckoutSummaryResponse
             {
                 TotalItems = cart.Items.Count,
                 SubTotal = subTotal,
                 Tax = tax,
                 TaxRate = TaxRate,
                 TotalPrice = subTotal + tax,
-                Items = cart.Items.Select(i => new CheckoutItemDto
+                Items = cart.Items.Select(i => new CheckoutItemResponse
                 {
                     CourseId = i.CourseId,
                     Title = i.CourseName,
