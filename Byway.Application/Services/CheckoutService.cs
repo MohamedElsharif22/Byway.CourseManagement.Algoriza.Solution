@@ -76,15 +76,6 @@ namespace Byway.Application.Services
             var courses = await _unitOfWork.Repository<Course>()
                 .GetAllWithSpecsAsync(new CoursesByIdsSpec(courseIds));
 
-            if (!courses.Any())
-            {
-                return new CheckoutResultDto
-                {
-                    Success = false,
-                    Message = "There are no new courses in your cart"
-                };
-            }
-
             if (courses.Count() != cart.Items.Count)
             {
                 return new CheckoutResultDto
