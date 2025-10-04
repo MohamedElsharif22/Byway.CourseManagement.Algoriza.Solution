@@ -1,21 +1,27 @@
 ﻿using Byway.Application.Contracts;
 using Byway.Application.DTOs.Checkout;
 using Byway.CourseManagement.Algoriza.API.Errors;
+using Byway.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
     [Authorize]
-    public class CheckoutController(ICheckoutService checkoutService) : BaseApiController
+    public class CheckoutController(ICheckoutService checkoutService, UserManager<ApplicationUser> userManager) : BaseApiController
     {
         private readonly ICheckoutService _checkoutService = checkoutService;
+        private readonly UserManager<ApplicationUser> _userManager = userManager;
 
-        private string GetUserId()
+        private async Task<string> GetUserId()
         {
-            return User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+            return user?.Id;
         }
 
         [EndpointSummary("Calculate checkout summary from cart (before processing)")]
@@ -36,7 +42,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
             string cartId,
             [FromBody] ProcessCheckoutRequest request)
         {
-                var userId = GetUserId();
+                var userId = await GetUserId();
                 var result = await _checkoutService.ProcessCheckoutFromCartAsync(userId, cartId, request);
 
                 if (!result.Success)
@@ -54,7 +60,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         public async Task<ActionResult<IEnumerable<CheckoutHistoryResponse>>> GetCheckoutHistory()
         {
 
-                var userId = GetUserId();
+                var userId = await GetUserId();
                 var history = await _checkoutService.GetUserCheckoutHistoryAsync(userId);
                 return Ok(history);
         }
@@ -66,7 +72,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [HttpGet("{checkoutId}")]
         public async Task<ActionResult<CheckoutDetailsResponse>> GetCheckoutDetails(int checkoutId)
         {
-                var userId = GetUserId();
+                var userId = await GetUserId();
                 var details = await _checkoutService.GetCheckoutDetailsAsync(checkoutId, userId);
 
                 if (details == null)
@@ -81,7 +87,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [ProducesResponseType(typeof(ApiResponse), 500)]
         public async Task<ActionResult<IEnumerable<EnrollmentResponse>>> GetMyEnrollments()
         {
-                var userId = GetUserId();
+                var userId = await GetUserId();
                 var enrollments = await _checkoutService.GetUserEnrollmentsAsync(userId);
                 return Ok(enrollments);
 
@@ -91,7 +97,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [EndpointSummary("Check if user is enrolled in a specific course")]
         public async Task<ActionResult<bool>> IsEnrolledInCourse(int courseId)
         {
-            var userId = GetUserId();
+            var userId = await GetUserId();
             var isEnrolled = await _checkoutService.IsUserEnrolledInCourseAsync(userId, courseId);
             return Ok(new { courseId, isEnrolled });
         }

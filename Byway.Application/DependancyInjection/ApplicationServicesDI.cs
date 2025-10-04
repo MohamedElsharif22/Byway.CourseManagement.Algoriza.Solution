@@ -11,7 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,8 +41,10 @@ namespace Byway.Application.DependancyInjection
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:AuthKey"] ?? string.Empty)),
                     ValidateLifetime = true,
+                    
                     ClockSkew = TimeSpan.Zero,
                 };
+
             }).AddGoogle(options =>
             {
                 options.ClientId = _configuration["Authentication:Google:ClientId"]!;

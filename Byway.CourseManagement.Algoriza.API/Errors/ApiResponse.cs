@@ -14,6 +14,7 @@ namespace Byway.CourseManagement.Algoriza.API.Errors
                 401 => "Unauthorized",
                 403 => "Forbidden",
                 404 => "Resource Not Found",
+                405 => "Not allowed",
                 500 => "Internal Server Error",
                 _ => null!
             };

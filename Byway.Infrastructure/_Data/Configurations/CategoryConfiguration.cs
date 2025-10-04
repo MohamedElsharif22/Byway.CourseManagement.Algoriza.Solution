@@ -16,6 +16,11 @@ namespace Byway.Infrastructure._Data.Configurations
             builder.Property(c => c.Name)
                    .IsRequired()
                    .HasMaxLength(100);
+
+            builder.HasMany(c => c.Courses)
+                   .WithOne(c => c.Category)
+                   .HasForeignKey(c => c.CategoryId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

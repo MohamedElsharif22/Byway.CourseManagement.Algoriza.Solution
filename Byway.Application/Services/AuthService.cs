@@ -19,17 +19,18 @@ namespace Byway.Application.Services
         public async Task<string> CreateTokenAsync(ApplicationUser user, UserManager<ApplicationUser> userManager)
         {
             // Private Claims
-            var privateClaims = new List<Claim>()
+            var claims = new List<Claim>
             {
-                new(ClaimTypes.Name, user.FirstName),
+                new(ClaimTypes.NameIdentifier, user.Id),
                 new(ClaimTypes.Email, user.Email),
+                new(ClaimTypes.Name, user.UserName),
             };
 
             var userRoles = await userManager.GetRolesAsync(user);
             if (userRoles.Any())
             {
                 foreach (var role in userRoles)
-                    privateClaims.Add(new Claim(ClaimTypes.Role, role));
+                    claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
             // set Security Key
@@ -43,7 +44,7 @@ namespace Byway.Application.Services
                     audience: _configuration["JWT:ValidAudience"],
                     expires: DateTime.Now.AddDays(double.Parse(_configuration["JWT:DurationInDays"] ?? "0")),
                     // private claims
-                    claims: privateClaims,
+                    claims: claims,
                     // security Algorithem 
                     signingCredentials: new SigningCredentials(authKey, SecurityAlgorithms.HmacSha256Signature)
                 );

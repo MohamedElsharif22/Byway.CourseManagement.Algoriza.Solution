@@ -31,7 +31,7 @@ namespace Byway.Application.Specifications.Checkout_Specs
     }
 
     // Get checkout history by user
-    public class CheckoutByUserSpec : BaseSpecification<Domain.Entities.Checkout.Checkout>
+    public class CheckoutByUserSpec : BaseSpecification<Checkout>
     {
         public CheckoutByUserSpec(string userId)
             : base(c => c.UserId == userId)
@@ -43,7 +43,7 @@ namespace Byway.Application.Specifications.Checkout_Specs
     }
 
     // Get checkout details by ID and user
-    public class CheckoutDetailsSpec : BaseSpecification<Domain.Entities.Checkout.Checkout>
+    public class CheckoutDetailsSpec : BaseSpecification<Checkout>
     {
         public CheckoutDetailsSpec(int checkoutId, string userId)
             : base(c => c.Id == checkoutId && c.UserId == userId)
@@ -52,6 +52,7 @@ namespace Byway.Application.Specifications.Checkout_Specs
             AddInclude(q => q.Include(c => c.PurchasedCourses)
                              .ThenInclude(p => p.Course)
                              .ThenInclude(c => c.Instructor));
+
             AddInclude(q => q.Include(c => c.PurchasedCourses)
                              .ThenInclude(p => p.Course)
                              .ThenInclude(c => c.Category));

@@ -20,13 +20,6 @@ namespace Byway.Infrastructure._Data
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(BywayDbContext).Assembly);
 
-            modelBuilder.Entity<ApplicationUser>(c =>
-            {
-                c.HasMany(u => u.EnrolledCourses)
-                 .WithOne()
-                 .HasForeignKey(c => c.UserId);
-            });
-
             BywayContextSeed.SeedDatabase(modelBuilder);
         }
 

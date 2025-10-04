@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Byway.Domain.Repositoies.Contract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Byway.Domain.Entities.Cart
     public class Cart
     {
         public string Id { get; set; }
-        public const decimal Tax = 0.15m;
+        public const decimal Tax = ICartRepository.TaxRate;
         public List<CartItem> Items { get; set; } = new List<CartItem>();
         public Cart(string id)
         {

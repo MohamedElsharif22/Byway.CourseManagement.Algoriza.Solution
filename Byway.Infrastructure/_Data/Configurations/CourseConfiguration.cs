@@ -25,11 +25,11 @@ namespace Byway.Infrastructure._Data.Configurations
             builder.Property(c => c.CoverPictureUrl)
                 .HasMaxLength(500);
             builder.HasOne(c => c.Category)
-                   .WithMany()
+                   .WithMany(c => c.Courses)
                    .HasForeignKey(c => c.CategoryId)
                    .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(c => c.Instructor)
-                   .WithMany()
+                   .WithMany(i => i.Courses)
                    .HasForeignKey(c => c.InstructorId)
                    .OnDelete(DeleteBehavior.Restrict);
                    

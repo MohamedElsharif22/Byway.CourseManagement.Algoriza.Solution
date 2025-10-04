@@ -18,7 +18,7 @@ namespace Byway.Application.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICartRepository _cartRepository;
-        private const decimal TaxRate = 0.14m; // 14% tax rate
+        private const decimal TaxRate = ICartRepository.TaxRate;
 
         public CheckoutService(IUnitOfWork unitOfWork, ICartRepository cartRepository)
         {
@@ -33,7 +33,7 @@ namespace Byway.Application.Services
         {
             // Get cart
             var cart = await _cartRepository.GetCartAsync(cartId);
-            if (cart == null || !cart.Items.Any())
+            if (cart is null || cart.Items.Count == 0)
             {
                 return new CheckoutResultDto
                 {
@@ -76,6 +76,15 @@ namespace Byway.Application.Services
             var courses = await _unitOfWork.Repository<Course>()
                 .GetAllWithSpecsAsync(new CoursesByIdsSpec(courseIds));
 
+            if (!courses.Any())
+            {
+                return new CheckoutResultDto
+                {
+                    Success = false,
+                    Message = "There are no new courses in your cart"
+                };
+            }
+
             if (courses.Count() != cart.Items.Count)
             {
                 return new CheckoutResultDto
@@ -106,7 +115,7 @@ namespace Byway.Application.Services
             }
 
             // Create checkout record
-            var checkout = new Domain.Entities.Checkout.Checkout
+            var checkout = new Checkout
             {
                 UserId = userId,
                 SubTotal = subTotal,
@@ -119,7 +128,7 @@ namespace Byway.Application.Services
                 UpdatedAt = DateTimeOffset.UtcNow
             };
 
-            _unitOfWork.Repository<Domain.Entities.Checkout.Checkout>().Add(checkout);
+            _unitOfWork.Repository<Checkout>().Add(checkout);
             await _unitOfWork.CompleteAsync();
 
             // Create enrollments
