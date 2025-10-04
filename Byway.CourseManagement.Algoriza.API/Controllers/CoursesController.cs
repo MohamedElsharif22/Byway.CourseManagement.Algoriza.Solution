@@ -1,24 +1,28 @@
 ﻿using AutoMapper;
 using Byway.Application.Contracts;
 using Byway.Application.DTOs;
+using Byway.Application.DTOs.Category;
 using Byway.Application.DTOs.Course;
 using Byway.Application.Specifications.Course_Specs;
 using Byway.CourseManagement.Algoriza.API.Errors;
 using Byway.CourseManagement.Algoriza.API.Extensions;
 using Byway.Domain;
 using Byway.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CoursesController(ICourseService courseService, 
                                    IMapper mapper) : BaseApiController
     {
         private readonly ICourseService _courseService = courseService;
         private readonly IMapper _mapper = mapper;
 
+        [AllowAnonymous]
         [EndpointSummary("Get All Courses")]
         [ProducesResponseType(typeof(Pagination<CourseResponse>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
@@ -30,6 +34,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
             return Ok(page);
         }
 
+        [AllowAnonymous]
         [EndpointSummary("Get Course by Id")]
         [ProducesResponseType(typeof(CourseResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)]
@@ -43,6 +48,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
             return Ok(course);
         }
 
+        [AllowAnonymous]
         [HttpGet("Categories")]
         [EndpointSummary("Get All Categories")]
         [ProducesResponseType(typeof(IEnumerable<CategoryResponse>), StatusCodes.Status200OK)]
@@ -58,7 +64,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         }
 
         [HttpPost]
-        [EndpointSummary("Create Course")]
+        [EndpointSummary("Create Course (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse),200)]
         public async Task<ActionResult> CreateCourse([FromForm] CourseRequest courseRequest)
         {
@@ -73,7 +79,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [EndpointSummary("Update Course")]
+        [EndpointSummary("Update Course (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse),200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<ActionResult<ApiResponse>> UpdateCourse(int id, [FromForm] CourseRequest courseRequest)
@@ -88,7 +94,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
 
         [HttpDelete("{id}")]
-        [EndpointSummary("Delete Course")]
+        [EndpointSummary("Delete Course (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> DeleteCourse(int id)

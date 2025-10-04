@@ -10,10 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
-    public class CartController(CartService cartService, ICourseService courseService) : BaseApiController
+    public class CartController(CartService cartService) : BaseApiController
     {
         private readonly CartService _cartService = cartService;
-        private readonly ICourseService _courseService = courseService;
 
         [HttpGet]
         [EndpointSummary("Get Cart by Id")]

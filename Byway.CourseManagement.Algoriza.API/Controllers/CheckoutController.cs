@@ -29,9 +29,9 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
         }
 
+        [Authorize(Roles = "User")]
         [EndpointSummary("Process checkout from cart and complete purchase")]
         [HttpPost("process/{cartId}")]
-        [Authorize("User")]
         public async Task<ActionResult<CheckoutResultDto>> ProcessCheckout(
             string cartId,
             [FromBody] ProcessCheckoutRequest request)

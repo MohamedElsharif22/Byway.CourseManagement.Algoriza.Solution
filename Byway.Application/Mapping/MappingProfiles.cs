@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Byway.Application.DTOs;
+using Byway.Application.DTOs.Category;
 using Byway.Application.DTOs.Course;
 using Byway.Application.DTOs.Instructor;
 using Byway.Domain.Entities;

@@ -1,4 +1,4 @@
-﻿namespace Byway.Application.DTOs
+﻿namespace Byway.Application.DTOs.Category
 {
     public record CategoryResponse
     {

@@ -466,6 +466,10 @@ namespace Byway.Infrastructure._Data
                     var userRole = new IdentityRole("User");
                     await roleManager.CreateAsync(userRole);
                 }
+                else
+                {
+                    Console.WriteLine($"\n{string.Join(", ", roleManager.Roles.Select(r => r.Name))}\n");
+                }
 
                 var user = new ApplicationUser()
                 {

@@ -5,17 +5,19 @@ using Byway.Application.DTOs.Instructor;
 using Byway.Application.Services;
 using Byway.Application.Specifications.Instructor_Specs;
 using Byway.CourseManagement.Algoriza.API.Errors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
-    public class InstructorsController(IInstructorService instructorService, IMapper mapper) : BaseApiController
+    [Authorize(Roles = "Admin")]
+    public class InstructorsController(IInstructorService instructorService) : BaseApiController
     {
         private readonly IInstructorService _instructorService = instructorService;
-        private readonly IMapper _mapper = mapper;
 
+        [AllowAnonymous]
         [EndpointSummary("Get All Instructors!")]
         [ProducesResponseType(typeof(Pagination<InstructorResponse>), 200)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status204NoContent)]
@@ -29,6 +31,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
             return Ok(page);
         }
 
+        [AllowAnonymous]
         [EndpointSummary("Get By ID!")]
         [ProducesResponseType(typeof(InstructorResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 404)]
@@ -52,9 +55,9 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
             return Ok(_instructorService.GetAllJobTitles());
         }
 
-
+        
         [EndpointDescription("Add New Instructor")]
-        [EndpointSummary("Add New Instructor")]
+        [EndpointSummary("Add New Instructor (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         [HttpPost]
@@ -69,7 +72,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         }
 
         [EndpointDescription("Update Instructor")]
-        [EndpointSummary("Update Instructor")]
+        [EndpointSummary("Update Instructor (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         [HttpPut("{id}")]
@@ -85,7 +88,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
 
         [EndpointDescription("Update Instructor")]
-        [EndpointSummary("Delete Instructor")]
+        [EndpointSummary("Delete Instructor (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         [HttpDelete("{id}")]
