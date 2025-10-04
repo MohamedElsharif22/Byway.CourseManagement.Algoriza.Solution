@@ -48,6 +48,20 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
             return Ok(userResponse);
         }
 
+        [EndpointSummary("Login or register Account using google!")]
+        [ProducesResponseType(typeof(UserResponse),200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [HttpPost("google-auth")]
+        public async Task<ActionResult<UserResponse>> LoginOrRegisterWithGoogle(GoogleAuthRequest request)
+        {
+
+            var (userResponse, error) = await _accountService.GoogleAuthAsync(request);
+            if (userResponse is null)
+                return BadRequest(new ApiResponse(400, error??"Invalid google token"));
+
+            return Ok(userResponse);
+        }
+
 
         [EndpointSummary("Get Current user")]
         [Authorize]

@@ -12,6 +12,7 @@ namespace Byway.Application.Contracts
     {
         Task<(UserResponse?, IEnumerable<string>?)> RegisterAsync(RegisterRequest request);
         Task<(UserResponse?, string?)> LoginAsync(LoginRequest request);
+        Task<(UserResponse?, string?)> GoogleAuthAsync(GoogleAuthRequest request);
 
     }
 }

@@ -10,7 +10,8 @@
 		<NoWarn>$(NoWarn);1591</NoWarn>
 		<!-- Optional: specify output path for XML file -->
 		<DocumentationFile>bin\Debug\net9.0\Byway.CourseManagement.Algoriza.API.xml</DocumentationFile>
-	</PropertyGroup>
+	  <UserSecretsId>81535b09-ef2a-4af7-9614-ef0114873ded</UserSecretsId>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7" />

@@ -66,42 +66,6 @@ namespace Byway.Application.Services
             }
         }
 
-        public async Task SendEmailWithAttachmentAsync(EmailRequest request, List<EmailAttachment> attachments)
-        {
-            try
-            {
-                using var message = new MailMessage();
-                message.From = new MailAddress(_fromEmail, _fromName);
-                message.To.Add(new MailAddress(request.ToEmail, request.ToName));
-                message.Subject = request.Subject;
-                message.Body = request.Body;
-                message.IsBodyHtml = request.IsHtml;
-
-                if (!string.IsNullOrEmpty(request.CcEmail))
-                    message.CC.Add(request.CcEmail);
-
-                if (!string.IsNullOrEmpty(request.BccEmail))
-                    message.Bcc.Add(request.BccEmail);
-
-                // Add attachments
-                foreach (var attachment in attachments)
-                {
-                    var stream = new MemoryStream(attachment.Content);
-                    var mailAttachment = new Attachment(stream, attachment.FileName, attachment.ContentType);
-                    message.Attachments.Add(mailAttachment);
-                }
-
-                using var smtpClient = CreateSmtpClient();
-                await smtpClient.SendMailAsync(message);
-
-                _logger.LogInformation("Email with attachments sent successfully to {Email}", request.ToEmail);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error sending email with attachments to {Email}", request.ToEmail);
-                throw;
-            }
-        }
 
         public async Task SendBulkEmailAsync(List<EmailRequest> requests)
         {

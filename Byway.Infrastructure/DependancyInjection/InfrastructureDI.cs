@@ -1,5 +1,6 @@
 ﻿using Byway.Domain;
 using Byway.Domain.Entities;
+using Byway.Domain.Entities.Identity;
 using Byway.Domain.Repositoies.Contract;
 using Byway.Infrastructure._Data;
 using Byway.Infrastructure.Repositories;
@@ -12,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace Byway.Infrastructure.DependancyInjection
 {
     public static class InfrastructureDI
@@ -25,7 +26,12 @@ namespace Byway.Infrastructure.DependancyInjection
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<BywayDbContext>();
+
+
 
             return services;
         }

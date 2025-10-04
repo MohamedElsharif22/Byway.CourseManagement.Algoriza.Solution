@@ -1,7 +1,6 @@
 
 using Byway.Application.DependancyInjection;
 using Byway.Application.Mapping;
-using Byway.CourseManagement.Algoriza.API.DependancyInjection;
 using Byway.CourseManagement.Algoriza.API.Errors.Configuration;
 using Byway.CourseManagement.Algoriza.API.Extensions;
 using Byway.CourseManagement.Algoriza.API.Helpers;
