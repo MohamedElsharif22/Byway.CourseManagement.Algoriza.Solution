@@ -8,6 +8,7 @@ using Byway.Domain.Entities;
 using Byway.Domain.Entities.enums;
 using Byway.Domain.Repositoies.Contract;
 using Byway.Domain.Specification;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,13 @@ namespace Byway.Application.Services
 {
     public class InstructorService(IUnitOfWork unitOfWork, 
                                    IFileUploadService fileUploadService,
-                                   IMapper mapper) : IInstructorService
+                                   IMapper mapper,
+                                   IConfiguration configuration) : IInstructorService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IFileUploadService _fileUploadService = fileUploadService;
         private readonly IMapper _mapper = mapper;
+        private readonly IConfiguration _configuration = configuration;
         private readonly IInstructorRepository _instructorRepo = unitOfWork.Repository<Instructor, IInstructorRepository>();
 
         public async Task<Pagination<InstructorResponse>> GetAllInstructorsAsync(InstructorSpecParams specParams)
@@ -151,7 +154,7 @@ namespace Byway.Application.Services
                 Name = instructor.Name,
                 About = instructor.About,
                 JopTitle = instructor.JopTitle.ToString(),
-                ProfilePictureUrl = instructor.ProfilePictureUrl,
+                ProfilePictureUrl = instructor.ProfilePictureUrl is null ? null : $"{_configuration["BaseApiUrl"]}/{instructor.ProfilePictureUrl}",
                 CoursesCount = await _instructorRepo.GetCoursesCountAsync(instructor.Id),
                 AverageRating = await _instructorRepo.GetAverageCourseRatingAsync(instructor.Id),
                 StudentsCount = await _instructorRepo.GetStudentsCountForInstructorsAsync(instructor.Id),

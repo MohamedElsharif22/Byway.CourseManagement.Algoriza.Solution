@@ -2,6 +2,7 @@
 using Byway.Application.DTOs.Category;
 using Byway.Application.DTOs.Course;
 using Byway.Application.DTOs.Instructor;
+using Byway.Application.Mapping.Mapping_Resolvers;
 using Byway.Domain.Entities;
 
 namespace Byway.Application.Mapping
@@ -12,10 +13,11 @@ namespace Byway.Application.Mapping
         {
             CreateMap<Course, CourseResponse>()
                 .ForMember(dest => dest.InstructorName, opt => opt.MapFrom(src => src.Instructor != null ? src.Instructor.Name : "No Instructor"))
-                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.CoverPictureUrl, opt => opt.MapFrom<CoursePictureUrlResolver>());
 
             CreateMap<CourseRequest, Course>()
-                .ForMember(c => c.CoverPictureUrl, opt => opt.Ignore());
+                .ForMember(dest => dest.CoverPictureUrl, opt => opt.Ignore());
 
             CreateMap<Category, CategoryResponse>();
 
