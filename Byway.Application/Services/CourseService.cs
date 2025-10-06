@@ -123,7 +123,7 @@ namespace Byway.Application.Services
             var courses = await _unitOfWork.Repository<Course>().GetAllWithSpecsAsync(courseSpecs);
             var countSpecs = new CourseWithInstructorAndCategorySpecifications(specParams, getCountOnly: true);
             var totalItems = await _unitOfWork.Repository<Course>().GetCountWithspecsAsync(countSpecs);
-            var page = new Pagination<CourseResponse>(specParams.PageSize, 
+            var page = new Pagination<CourseResponse>(specParams.PageIndex, 
                                                       specParams.PageSize, 
                                                       totalItems, 
                                                       courses.Select(c => _mapper.Map<CourseResponse>(c)));

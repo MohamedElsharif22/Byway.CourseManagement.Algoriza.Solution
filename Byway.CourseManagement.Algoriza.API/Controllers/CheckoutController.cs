@@ -17,11 +17,10 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
     {
         private readonly ICheckoutService _checkoutService = checkoutService;
         private readonly UserManager<ApplicationUser> _userManager = userManager;
-
         private async Task<string> GetUserId()
         {
-            var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
-            return user?.Id;
+
+            return User.FindFirstValue(ClaimTypes.NameIdentifier) ;
         }
 
         [EndpointSummary("Calculate checkout summary from cart (before processing)")]
@@ -56,7 +55,6 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [EndpointSummary("Get user's purchase history")]
         [ProducesResponseType(typeof(IEnumerable<CheckoutHistoryResponse>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 500)]
-
         public async Task<ActionResult<IEnumerable<CheckoutHistoryResponse>>> GetCheckoutHistory()
         {
 

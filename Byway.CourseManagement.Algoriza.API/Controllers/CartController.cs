@@ -16,6 +16,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
         [HttpGet]
         [EndpointSummary("Get Cart by Id")]
+        [EndpointDescription("Get existing cart or creating new one. Expecting GUID ID from the front-end.")]
         [ProducesResponseType(typeof(Cart), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status503ServiceUnavailable)]
         public async Task<ActionResult<Cart>> GetCart(string id)
@@ -29,6 +30,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
         [HttpPut]
         [EndpointSummary("Update Cart")]
+        [EndpointDescription("Updating existing cart or creating new one. Expecting GUID ID from the front-end.")]
         [ProducesResponseType(typeof(Cart), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status503ServiceUnavailable)]
         public async Task<ActionResult<Cart>> UpdateCart([FromBody] CartRequest cartRequest)
@@ -42,7 +44,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
         [HttpDelete]
         [EndpointSummary("Delete Cart")]
-        [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public ActionResult DeleteCart(string id)
         {
             _cartService.DeleteCart(id);

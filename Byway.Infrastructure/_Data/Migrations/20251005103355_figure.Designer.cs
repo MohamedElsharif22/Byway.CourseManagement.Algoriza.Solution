@@ -4,6 +4,7 @@ using Byway.Infrastructure._Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Byway.Infrastructure._Data.Migrations
 {
     [DbContext(typeof(BywayDbContext))]
-    partial class BywayDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251005103355_figure")]
+    partial class figure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,7 +269,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CoverPictureUrl = "images/courses/photo-1517077304055-6e89abbf09b0.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 4, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Master C# programming from basics to advanced topics including OOP, LINQ, and async programming.",
                             DurationInMinutes = 1200,
@@ -281,7 +284,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CoverPictureUrl = "images/courses/photo-1551288049-bebda4e38f71.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 6, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Learn data analysis, visualization, and machine learning using Python, pandas, and scikit-learn.",
                             DurationInMinutes = 1500,
@@ -296,7 +299,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 3,
                             CategoryId = 3,
-                            CoverPictureUrl = "images/courses/photo-1633356122544-f134324a6cee.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 8, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Build dynamic web applications using React, Redux, and modern JavaScript ES6+ features.",
                             DurationInMinutes = 900,
@@ -311,7 +314,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 4,
                             CategoryId = 4,
-                            CoverPictureUrl = "images/courses/photo-1512941937669-90a1b58e7e9c.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 10, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Create professional iOS applications using Swift and SwiftUI. Publish your first app to the App Store.",
                             DurationInMinutes = 1350,
@@ -326,7 +329,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 5,
                             CategoryId = 5,
-                            CoverPictureUrl = "images/courses/photo-1555949963-aa79dcee981c.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 12, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Introduction to machine learning algorithms, neural networks, and practical implementation.",
                             DurationInMinutes = 1800,
@@ -341,7 +344,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 6,
                             CategoryId = 6,
-                            CoverPictureUrl = "images/courses/photo-1618401471353-b98afee0b2eb.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 14, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Learn containerization and orchestration for modern application deployment and scaling.",
                             DurationInMinutes = 1200,
@@ -356,7 +359,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 7,
                             CategoryId = 1,
-                            CoverPictureUrl = "images/courses/photo-1461749280684-dccba630e2f6.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 16, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Build robust RESTful APIs using ASP.NET Core, Entity Framework, and clean architecture principles.",
                             DurationInMinutes = 1050,
@@ -371,7 +374,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 8,
                             CategoryId = 4,
-                            CoverPictureUrl = "images/instructors/photo-1607252650355-f7fd0460ccdb.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 18, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Create native Android applications using Kotlin, Android Jetpack, and Material Design.",
                             DurationInMinutes = 1250,
@@ -386,7 +389,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 9,
                             CategoryId = 3,
-                            CoverPictureUrl = "images/instructors/photo-1627398242454-45a1465c2479.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Master Vue.js 3 with Composition API, Vuex, Vue Router, and build modern single-page applications.",
                             DurationInMinutes = 850,
@@ -401,7 +404,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 10,
                             CategoryId = 5,
-                            CoverPictureUrl = "images/instructors/photo-1620712943543-bcc4688e7485.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 22, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Advanced machine learning course covering neural networks, CNNs, RNNs, and practical AI applications.",
                             DurationInMinutes = 2000,
@@ -416,7 +419,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 11,
                             CategoryId = 6,
-                            CoverPictureUrl = "images/instructors/photo-1451187580459-43490279c0fa.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 24, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Design and deploy scalable cloud solutions using AWS services, serverless architecture, and best practices.",
                             DurationInMinutes = 1400,
@@ -431,7 +434,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 12,
                             CategoryId = 3,
-                            CoverPictureUrl = "images/instructors/photo-1579468118864-1b9ea3c0db4a.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 26, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "End-to-end web development using Node.js, Express, React, and MongoDB (MERN stack).",
                             DurationInMinutes = 1300,
@@ -446,7 +449,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 13,
                             CategoryId = 1,
-                            CoverPictureUrl = "images/instructors/photo-1526379095098-d400fd0bf935.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 28, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Deep dive into Python advanced concepts including decorators, metaclasses, async programming, and performance optimization.",
                             DurationInMinutes = 950,
@@ -461,7 +464,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 14,
                             CategoryId = 7,
-                            CoverPictureUrl = "images/instructors/photo-1541701494587-cb58502866ab.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 30, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Complete course on user interface and user experience design principles, tools, and methodologies.",
                             DurationInMinutes = 1100,
@@ -476,7 +479,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 15,
                             CategoryId = 8,
-                            CoverPictureUrl = "images/instructors/photo-1507003211169-0a1dd7228f2d.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Learn business analysis techniques, process mapping, and optimization strategies for digital transformation.",
                             DurationInMinutes = 1000,
@@ -491,7 +494,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 16,
                             CategoryId = 9,
-                            CoverPictureUrl = "images/instructors/photo-1460925895917-afdab827c52f.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 3, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Master digital marketing strategies, SEO, social media marketing, and growth hacking techniques.",
                             DurationInMinutes = 900,
@@ -506,7 +509,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 17,
                             CategoryId = 10,
-                            CoverPictureUrl = "images/instructors/photo-1550751827-4bd374c3f58b.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 5, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Introduction to cybersecurity principles, ethical hacking, penetration testing, and security best practices.",
                             DurationInMinutes = 1400,
@@ -521,7 +524,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 18,
                             CategoryId = 10,
-                            CoverPictureUrl = "images/instructors/photo-1563013544-824ae1b704d3.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 7, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Advanced penetration testing techniques, vulnerability assessment, and incident response strategies.",
                             DurationInMinutes = 1650,
@@ -536,7 +539,7 @@ namespace Byway.Infrastructure._Data.Migrations
                         {
                             Id = 19,
                             CategoryId = 7,
-                            CoverPictureUrl = "images/instructors/photo-1627398242454-45a1465c2479.jpeg",
+                            CoverPictureUrl = "https://images.unsplash.com/photo-1609277205247-56d6e9eb9b85?w=800&h=600&fit=crop&crop=center",
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 9, 9, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Master Figma for creating professional product designs, prototypes, and design systems.",
                             DurationInMinutes = 800,
@@ -754,7 +757,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "Business_Analyst",
                             Name = "Jennifer Lee",
-                            ProfilePictureUrl = "images/instructors/photo-1531123897727-8f129e1688ce.jpeg",
+                            ProfilePictureUrl = "images/instructorsphoto-1531123897727-8f129e1688ce.jpeg",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -764,7 +767,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "DigitalMarketingStrategist",
                             Name = "Michael Torres",
-                            ProfilePictureUrl = "images/instructors/photo-1506794778202-cad84cf45f1d.jpeg",
+                            ProfilePictureUrl = "images/instructorsphoto-1506794778202-cad84cf45f1d.jpeg",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 23, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
@@ -774,7 +777,7 @@ namespace Byway.Infrastructure._Data.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(2024, 8, 25, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             JopTitle = "CybersecurityExpert",
                             Name = "Amanda Zhang",
-                            ProfilePictureUrl = "images/instructors/photo-1506794778202-cad84cf45f1d.jpeg",
+                            ProfilePictureUrl = "images/instructorsphoto-1506794778202-cad84cf45f1d.jpeg",
                             UpdatedAt = new DateTimeOffset(new DateTime(2024, 8, 25, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });

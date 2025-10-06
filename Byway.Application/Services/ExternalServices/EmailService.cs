@@ -1,4 +1,4 @@
-﻿using Byway.Application.Contracts;
+﻿using Byway.Application.Contracts.ExternalServices;
 using Byway.Application.DTOs.Email;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -10,7 +10,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Byway.Application.Services
+namespace Byway.Application.Services.ExternalServices
 {
     public class EmailService : IEmailService
     {
