@@ -64,7 +64,16 @@ namespace Byway.Application.Services
                 }
 
                 result = await _unitOfWork.CompleteAsync();
+
+                if (result == 0)
+                {
+                    _fileUploadService.DeleteImage(courseEntity.CoverPictureUrl);
+                    _courseRepo.Delete(courseEntity);
+                }
+
+                await _unitOfWork.CompleteAsync();
             }
+
 
             return result;
         }
@@ -154,6 +163,7 @@ namespace Byway.Application.Services
             var totalItems = await _unitOfWork.Repository<Course>().GetCountWithspecsAsync(countSpecs);
 
             var coursesResponse = courses.Select(c => _mapper.Map<CourseResponse>(c));
+
 
 
             foreach (var course in coursesResponse)

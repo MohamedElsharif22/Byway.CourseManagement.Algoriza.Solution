@@ -20,7 +20,7 @@ namespace Byway.Application.DTOs.Course
         public decimal Price { get; set; }
         public string CoverPictureUrl { get; set; }
         public int LecturesCount { get; set; }
-        public int DurationInMinutes { get; set; }
+        public int DurationInHours { get; set; }
         public int? InstructorId { get; set; }
         public string InstructorName { get; set; }
         public int CategoryId { get; set; }

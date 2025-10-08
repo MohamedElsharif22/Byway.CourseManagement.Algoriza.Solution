@@ -16,7 +16,9 @@ namespace Byway.Application.Mapping
             CreateMap<Course, CourseResponse>()
                 .ForMember(dest => dest.InstructorName, opt => opt.MapFrom(src => src.Instructor != null ? src.Instructor.Name : "No Instructor"))
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
-                .ForMember(dest => dest.CoverPictureUrl, opt => opt.MapFrom<CoursePictureUrlResolver>());
+                .ForMember(dest => dest.CoverPictureUrl, opt => opt.MapFrom<CoursePictureUrlResolver>())
+                .ForMember(dest => dest.DurationInHours, opt => opt.MapFrom(src => src.Contents.Sum(s => s.DurationInHours)))
+                .ForMember(dest => dest.LecturesCount, opt => opt.MapFrom(src => src.Contents.Sum(s => s.LecturesCount)));
 
             CreateMap<CourseContent, CourseContentResponse>();
 

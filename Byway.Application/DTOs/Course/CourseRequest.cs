@@ -32,7 +32,7 @@ namespace Byway.Application.DTOs.Course
         [Required]
         public int CategoryId { get; set; }
         [Required]
-        public List<CourseContentRequest> Contents { get; set; } = [];
+        public List<CourseContentRequest> Contents { get; set; }
 
     }
 }
