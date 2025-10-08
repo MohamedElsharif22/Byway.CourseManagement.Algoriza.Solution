@@ -1,8 +1,8 @@
 ﻿using Byway.Application.DTOs.Account;
 using Byway.Application.DTOs.Course;
 using Byway.Application.DTOs.Instructor;
-using Byway.Domain.Entities;
 using Byway.Domain.Entities.Cart;
+using Byway.Domain.Entities.Course_;
 using Byway.Domain.Entities.enums;
 using Byway.Domain.Entities.Identity;
 

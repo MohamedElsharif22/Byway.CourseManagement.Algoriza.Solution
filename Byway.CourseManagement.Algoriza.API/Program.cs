@@ -37,8 +37,6 @@ namespace Byway.CourseManagement.Algoriza.API
 
             builder.Services.AddAuthenticationServices(builder.Configuration);
 
-            builder.Services.AddAutoMapper(c => { }, typeof(MappingProfiles).Assembly);
-
             builder.Services.AddMemoryCache();
 
             //builder.Services.AddIdentity<User, IdentityRole>();

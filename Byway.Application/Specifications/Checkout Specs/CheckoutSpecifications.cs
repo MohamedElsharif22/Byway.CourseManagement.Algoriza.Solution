@@ -1,5 +1,5 @@
-﻿using Byway.Domain.Entities;
-using Byway.Domain.Entities.Checkout;
+﻿using Byway.Domain.Entities.Checkout;
+using Byway.Domain.Entities.Course_;
 using Byway.Domain.Specification;
 using Microsoft.EntityFrameworkCore;
 using System;

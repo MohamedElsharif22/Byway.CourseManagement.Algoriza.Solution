@@ -1,4 +1,5 @@
-﻿using Byway.Domain.Entities.enums;
+﻿using Byway.Domain.Entities.Course_;
+using Byway.Domain.Entities.enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

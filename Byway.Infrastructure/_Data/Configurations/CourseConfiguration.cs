@@ -1,4 +1,4 @@
-﻿using Byway.Domain.Entities;
+﻿using Byway.Domain.Entities.Course_;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -13,6 +13,11 @@ namespace Byway.Infrastructure._Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {
+            builder.Property(c => c.Level)
+                .IsRequired()
+                .HasConversion<string>()
+                .HasMaxLength(100);
+
             builder.Property(c => c.Title)
                 .IsRequired()
                 .HasMaxLength(200);
@@ -32,6 +37,9 @@ namespace Byway.Infrastructure._Data.Configurations
                    .WithMany(i => i.Courses)
                    .HasForeignKey(c => c.InstructorId)
                    .OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(c => c.Contents)
+                   .WithOne(c => c.Course)
+                   .HasForeignKey(c => c.CourseId);
                    
         }
     }

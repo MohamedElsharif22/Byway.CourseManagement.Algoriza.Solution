@@ -1,4 +1,5 @@
 ﻿using Byway.Domain.Entities;
+using Byway.Domain.Entities.Course_;
 using Byway.Domain.Entities.enums;
 using Byway.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -169,11 +170,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Master C# programming from basics to advanced topics including OOP, LINQ, and async programming.",
                     Rating = 5,
                     Price = 99.99m,
-                    LecturesCount = 145,
-                    DurationInMinutes = 1200,
                     CategoryId = 1,
                     InstructorId = 1,
                     CoverPictureUrl = "images/courses/photo-1517077304055-6e89abbf09b0.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -184,11 +184,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Learn data analysis, visualization, and machine learning using Python, pandas, and scikit-learn.",
                     Rating = 4,
                     Price = 129.99m,
-                    LecturesCount = 180,
-                    DurationInMinutes = 1500,
                     CategoryId = 2,
                     InstructorId = 2,
                     CoverPictureUrl = "images/courses/photo-1551288049-bebda4e38f71.jpeg",
+                    Level = CourseLevels.Intermediate,
                     CreatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -199,11 +198,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Build dynamic web applications using React, Redux, and modern JavaScript ES6+ features.",
                     Rating = 5,
                     Price = 89.99m,
-                    LecturesCount = 120,
-                    DurationInMinutes = 900,
                     CategoryId = 3,
                     InstructorId = 3,
                     CoverPictureUrl = "images/courses/photo-1633356122544-f134324a6cee.jpeg",
+                    Level = CourseLevels.Intermediate,
                     CreatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -214,11 +212,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Create professional iOS applications using Swift and SwiftUI. Publish your first app to the App Store.",
                     Rating = 4,
                     Price = 149.99m,
-                    LecturesCount = 165,
-                    DurationInMinutes = 1350,
                     CategoryId = 4,
                     InstructorId = 4,
                     CoverPictureUrl = "images/courses/photo-1512941937669-90a1b58e7e9c.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -229,11 +226,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Introduction to machine learning algorithms, neural networks, and practical implementation.",
                     Rating = 5,
                     Price = 179.99m,
-                    LecturesCount = 200,
-                    DurationInMinutes = 1800,
                     CategoryId = 5,
                     InstructorId = 5,
                     CoverPictureUrl = "images/courses/photo-1555949963-aa79dcee981c.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -244,11 +240,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Learn containerization and orchestration for modern application deployment and scaling.",
                     Rating = 4,
                     Price = 139.99m,
-                    LecturesCount = 155,
-                    DurationInMinutes = 1200,
                     CategoryId = 6,
                     InstructorId = 6,
                     CoverPictureUrl = "images/courses/photo-1618401471353-b98afee0b2eb.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -259,11 +254,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Build robust RESTful APIs using ASP.NET Core, Entity Framework, and clean architecture principles.",
                     Rating = 5,
                     Price = 119.99m,
-                    LecturesCount = 135,
-                    DurationInMinutes = 1050,
                     CategoryId = 1,
                     InstructorId = 7,
                     CoverPictureUrl = "images/courses/photo-1461749280684-dccba630e2f6.jpeg",
+                    Level = CourseLevels.Intermediate,
                     CreatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -274,11 +268,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Create native Android applications using Kotlin, Android Jetpack, and Material Design.",
                     Rating = 4,
                     Price = 134.99m,
-                    LecturesCount = 150,
-                    DurationInMinutes = 1250,
                     CategoryId = 4,
                     InstructorId = 4,
                     CoverPictureUrl = "images/instructors/photo-1607252650355-f7fd0460ccdb.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -289,8 +282,6 @@ namespace Byway.Infrastructure._Data
                     Description = "Master Vue.js 3 with Composition API, Vuex, Vue Router, and build modern single-page applications.",
                     Rating = 4,
                     Price = 94.99m,
-                    LecturesCount = 110,
-                    DurationInMinutes = 850,
                     CategoryId = 3,
                     InstructorId = 3,
                     CoverPictureUrl = "images/instructors/photo-1627398242454-45a1465c2479.jpeg",
@@ -304,8 +295,6 @@ namespace Byway.Infrastructure._Data
                     Description = "Advanced machine learning course covering neural networks, CNNs, RNNs, and practical AI applications.",
                     Rating = 5,
                     Price = 199.99m,
-                    LecturesCount = 220,
-                    DurationInMinutes = 2000,
                     CategoryId = 5,
                     InstructorId = 5,
                     CoverPictureUrl = "images/instructors/photo-1620712943543-bcc4688e7485.jpeg",
@@ -319,11 +308,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Design and deploy scalable cloud solutions using AWS services, serverless architecture, and best practices.",
                     Rating = 4,
                     Price = 159.99m,
-                    LecturesCount = 175,
-                    DurationInMinutes = 1400,
                     CategoryId = 6,
                     InstructorId = 6,
                     CoverPictureUrl = "images/instructors/photo-1451187580459-43490279c0fa.jpeg",
+                    Level = CourseLevels.Intermediate,
                     CreatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -334,8 +322,6 @@ namespace Byway.Infrastructure._Data
                     Description = "End-to-end web development using Node.js, Express, React, and MongoDB (MERN stack).",
                     Rating = 5,
                     Price = 144.99m,
-                    LecturesCount = 160,
-                    DurationInMinutes = 1300,
                     CategoryId = 3,
                     InstructorId = 8,
                     CoverPictureUrl = "images/instructors/photo-1579468118864-1b9ea3c0db4a.jpeg",
@@ -349,11 +335,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Deep dive into Python advanced concepts including decorators, metaclasses, async programming, and performance optimization.",
                     Rating = 4,
                     Price = 109.99m,
-                    LecturesCount = 125,
-                    DurationInMinutes = 950,
                     CategoryId = 1,
                     InstructorId = 1,
                     CoverPictureUrl = "images/instructors/photo-1526379095098-d400fd0bf935.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -364,11 +349,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Complete course on user interface and user experience design principles, tools, and methodologies.",
                     Rating = 5,
                     Price = 124.99m,
-                    LecturesCount = 140,
-                    DurationInMinutes = 1100,
                     CategoryId = 7,
                     InstructorId = 9,
                     CoverPictureUrl = "images/instructors/photo-1541701494587-cb58502866ab.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -379,11 +363,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Learn business analysis techniques, process mapping, and optimization strategies for digital transformation.",
                     Rating = 4,
                     Price = 114.99m,
-                    LecturesCount = 130,
-                    DurationInMinutes = 1000,
                     CategoryId = 8,
                     InstructorId = 10,
                     CoverPictureUrl = "images/instructors/photo-1507003211169-0a1dd7228f2d.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -394,11 +377,10 @@ namespace Byway.Infrastructure._Data
                     Description = "Master digital marketing strategies, SEO, social media marketing, and growth hacking techniques.",
                     Rating = 5,
                     Price = 99.99m,
-                    LecturesCount = 115,
-                    DurationInMinutes = 900,
                     CategoryId = 9,
                     InstructorId = 11,
                     CoverPictureUrl = "images/instructors/photo-1460925895917-afdab827c52f.jpeg",
+                    Level = CourseLevels.Advenced,
                     CreatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero),
                     UpdatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero)
                 },
@@ -409,8 +391,6 @@ namespace Byway.Infrastructure._Data
                     Description = "Introduction to cybersecurity principles, ethical hacking, penetration testing, and security best practices.",
                     Rating = 4,
                     Price = 149.99m,
-                    LecturesCount = 170,
-                    DurationInMinutes = 1400,
                     CategoryId = 10,
                     InstructorId = 12,
                     CoverPictureUrl = "images/instructors/photo-1550751827-4bd374c3f58b.jpeg",
@@ -424,8 +404,6 @@ namespace Byway.Infrastructure._Data
                     Description = "Advanced penetration testing techniques, vulnerability assessment, and incident response strategies.",
                     Rating = 5,
                     Price = 189.99m,
-                    LecturesCount = 190,
-                    DurationInMinutes = 1650,
                     CategoryId = 10,
                     InstructorId = 12,
                     CoverPictureUrl = "images/instructors/photo-1563013544-824ae1b704d3.jpeg",
@@ -439,8 +417,6 @@ namespace Byway.Infrastructure._Data
                     Description = "Master Figma for creating professional product designs, prototypes, and design systems.",
                     Rating = 4,
                     Price = 89.99m,
-                    LecturesCount = 105,
-                    DurationInMinutes = 800,
                     CategoryId = 7,
                     InstructorId = 9,
                     CoverPictureUrl = "images/instructors/photo-1627398242454-45a1465c2479.jpeg",
@@ -450,6 +426,441 @@ namespace Byway.Infrastructure._Data
             };
 
             modelBuilder.Entity<Course>().HasData(courses);
+
+            // Seed Course Contents
+            var courseContents = new List<CourseContent>
+            {
+                // Course 1: Complete C# Programming Bootcamp
+                new CourseContent
+                {
+                    Id = 1,
+                    Name = "Introduction to C# and .NET",
+                    LecturesCount = 8,
+                    DurationInHours = 3,
+                    CourseId = 1,
+                    CreatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 2,
+                    Name = "C# Basics and Syntax",
+                    LecturesCount = 12,
+                    DurationInHours = 5,
+                    CourseId = 1,
+                    CreatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 4, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 2: Data Science with Python
+                new CourseContent
+                {
+                    Id = 6,
+                    Name = "Python Fundamentals for Data Science",
+                    LecturesCount = 10,
+                    DurationInHours = 4,
+                    CourseId = 2,
+                    CreatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 7,
+                    Name = "NumPy and Data Manipulation",
+                    LecturesCount = 12,
+                    DurationInHours = 5,
+                    CourseId = 2,
+                    CreatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 6, 10, 0, 0, TimeSpan.Zero)
+                },
+
+                // Course 3: Modern React Development
+                new CourseContent
+                {
+                    Id = 11,
+                    Name = "React Fundamentals and JSX",
+                    LecturesCount = 9,
+                    DurationInHours = 4,
+                    CourseId = 3,
+                    CreatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 12,
+                    Name = "React Hooks and State Management",
+                    LecturesCount = 13,
+                    DurationInHours = 5,
+                    CourseId = 3,
+                    CreatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 8, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 4: iOS App Development with Swift
+                new CourseContent
+                {
+                    Id = 16,
+                    Name = "Swift Programming Basics",
+                    LecturesCount = 11,
+                    DurationInHours = 5,
+                    CourseId = 4,
+                    CreatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 17,
+                    Name = "SwiftUI Fundamentals",
+                    LecturesCount = 14,
+                    DurationInHours = 6,
+                    CourseId = 4,
+                    CreatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 10, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 5: Machine Learning Fundamentals
+                new CourseContent
+                {
+                    Id = 21,
+                    Name = "Introduction to Machine Learning",
+                    LecturesCount = 8,
+                    DurationInHours = 3,
+                    CourseId = 5,
+                    CreatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 22,
+                    Name = "Supervised Learning Algorithms",
+                    LecturesCount = 15,
+                    DurationInHours = 6,
+                    CourseId = 5,
+                    CreatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 12, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 6: Docker and Kubernetes Mastery
+                new CourseContent
+                {
+                    Id = 26,
+                    Name = "Docker Fundamentals",
+                    LecturesCount = 10,
+                    DurationInHours = 4,
+                    CourseId = 6,
+                    CreatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 27,
+                    Name = "Container Images and Dockerfiles",
+                    LecturesCount = 11,
+                    DurationInHours = 5,
+                    CourseId = 6,
+                    CreatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 14, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 7: ASP.NET Core Web API Development
+                new CourseContent
+                {
+                    Id = 31,
+                    Name = "ASP.NET Core Fundamentals",
+                    LecturesCount = 9,
+                    DurationInHours = 4,
+                    CourseId = 7,
+                    CreatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 32,
+                    Name = "RESTful API Design Principles",
+                    LecturesCount = 8,
+                    DurationInHours = 3,
+                    CourseId = 7,
+                    CreatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 16, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 8: Android Development with Kotlin
+                new CourseContent
+                {
+                    Id = 36,
+                    Name = "Kotlin Programming Essentials",
+                    LecturesCount = 12,
+                    DurationInHours = 5,
+                    CourseId = 8,
+                    CreatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 37,
+                    Name = "Android Studio and Development Environment",
+                    LecturesCount = 7,
+                    DurationInHours = 3,
+                    CourseId = 8,
+                    CreatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 18, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 9: Vue.js Complete Guide
+                new CourseContent
+                {
+                    Id = 41,
+                    Name = "Vue.js 3 Fundamentals",
+                    LecturesCount = 10,
+                    DurationInHours = 4,
+                    CourseId = 9,
+                    CreatedAt = new DateTimeOffset(2024, 8, 20, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 20, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 42,
+                    Name = "Composition API Deep Dive",
+                    LecturesCount = 12,
+                    DurationInHours = 5,
+                    CourseId = 9,
+                    CreatedAt = new DateTimeOffset(2024, 8, 20, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 20, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 10: Deep Learning with TensorFlow
+                new CourseContent
+                {
+                    Id = 46,
+                    Name = "TensorFlow Fundamentals",
+                    LecturesCount = 10,
+                    DurationInHours = 4,
+                    CourseId = 10,
+                    CreatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 47,
+                    Name = "Deep Neural Networks",
+                    LecturesCount = 14,
+                    DurationInHours = 6,
+                    CourseId = 10,
+                    CreatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 48,
+                    Name = "Convolutional Neural Networks (CNNs)",
+                    LecturesCount = 16,
+                    DurationInHours = 7,
+                    CourseId = 10,
+                    CreatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 22, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 11: Cloud Architecture on AWS
+                new CourseContent
+                {
+                    Id = 51,
+                    Name = "AWS Fundamentals and Core Services",
+                    LecturesCount = 11,
+                    DurationInHours = 5,
+                    CourseId = 11,
+                    CreatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 52,
+                    Name = "EC2 and Compute Services",
+                    LecturesCount = 12,
+                    DurationInHours = 5,
+                    CourseId = 11,
+                    CreatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 24, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 12: Full Stack JavaScript Development
+                new CourseContent
+                {
+                    Id = 56,
+                    Name = "Modern JavaScript (ES6+)",
+                    LecturesCount = 10,
+                    DurationInHours = 4,
+                    CourseId = 12,
+                    CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 57,
+                    Name = "Node.js and Express Backend",
+                    LecturesCount = 14,
+                    DurationInHours = 6,
+                    CourseId = 12,
+                    CreatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 26, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 13: Advanced Python Programming
+                new CourseContent
+                {
+                    Id = 61,
+                    Name = "Python Advanced Syntax and Features",
+                    LecturesCount = 11,
+                    DurationInHours = 5,
+                    CourseId = 13,
+                    CreatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 28, 10,0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 62,
+                    Name = "Decorators and Context Managers",
+                    LecturesCount = 9,
+                    DurationInHours = 4,
+                    CourseId = 13,
+                    CreatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 28, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 14: UI/UX Design Masterclass
+                new CourseContent
+                {
+                    Id = 66,
+                    Name = "Design Thinking and User Research",
+                    LecturesCount = 10,
+                    DurationInHours = 4,
+                    CourseId = 14,
+                    CreatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 67,
+                    Name = "UI Design Principles and Typography",
+                    LecturesCount = 12,
+                    DurationInHours = 5,
+                    CourseId = 14,
+                    CreatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 8, 30, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 15: Business Analysis and Process Optimization
+                new CourseContent
+                {
+                    Id = 71,
+                    Name = "Business Analysis Fundamentals",
+                    LecturesCount = 9,
+                    DurationInHours = 4,
+                    CourseId = 15,
+                    CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 72,
+                    Name = "Requirements Gathering and Documentation",
+                    LecturesCount = 11,
+                    DurationInHours = 5,
+                    CourseId = 15,
+                    CreatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 1, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 16: Digital Marketing and Growth Hacking
+                new CourseContent
+                {
+                    Id = 76,
+                    Name = "Digital Marketing Foundations",
+                    LecturesCount = 10,
+                    DurationInHours = 4,
+                    CourseId = 16,
+                    CreatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 77,
+                    Name = "SEO and Content Marketing",
+                    LecturesCount = 13,
+                    DurationInHours = 5,
+                    CourseId = 16,
+                    CreatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 3, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 17: Cybersecurity Fundamentals
+                new CourseContent
+                {
+                    Id = 81,
+                    Name = "Introduction to Cybersecurity",
+                    LecturesCount = 8,
+                    DurationInHours = 3,
+                    CourseId = 17,
+                    CreatedAt = new DateTimeOffset(2024, 9, 5, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 5, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 82,
+                    Name = "Network Security and Protocols",
+                    LecturesCount = 12,
+                    DurationInHours = 5,
+                    CourseId = 17,
+                    CreatedAt = new DateTimeOffset(2024, 9, 5, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 5, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 18: Advanced Cybersecurity and Ethical Hacking
+                new CourseContent
+                {
+                    Id = 86,
+                    Name = "Advanced Penetration Testing",
+                    LecturesCount = 15,
+                    DurationInHours = 7,
+                    CourseId = 18,
+                    CreatedAt = new DateTimeOffset(2024, 9, 7, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 7, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 87,
+                    Name = "Web Application Security Testing",
+                    LecturesCount = 13,
+                    DurationInHours = 6,
+                    CourseId = 18,
+                    CreatedAt = new DateTimeOffset(2024, 9, 7, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 7, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+                // Course 19: Figma for Product Design
+                new CourseContent
+                {
+                    Id = 91,
+                    Name = "Figma Interface and Basics",
+                    LecturesCount = 8,
+                    DurationInHours = 3,
+                    CourseId = 19,
+                    CreatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero)
+                },
+                new CourseContent
+                {
+                    Id = 92,
+                    Name = "Components and Auto Layout",
+                    LecturesCount = 11,
+                    DurationInHours = 5,
+                    CourseId = 19,
+                    CreatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero),
+                    UpdatedAt = new DateTimeOffset(2024, 9, 9, 10, 0, 0, TimeSpan.Zero)
+                },
+                
+            };
+
+            modelBuilder.Entity<CourseContent>().HasData(courseContents);
         }
 
 

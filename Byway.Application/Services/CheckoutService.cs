@@ -2,8 +2,8 @@
 using Byway.Application.DTOs.Checkout;
 using Byway.Application.Specifications.Checkout_Specs;
 using Byway.Domain;
-using Byway.Domain.Entities;
 using Byway.Domain.Entities.Checkout;
+using Byway.Domain.Entities.Course_;
 using Byway.Domain.Entities.enums;
 using Byway.Domain.Repositoies.Contract;
 using System;
@@ -222,8 +222,6 @@ namespace Byway.Application.Services
                 CategoryName = e.Course.Category?.Name,
                 EnrolledAt = e.CreatedAt,
                 Status = e.Status.ToString(),
-                LecturesCount = e.Course.LecturesCount,
-                DurationInMinutes = e.Course.DurationInMinutes
             }).ToList();
         }
 

@@ -68,7 +68,10 @@ namespace Byway.Application.Services
             var result = await _unitOfWork.CompleteAsync();
 
             if (result == 0)
+            {
+                _fileUploadService.DeleteImage(instructor.ProfilePictureUrl);
                 return (false, "Error Occured while Adding instructor");
+            }
 
             return (true, $"{instructor.Name} Added Successfully!");
 

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Byway.Application.Contracts
 {
-    public interface ICourseService 
+    public interface ICourseService
     {
         Task<IEnumerable<CategoryResponse>> GetAllCategoriesAsync();
         Task<int> CreateCourseAsync(CourseRequest course);
@@ -23,5 +23,7 @@ namespace Byway.Application.Contracts
         Task<Pagination<CourseResponse>> GetAllCoursesWithCountAsync(CourseSpecParams specParams);
         Task<CourseResponse?> GetCourseByIdAsync(int courseId);
         Task<IEnumerable<CourseResponse>> GetCoursesByUserIdAsync(int userId);
+
+        IEnumerable<CourseLevelResponse> GetCourseLevels();
     }
 }

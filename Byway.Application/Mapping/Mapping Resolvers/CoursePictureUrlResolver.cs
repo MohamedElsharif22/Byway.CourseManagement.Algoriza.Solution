@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Byway.Application.DTOs.Course;
-using Byway.Domain.Entities;
+using Byway.Domain.Entities.Course_;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

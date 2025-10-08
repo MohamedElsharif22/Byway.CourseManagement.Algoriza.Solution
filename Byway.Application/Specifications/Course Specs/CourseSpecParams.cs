@@ -22,7 +22,7 @@ namespace Byway.Application.Specifications.Course_Specs
             set => pageSize = value > MaxPageSize || value <= 0 ? MaxPageSize : value;
         }
 
-        [Description("Filter courses by category ID")]
+        [Description("Filter courses by categories")]
         public List<int>? Categories { get; set; }
 
         [Description("Filter courses by instructor ID")]

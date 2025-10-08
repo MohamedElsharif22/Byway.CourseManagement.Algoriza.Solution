@@ -63,6 +63,17 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
             return Ok(categoriesResponse);
         }
 
+        [HttpGet("Levels")]
+        [EndpointSummary("Get All Course Levels (Admin Only)")]
+        [ProducesResponseType(typeof(IEnumerable<CategoryResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status204NoContent)]
+        public ActionResult<IEnumerable<CourseLevelResponse>> GetLevels()
+        {
+            var levelsResponse = _courseService.GetCourseLevels();
+
+            return Ok(levelsResponse);
+        }
+
         [HttpPost]
         [EndpointSummary("Create Course (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse),200)]

@@ -1,6 +1,6 @@
 ﻿using Byway.Application.Specifications.Course_Specs;
 using Byway.Application.Specifications.Enums;
-using Byway.Domain.Entities;
+using Byway.Domain.Entities.Course_;
 using Byway.Domain.Specification;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,7 +20,9 @@ namespace Byway.Application.Specifications
                         && (courseSpecParams.Categories == null || courseSpecParams.Categories.Count == 0 || courseSpecParams.Categories.Contains(c.CategoryId)) // Filter by Categories
                         && (!courseSpecParams.InstructorId.HasValue || c.InstructorId == courseSpecParams.InstructorId) // Filter by Instructor
                         && (courseSpecParams.PriceRange == null || (c.Price >= courseSpecParams.PriceRange.Min && c.Price <= courseSpecParams.PriceRange.Max)) // Price Range
-                        && (courseSpecParams.RangeOfLectures == null || (c.LecturesCount >= courseSpecParams.RangeOfLectures.Min && c.LecturesCount <= courseSpecParams.RangeOfLectures.Max)) // Range of Lectures
+                        && (courseSpecParams.RangeOfLectures == null 
+                            || (c.Contents.Sum(c => c.LecturesCount) >= courseSpecParams.RangeOfLectures.Min)
+                            && (c.Contents.Sum(c => c.LecturesCount) <= courseSpecParams.RangeOfLectures.Max)) // Range of Lectures
                   )
         {
             if (!getCountOnly)
@@ -28,6 +30,7 @@ namespace Byway.Application.Specifications
                 AddInclude(c => c.Instructor);
                 AddInclude(c => c.Category);
                 AddInclude(c => c.Enrollments);
+                AddInclude(c => c.Contents);
 
                 if (courseSpecParams.Sort.HasValue)
                 {
@@ -67,6 +70,7 @@ namespace Byway.Application.Specifications
         {
             AddInclude(c => c.Instructor);
             AddInclude(c => c.Category);
+            AddInclude(c => c.Contents);
         }
     }
 }

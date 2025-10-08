@@ -1,5 +1,6 @@
 ﻿using Byway.Domain.Entities;
 using Byway.Domain.Entities.Checkout;
+using Byway.Domain.Entities.Course_;
 using Byway.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace Byway.Infrastructure._Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseContent> CoursesContents { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Checkout> Checkouts { get; set; }
         public DbSet<Enrollment> BoughtCourses { get; set; }

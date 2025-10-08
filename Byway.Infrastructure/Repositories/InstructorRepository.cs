@@ -47,6 +47,7 @@ namespace Byway.Infrastructure.Repositories
         {
             return await _instructors.Where(i => i.Id == instructorId)
                                      .SelectMany(i => i.Courses)
+                                     .SelectMany(c => c.Contents)
                                      .SumAsync(c => c.LecturesCount);
         }
 
