@@ -895,6 +895,7 @@ namespace Byway.Infrastructure._Data
                 await userManager.CreateAsync(user, "Admin@123");
                 await userManager.AddToRoleAsync(user, "Admin");
             }
+            
         }
     }
 }

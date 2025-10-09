@@ -18,7 +18,8 @@ namespace Byway.Application.Mapping
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.CoverPictureUrl, opt => opt.MapFrom<CoursePictureUrlResolver>())
                 .ForMember(dest => dest.DurationInHours, opt => opt.MapFrom(src => src.Contents.Sum(s => s.DurationInHours)))
-                .ForMember(dest => dest.LecturesCount, opt => opt.MapFrom(src => src.Contents.Sum(s => s.LecturesCount)));
+                .ForMember(dest => dest.LecturesCount, opt => opt.MapFrom(src => src.Contents.Sum(s => s.LecturesCount)))
+                .ForMember(dest => dest.Level, opt => opt.MapFrom(src => src.Level.ToString()));
 
             CreateMap<CourseContent, CourseContentResponse>();
 
@@ -28,7 +29,7 @@ namespace Byway.Application.Mapping
                 .ForMember(dest => dest.Level, opt => opt.MapFrom(c => (JobTitles) c.CousrseLevel));
 
             CreateMap<CourseContentRequest, CourseContent>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(c => c.contentId));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(c => c.ContentId));
 
             CreateMap<Category, CategoryResponse>();
 

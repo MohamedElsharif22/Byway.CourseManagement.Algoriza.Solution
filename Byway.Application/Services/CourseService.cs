@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Byway.Application.Services
@@ -32,13 +33,20 @@ namespace Byway.Application.Services
 
         public async Task<int> CreateCourseAsync(CourseRequest courseRequest)
         {
+
+            var contents = JsonSerializer.Deserialize<List<CourseContentRequest>>(courseRequest.Contents);
+
+            if (contents is null || !contents.Any())
+                throw new InvalidDataException("Course must have at least one content.");
+
             var coverPicture = courseRequest.CoverPicture;
 
             var cat = await _unitOfWork.Repository<Category>().GetByIdAsync(courseRequest.CategoryId) 
                     ?? throw new InvalidDataException("Parameter: CategoryId is not valid!");
 
-            var instructor = await _unitOfWork.Repository<Instructor>().GetByIdAsync(courseRequest.InstructorId) 
+            var instructor = await _unitOfWork.Repository<Instructor>().GetByIdAsync(courseRequest.InstructorId)
                           ?? throw new InvalidDataException("Parameter: CategoryId is not valid!");
+
             var courseEntity = _mapper.Map<Course>(courseRequest);
 
             if (coverPicture != null)
@@ -58,7 +66,7 @@ namespace Byway.Application.Services
             }
             else
             {
-                foreach(var content in courseRequest.Contents)
+                foreach(var content in contents)
                 {
                     courseEntity.Contents.Add(_mapper.Map<CourseContent>(content));
                 }
@@ -80,6 +88,12 @@ namespace Byway.Application.Services
 
         public async Task<int> UpdateCourseAsync(int courseId, CourseRequest courseRequest)
         {
+
+            var contents = JsonSerializer.Deserialize<List<CourseContentRequest>>(courseRequest.Contents);
+            
+            if(contents is null || !contents.Any())
+                throw new InvalidDataException("Course must have at least one content.");
+
             var coverPicture = courseRequest.CoverPicture;
 
             var specs = new CourseWithInstructorAndCategorySpecifications(c => c.Id == courseId);
@@ -103,9 +117,9 @@ namespace Byway.Application.Services
 
             _courseRepo.Update(existingCourse);
 
-            foreach (var content in courseRequest.Contents)
+            foreach (var content in contents)
             {
-                var contentEntity = await _unitOfWork.Repository<CourseContent>().GetByIdAsync(content.contentId);
+                var contentEntity = existingCourse.Contents.FirstOrDefault(c => c.Id == content.ContentId);
                 if (contentEntity is null)
                     continue;
 

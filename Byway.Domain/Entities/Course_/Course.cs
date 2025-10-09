@@ -17,7 +17,7 @@ namespace Byway.Domain.Entities.Course_
         public decimal Price { get; set; }
         public string CoverPictureUrl { get; set; }
         public CourseLevels Level { get; set; } = CourseLevels.Beginner;
-        public int? InstructorId { get; set; }
+        public int InstructorId { get; set; }
         public Instructor Instructor { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }

@@ -7,14 +7,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Byway.Application.DTOs.Course
 {
-    public record CourseContentRequest(int contentId, string Name, int LecturesNumber, int DurationInHours);
+    public record CourseContentRequest
+    {
+        public int ContentId { get; set; }
+        public string Name { get; set; }
+        public int LecturesCount { get; set; }
+        public int DurationInHours { get; set; }
+    }
+   
     public record CourseRequest
     {
         [Required]
         [MaxLength(200)]
         public string Title { get; set; }
         [Required]
-        [MinLength(100)]
+        [MinLength(20)]
         public string Description { get; set; }
         [Required]
         [Range(1,5)]
@@ -32,7 +39,7 @@ namespace Byway.Application.DTOs.Course
         [Required]
         public int CategoryId { get; set; }
         [Required]
-        public List<CourseContentRequest> Contents { get; set; }
+        public string Contents { get; set; }
 
     }
 }

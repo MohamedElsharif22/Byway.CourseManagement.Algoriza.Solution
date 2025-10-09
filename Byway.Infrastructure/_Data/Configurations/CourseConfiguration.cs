@@ -36,7 +36,7 @@ namespace Byway.Infrastructure._Data.Configurations
             builder.HasOne(c => c.Instructor)
                    .WithMany(i => i.Courses)
                    .HasForeignKey(c => c.InstructorId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(c => c.Contents)
                    .WithOne(c => c.Course)
                    .HasForeignKey(c => c.CourseId);
