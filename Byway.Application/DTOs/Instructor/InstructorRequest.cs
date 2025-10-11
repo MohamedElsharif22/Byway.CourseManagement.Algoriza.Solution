@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Byway.Application.DTOs.Instructor
 {
-    public record InstructorRequest
+    public abstract record InstructorRequest
     {
         [Required]
         [MinLength(5)]
@@ -20,8 +20,16 @@ namespace Byway.Application.DTOs.Instructor
         [Required]
         [MinLength(10)]
         public string? About { get; set; }
+        public virtual IFormFile? ProfilePicture { get; set; }
+
+    }
+    public record CreateInstructorRequest : InstructorRequest
+    {
         [Required]
-        public IFormFile ProfilePicture { get; set; }
+        public override IFormFile ProfilePicture { get; set; }
+    }
+    public record UpdateInstructorRequest : InstructorRequest
+    {
 
     }
 }

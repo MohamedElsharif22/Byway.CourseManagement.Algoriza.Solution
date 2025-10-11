@@ -61,7 +61,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>>CreateInstructor([FromForm] InstructorRequest instructorRequest)
+        public async Task<ActionResult<ApiResponse>>CreateInstructor([FromForm] CreateInstructorRequest instructorRequest)
         {
             var (isCreated, message) = await _instructorService.CreateInstructorAsync(instructorRequest);
 
@@ -76,7 +76,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [ProducesResponseType(typeof(ApiResponse), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         [HttpPut("{id}")]
-        public async Task<ActionResult<ApiResponse>>UpdateInstructor(int id, [FromForm] InstructorRequest instructorRequest)
+        public async Task<ActionResult<ApiResponse>>UpdateInstructor(int id, [FromForm] UpdateInstructorRequest instructorRequest)
         {
             var (isUpdated, message) = await _instructorService.UpdateInstructorAsync(id, instructorRequest);
 

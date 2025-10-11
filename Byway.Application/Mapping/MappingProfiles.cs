@@ -26,7 +26,7 @@ namespace Byway.Application.Mapping
             CreateMap<CourseRequest, Course>()
                 .ForMember(dest => dest.CoverPictureUrl, opt => opt.Ignore())
                 .ForMember(dest => dest.Contents, opt => opt.Ignore())
-                .ForMember(dest => dest.Level, opt => opt.MapFrom(c => (JobTitles) c.CousrseLevel));
+                .ForMember(dest => dest.Level, opt => opt.MapFrom(c => (JobTitles) c.CourseLevel));
 
             CreateMap<CourseContentRequest, CourseContent>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(c => c.ContentId));

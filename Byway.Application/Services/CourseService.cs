@@ -71,12 +71,18 @@ namespace Byway.Application.Services
                     courseEntity.Contents.Add(_mapper.Map<CourseContent>(content));
                 }
 
-                result = await _unitOfWork.CompleteAsync();
-
-                if (result == 0)
+                try
                 {
-                    _fileUploadService.DeleteImage(courseEntity.CoverPictureUrl);
+                    result = await _unitOfWork.CompleteAsync();
+                }
+                catch(Exception ex)
+                {
+                    if (!string.IsNullOrEmpty(courseEntity.CoverPictureUrl))
+                    {
+                        _fileUploadService.DeleteImage(courseEntity.CoverPictureUrl);
+                    }
                     _courseRepo.Delete(courseEntity);
+                    throw new InvalidOperationException("Course creation failed.", ex);
                 }
 
                 await _unitOfWork.CompleteAsync();
@@ -88,11 +94,13 @@ namespace Byway.Application.Services
 
         public async Task<int> UpdateCourseAsync(int courseId, CourseRequest courseRequest)
         {
+            List<CourseContentRequest>? contents = null;
 
-            var contents = JsonSerializer.Deserialize<List<CourseContentRequest>>(courseRequest.Contents);
+            if(!string.IsNullOrWhiteSpace(courseRequest.Contents))
+                contents = JsonSerializer.Deserialize<List<CourseContentRequest>>(courseRequest.Contents) ;
             
-            if(contents is null || !contents.Any())
-                throw new InvalidDataException("Course must have at least one content.");
+            //if(contents is null || !contents.Any())
+            //    throw new InvalidDataException("Course must have at least one content.");
 
             var coverPicture = courseRequest.CoverPicture;
 
@@ -117,30 +125,57 @@ namespace Byway.Application.Services
 
             _courseRepo.Update(existingCourse);
 
-            foreach (var content in contents)
+            if (contents is not null)
             {
-                var contentEntity = existingCourse.Contents.FirstOrDefault(c => c.Id == content.ContentId);
-                if (contentEntity is null)
-                    continue;
+                var courseContents = existingCourse.Contents.ToList();
 
-                _mapper.Map(content, contentEntity);
 
-                _unitOfWork.Repository<CourseContent>().Update(contentEntity);
+
+                if (!courseContents.Any())
+                {
+                    foreach (var content in contents)
+                    {
+                        if (courseContents.FirstOrDefault(c => c.Id == content.ContentId) is null)
+                        {
+                            var newContent = _mapper.Map<CourseContent>(content);
+                            newContent.CourseId = existingCourse.Id;
+                            _unitOfWork.Repository<CourseContent>().Add(newContent);
+                            continue;
+                        }
+                    }
+                }
+
+                foreach (var content in contents)
+                {
+
+                    var contentEntity = existingCourse.Contents.FirstOrDefault(c => c.Id == content.ContentId);
+
+                    if (contentEntity is null)
+                        continue;
+
+                    existingCourse.Contents.Remove(contentEntity);
+
+                    _mapper.Map(content, contentEntity);
+                    _unitOfWork.Repository<CourseContent>().Add(contentEntity);
+                }
+
             }
 
-
-            var result = await _unitOfWork.CompleteAsync();
-
-            if (result == 0 && coverPicture is null)
-
+            int result;
+            try
             {
-                existingCourse.CoverPictureUrl = oldImagePath;
-                throw new InvalidOperationException("Course update failed.");
+                result = await _unitOfWork.CompleteAsync();
             }
-
-            _fileUploadService.DeleteImage(oldImagePath);
+            catch (Exception ex)
+            {
+                if (!string.IsNullOrEmpty(existingCourse.CoverPictureUrl) && existingCourse.CoverPictureUrl != oldImagePath)
+                {
+                    _fileUploadService.DeleteImage(existingCourse.CoverPictureUrl);
+                    existingCourse.CoverPictureUrl = oldImagePath;
+                }
+                throw new InvalidOperationException("Course update failed.", ex);
+            }
             return result;
-            
         }
 
 

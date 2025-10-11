@@ -31,15 +31,14 @@ namespace Byway.Application.DTOs.Course
         [Required]
         [Description("1 = Beginner, 2 = Intermediate, 3 = Advenced")]
         [Range(1,3)]
-        public int CousrseLevel { get; set; }
+        public int CourseLevel { get; set; }
         [Required]
         public IFormFile CoverPicture { get; set; }
         [Required]
         public int InstructorId { get; set; }
         [Required]
         public int CategoryId { get; set; }
-        [Required]
-        public string Contents { get; set; }
+        public string? Contents { get; set; }
 
     }
 }
