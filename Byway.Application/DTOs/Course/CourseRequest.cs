@@ -14,8 +14,8 @@ namespace Byway.Application.DTOs.Course
         public int LecturesCount { get; set; }
         public int DurationInHours { get; set; }
     }
-   
-    public record CourseRequest
+
+    public abstract record CourseRequest
     {
         [Required]
         [MaxLength(200)]
@@ -24,21 +24,30 @@ namespace Byway.Application.DTOs.Course
         [MinLength(20)]
         public string Description { get; set; }
         [Required]
-        [Range(1,5)]
+        [Range(1, 5)]
         public int Rating { get; set; }
         [Required]
         public decimal Price { get; set; }
         [Required]
         [Description("1 = Beginner, 2 = Intermediate, 3 = Advenced")]
-        [Range(1,3)]
+        [Range(1, 3)]
         public int CourseLevel { get; set; }
-        [Required]
-        public IFormFile CoverPicture { get; set; }
+        public virtual IFormFile? CoverPicture { get; set; }
         [Required]
         public int InstructorId { get; set; }
         [Required]
         public int CategoryId { get; set; }
         public string? Contents { get; set; }
 
+    }
+
+    public record CreateCourseRequest : CourseRequest
+    {
+        [Required]
+        public override IFormFile CoverPicture { get; set; }
+    }
+
+    public record UpdateCourseRequest : CourseRequest
+    {
     }
 }

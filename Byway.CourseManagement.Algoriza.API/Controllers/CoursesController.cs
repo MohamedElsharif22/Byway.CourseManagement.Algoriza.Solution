@@ -77,7 +77,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [HttpPost]
         [EndpointSummary("Create Course (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse),200)]
-        public async Task<ActionResult> CreateCourse([FromForm] CourseRequest courseRequest)
+        public async Task<ActionResult> CreateCourse([FromForm] CreateCourseRequest courseRequest)
         {
             
             var result = await _courseService.CreateCourseAsync(courseRequest);
@@ -93,7 +93,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
         [EndpointSummary("Update Course (Admin Only)")]
         [ProducesResponseType(typeof(ApiResponse),200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<ActionResult<ApiResponse>> UpdateCourse(int id, [FromForm] CourseRequest courseRequest)
+        public async Task<ActionResult<ApiResponse>> UpdateCourse(int id, [FromForm] UpdateCourseRequest courseRequest)
         {
             var result = await _courseService.UpdateCourseAsync(id, courseRequest);
 

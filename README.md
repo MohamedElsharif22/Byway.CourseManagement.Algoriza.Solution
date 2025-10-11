@@ -70,7 +70,7 @@ Use these credentials to access admin features:
 ```json
 {
   "email": "admin@byway.com",
-  "password": "P@ssw0rd"
+  "password": "Admin@123"
 }
 ```
 
