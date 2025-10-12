@@ -14,50 +14,52 @@ namespace Byway.Application.Services.ExternalServices
     {
         private readonly IConfiguration _configuration;
         private readonly ILogger<GoogleAuthService> _logger;
-        private readonly string _googleClientId;
 
         public GoogleAuthService(IConfiguration configuration, ILogger<GoogleAuthService> logger)
         {
             _configuration = configuration;
             _logger = logger;
-            _googleClientId = _configuration["Authentication:Google:ClientId"];
         }
 
         public async Task<GoogleUserInfo?> ValidateGoogleTokenAsync(string idToken)
         {
             try
             {
-                var settings = new GoogleJsonWebSignature.ValidationSettings
-                {
-                    Audience = new[] { _googleClientId }
-                };
+                var clientId = _configuration["Authentication:Google:ClientId"];
 
-                var payload = await GoogleJsonWebSignature.ValidateAsync(idToken, settings);
-
-                if (payload == null)
+                if (string.IsNullOrEmpty(clientId))
                 {
-                    _logger.LogWarning("Google token validation failed: payload is null");
+                    _logger.LogError("Google ClientId is not configured");
                     return null;
                 }
 
+                var validationSettings = new GoogleJsonWebSignature.ValidationSettings
+                {
+                    Audience = new[] { clientId }
+                };
+
+                var payload = await GoogleJsonWebSignature.ValidateAsync(idToken, validationSettings);
+
+                _logger.LogInformation("Successfully validated Google token for email: {Email}", payload.Email);
+
                 return new GoogleUserInfo
                 {
+                    GoogleId = payload.Subject,
                     Email = payload.Email,
+                    EmailVerified = payload.EmailVerified,
                     FirstName = payload.GivenName ?? "",
                     LastName = payload.FamilyName ?? "",
-                    GoogleId = payload.Subject,
-                    Picture = payload.Picture,
-                    EmailVerified = payload.EmailVerified
+                    Picture = payload.Picture
                 };
             }
             catch (InvalidJwtException ex)
             {
-                _logger.LogError(ex, "Invalid Google JWT token");
+                _logger.LogError(ex, "Invalid JWT token");
                 return null;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error validating Google token");
+                _logger.LogError(ex, "Failed to validate Google token");
                 return null;
             }
         }

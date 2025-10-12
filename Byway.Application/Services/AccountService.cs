@@ -113,6 +113,7 @@ namespace Byway.Application.Services
             // Validate Google token
             var googleUser = await _googleAuthService.ValidateGoogleTokenAsync(request.IdToken);
 
+            
             if (googleUser == null)
             {
                 return (null, "Invalid Google token");
@@ -189,6 +190,16 @@ namespace Byway.Application.Services
 
             // Generate JWT token
             var token = await _authService.CreateTokenAsync(user, _userManager);
+
+            var emailRequset = new EmailRequest()
+            {
+                ToEmail = user.Email,
+                ToName = user.UserName ?? "",
+                Subject = "Login Success",
+                Body = "You succesfully Signed in to Byway!"
+            };
+
+            await _emailService.SendEmailAsync(emailRequset);
 
             return (user.ToUserResponse(token), "Successful Google authentication.");
         }
