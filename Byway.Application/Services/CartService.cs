@@ -4,7 +4,6 @@ using Byway.Application.Mapping;
 using Byway.Domain.Entities.Cart;
 using Byway.Domain.Repositoies.Contract;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;

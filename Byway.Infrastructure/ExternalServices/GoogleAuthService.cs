@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Byway.Application.Services.ExternalServices
+namespace Byway.Infrastructure.ExternalServices
 {
     public class GoogleAuthService : IGoogleAuthService
     {

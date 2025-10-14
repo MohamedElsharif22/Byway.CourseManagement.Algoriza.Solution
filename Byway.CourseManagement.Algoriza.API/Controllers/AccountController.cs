@@ -1,4 +1,5 @@
 ﻿using Byway.Application.Contracts;
+using Byway.Application.Contracts.ExternalServices;
 using Byway.Application.DTOs.Account;
 using Byway.Application.Mapping;
 using Byway.Application.Services;
@@ -14,11 +15,11 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 {
     public class AccountController(IAccountService accountService,
                                    UserManager<ApplicationUser> userManager,
-                                   AuthService authService) : BaseApiController
+                                   IAuthService authService) : BaseApiController
     {
         private readonly IAccountService _accountService = accountService;
         private readonly UserManager<ApplicationUser> _userManager = userManager;
-        private readonly AuthService _authService = authService;
+        private readonly IAuthService _authService = authService;
 
         [HttpPost("register")]
         [EndpointSummary("Register New Account!")]
@@ -43,7 +44,7 @@ namespace Byway.CourseManagement.Algoriza.API.Controllers
 
             var (userResponse, error) = await _accountService.LoginAsync(request);
             if (userResponse is null)
-                return BadRequest(new ApiResponse(400, error??"Invalid Email or Password!"));
+                return BadRequest(new ApiResponse(400, error ?? "Invalid Email or Password!"));
 
             return Ok(userResponse);
         }

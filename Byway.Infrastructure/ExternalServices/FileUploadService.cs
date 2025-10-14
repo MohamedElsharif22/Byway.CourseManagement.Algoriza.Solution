@@ -1,4 +1,4 @@
-﻿using Byway.Application.Contracts;
+﻿using Byway.Application.Contracts.ExternalServices;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Byway.Application.Services
+namespace Byway.Infrastructure.ExternalServices
 {
     public class FileUploadService(IWebHostEnvironment environment) : IFileUploadService
     {

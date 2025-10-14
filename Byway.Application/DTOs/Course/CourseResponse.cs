@@ -28,7 +28,7 @@ namespace Byway.Application.DTOs.Course
         public string CategoryName { get; set; }
         public List<CourseContentResponse> Contents { get; set; } = new List<CourseContentResponse>();
         public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
     }
 
     public record CourseLevelResponse

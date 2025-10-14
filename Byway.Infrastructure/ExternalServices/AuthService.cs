@@ -1,4 +1,5 @@
-﻿using Byway.Domain.Entities.Identity;
+﻿using Byway.Application.Contracts.ExternalServices;
+using Byway.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -10,9 +11,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Byway.Application.Services
+namespace Byway.Infrastructure.ExternalServices
 {
-    public class AuthService(IConfiguration configuration)
+    public class AuthService(IConfiguration configuration) : IAuthService
     {
         private readonly IConfiguration _configuration = configuration;
 

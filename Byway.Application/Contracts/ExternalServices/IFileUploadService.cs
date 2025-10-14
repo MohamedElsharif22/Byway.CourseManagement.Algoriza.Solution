@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Byway.Application.Contracts
+namespace Byway.Application.Contracts.ExternalServices
 {
     public interface IFileUploadService
     {

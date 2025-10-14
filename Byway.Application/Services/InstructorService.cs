@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Byway.Application.Contracts;
+using Byway.Application.Contracts.ExternalServices;
 using Byway.Application.DTOs;
 using Byway.Application.DTOs.Instructor;
 using Byway.Application.Specifications.Instructor_Specs;
@@ -131,9 +132,6 @@ namespace Byway.Application.Services
 
             if (result == 0)
                 return (false, "Unable to save Changes!");
-
-            if(insImg is not null)
-                _fileUploadService.DeleteImage(insImg);
 
             return (true, $"{ins.Name} Deleted Successfully");
 

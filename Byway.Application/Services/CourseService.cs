@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Byway.Application.Contracts;
+using Byway.Application.Contracts.ExternalServices;
 using Byway.Application.DTOs;
 using Byway.Application.DTOs.Category;
 using Byway.Application.DTOs.Course;
@@ -12,7 +13,6 @@ using Byway.Domain.Entities;
 using Byway.Domain.Entities.Course_;
 using Byway.Domain.Entities.enums;
 using Byway.Domain.Repositoies.Contract;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -179,7 +179,7 @@ namespace Byway.Application.Services
         }
 
 
-        public async Task<int> DeleteCourseAsync(int courseId)
+        public async Task<int> DeleteCourseAsync(int courseId)   //soft delete
         {
             var spec = new CourseWithInstructorAndCategorySpecifications(c => c.Id == courseId);
             var course = await _courseRepo.GetByIdAsync(courseId);

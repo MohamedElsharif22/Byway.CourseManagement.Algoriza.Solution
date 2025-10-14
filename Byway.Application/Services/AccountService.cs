@@ -19,14 +19,14 @@ namespace Byway.Application.Services
 {
     public class AccountService(UserManager<ApplicationUser> userManager,
                                 SignInManager<ApplicationUser> signInManager,
-                                AuthService authService,
+                                IAuthService authService,
                                 IGoogleAuthService googleAuthService,
                                 IEmailService emailService,
                                 ILogger<AccountService> logger) : IAccountService
     {
         private readonly UserManager<ApplicationUser> _userManager = userManager;
         private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
-        private readonly AuthService _authService = authService;
+        private readonly IAuthService _authService = authService;
         private readonly IGoogleAuthService _googleAuthService = googleAuthService;
         private readonly IEmailService _emailService = emailService;
         private readonly ILogger<AccountService> _logger = logger;

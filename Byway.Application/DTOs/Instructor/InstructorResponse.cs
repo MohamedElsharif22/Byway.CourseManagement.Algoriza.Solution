@@ -18,7 +18,7 @@
         public int TotalLectures { get; set; }
         public decimal AverageRating { get; set; }
         public int StudentsCount { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
     }
 }
