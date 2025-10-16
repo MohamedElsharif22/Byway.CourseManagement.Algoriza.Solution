@@ -53,7 +53,10 @@ namespace Byway.CourseManagement.Algoriza.API
             {
                 options.AddPolicy("wepPolicy", policyConfig =>
                 {
-                    policyConfig.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    policyConfig.WithOrigins(builder.Configuration["FrontendOrigins:AdminHosted"], 
+                                             builder.Configuration["FrontendOrigins:AdminLocal"])
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
                 });
             });
 
