@@ -12,7 +12,7 @@ namespace Byway.Application.DTOs.Course
         public int ContentId { get; set; }
         public string Name { get; set; }
         public int LecturesCount { get; set; }
-        public int DurationInHours { get; set; }
+        public decimal DurationInHours { get; set; }
     }
 
     public abstract record CourseRequest

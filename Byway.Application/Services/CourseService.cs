@@ -127,28 +127,18 @@ namespace Byway.Application.Services
             }
 
             _courseRepo.Update(existingCourse);
+            var courseContents = existingCourse.Contents.ToList();
 
-            if (contents is not null)
+            foreach (var content in contents!)
             {
-                var courseContents = existingCourse.Contents.ToList();
-
-
-
-                if (!courseContents.Any())
+                if (courseContents.FirstOrDefault(c => c.Id == content.ContentId) is null)
                 {
-                    foreach (var content in contents)
-                    {
-                        if (courseContents.FirstOrDefault(c => c.Id == content.ContentId) is null)
-                        {
-                            var newContent = _mapper.Map<CourseContent>(content);
-                            newContent.CourseId = existingCourse.Id;
-                            _unitOfWork.Repository<CourseContent>().Add(newContent);
-                            continue;
-                        }
-                    }
+                    var newContent = _mapper.Map<CourseContent>(content);
+                    newContent.CourseId = existingCourse.Id;
+                    _unitOfWork.Repository<CourseContent>().Add(newContent);
+                    continue;
                 }
-
-                foreach (var content in contents)
+                else
                 {
 
                     var contentEntity = existingCourse.Contents.FirstOrDefault(c => c.Id == content.ContentId);
@@ -156,13 +146,13 @@ namespace Byway.Application.Services
                     if (contentEntity is null)
                         continue;
 
-                    existingCourse.Contents.Remove(contentEntity);
-
                     _mapper.Map(content, contentEntity);
-                    _unitOfWork.Repository<CourseContent>().Add(contentEntity);
-                }
 
+                    _unitOfWork.Repository<CourseContent>().Update(contentEntity);
+                }
             }
+            
+            
 
             int result;
             try
