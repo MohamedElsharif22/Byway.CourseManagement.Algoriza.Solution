@@ -34,10 +34,13 @@ namespace Byway.Application.Services
         public async Task<int> CreateCourseAsync(CourseRequest courseRequest)
         {
 
+            if(courseRequest.Contents is null)
+                throw new InvalidDataException("Course must have at least one Valid content.");
+
             var contents = JsonSerializer.Deserialize<List<CourseContentRequest>>(courseRequest.Contents);
 
-            if (contents is null || !contents.Any())
-                throw new InvalidDataException("Course must have at least one content.");
+            if (!IsValidCourseContents(contents))
+                throw new InvalidDataException("Course must have at least one content. Each content must have a valid Name, LecturesCount and DurationInHours.");
 
             var coverPicture = courseRequest.CoverPicture;
 
@@ -97,10 +100,10 @@ namespace Byway.Application.Services
             List<CourseContentRequest>? contents = null;
 
             if(!string.IsNullOrWhiteSpace(courseRequest.Contents))
-                contents = JsonSerializer.Deserialize<List<CourseContentRequest>>(courseRequest.Contents) ;
-            
-            //if(contents is null || !contents.Any())
-            //    throw new InvalidDataException("Course must have at least one content.");
+                contents = JsonSerializer.Deserialize<List<CourseContentRequest>>(courseRequest.Contents);
+
+            if(!IsValidCourseContents(contents))
+                throw new InvalidDataException("Course must have at least one content. Each content must have a valid Name, LecturesCount and DurationInHours.");
 
             var coverPicture = courseRequest.CoverPicture;
 
@@ -248,6 +251,22 @@ namespace Byway.Application.Services
         public Task UnenrollFromCourseAsync(int userId, int courseId)
         {
             throw new NotImplementedException();
+        }
+
+
+        public bool IsValidCourseContents(List<CourseContentRequest>? contents)
+        {
+            if (contents is null || !contents.Any())
+                return false;
+
+            foreach (var content in contents)
+            {
+                if (string.IsNullOrWhiteSpace(content.Name) || content.LecturesCount <= 0 || content.DurationInHours <= 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void ApplyCourseChanges(ref Course existingCourse, ref Course updatedCourse)
